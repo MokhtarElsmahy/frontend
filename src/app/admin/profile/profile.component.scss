@@ -1,0 +1,40 @@
+.profile{
+  
+   
+    hr{background-color: #a9a9a9;}
+    
+  
+}
+
+#file{
+    display: none;
+}
+#uploadBtn{
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: rgb(41 113 98 / 68%);
+    color: #f1f1f1;
+    line-height: 30px;
+    font-size: 10px;
+    cursor: pointer;
+}
+.profile-pic{
+    width: 80px;
+    height: 80px;
+    // position: absolute;
+    // left: 88%;
+    // top: 20%;
+    transform: translate(0%, 0%);
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+}
+#photo-pic{
+    height: 100%;
+    width: 100%;
+}

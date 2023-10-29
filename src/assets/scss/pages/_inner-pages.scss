@@ -1,0 +1,327 @@
+.inner-page{
+
+.inner-header{
+    .top-header{
+        height: 45vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-image: url(../../../assets/img/background.png);
+        background-size: cover; background-repeat: no-repeat;
+        background-position: center;
+        img{position: fixed; z-index: 9999;}
+        form {
+            margin-top: 40px;
+        }
+        .pseudo-search {
+            display: inline;
+            background: #B9BECD;
+            border: 2px solid #ccc;
+            border-radius: 100px;
+            padding: 12px 15px 9px 2px;	
+            transition: background-color 0.5 ease-in-out;
+            input {
+                border: 0;
+                background-color: transparent;
+               
+                color: $bluecolor;
+                font-size: 15px;
+                &:focus {
+                    outline: none;
+                }
+            }
+            button {
+                border: none;
+                background: none;
+                cursor: pointer;
+                background: $bluecolor;
+                color: white;
+                font-size: 14px;
+                padding: 6px 20px;
+                border-radius: 20px;
+            }
+            i {
+                border: none;
+                background: none;
+                cursor: pointer;
+            }
+            select {
+                border: none;
+            }
+        }
+        .btns{margin-top: 40px;}
+        button{
+            background: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            i{
+                color:$bluecolor;
+                margin-right: 5px;
+                margin-left: 5px;
+                font-size: 15px;
+            }
+        }
+        .phone{
+            background-color: $bluecolor;
+            color: white;
+            i{
+                color:$goldcolor;
+            }
+        }
+    }
+
+    .bot-head{margin-top: 60px;}
+    .page-head{ color: #fff;
+         text-align: center;
+
+         h3{  
+           font-size: 30px;
+           font-weight: 600;
+         }
+    }
+    .breadcrumb{ justify-content: center;
+         font-size: 14px;
+         margin-top: 20px;
+         .breadcrumb-item.active {
+            color: $goldcolor;
+        }
+        }
+}
+
+
+    .navbar{ padding-right: 240px; padding-top: 0; padding-bottom: 0;}
+    .bg-light {
+        --bs-bg-opacity: 1;
+        background-color: #dfdfdf  !important;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        color: $bluecolor;
+        padding: 9px 20px;
+        transition: .3s;
+        margin: 0 4px;
+        border-radius: 0;
+        font-size: 13px;
+
+    }
+    .navbar-light .navbar-nav .nav-link.active  {
+        color: #fff;
+        padding: 8px 20px;
+        background-color: $bluecolor;
+        border-radius: 20px;
+    }
+    .navbar-light .navbar-nav .nav-link:hover{ color: $goldcolor;}
+    .navbar-light .navbar-nav .nav-link.active:hover  { color: #fff;}
+
+    .navbar-nav{
+        background-color: transparent;
+    }
+   
+      
+      .dropdown-toggle::after {
+        margin-left: 0em;
+        border-top: 0em ;
+        border-right: 0em ;
+        border-bottom: 0;
+        border-left: 0 ;
+        margin-left: 0em;
+        /* font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f107";
+        right: 200px;
+        top: 6px;   position: absolute;
+          font-size: 14px; */
+    }
+    .dropdown-menu {
+        border: 0;
+        box-shadow: 0px 3px 10px #00000014;
+        border-radius: 8px;
+        margin-top: 14px!important;
+        position: relative;
+        min-width: 200px;
+        margin-left: -100px;
+        padding: 0;
+        background-color: #ebebec;
+        &::after{
+            position: absolute;
+            margin-left: 0.255em;
+            vertical-align: 0.255em;
+            content: "";
+            border-top: 0;
+            border-right: 0.6em solid transparent;
+            border-bottom:  0.7em solid;
+            border-left: 0.6em solid transparent;
+            color: $goldcolor;
+            top: -7px;
+            right: 10px;
+        }
+      
+      
+         .dropdown-item{
+             padding: 11px 10px;
+             border-bottom: 1px solid #e1e3e5;
+             font-size: 13px;
+             color: $bluecolor;
+             transition: .6s;
+             font-weight: 600;
+        }
+        .dropdown-item:hover, .dropdown-item:focus , .dropdown-item.active  {
+            color: #fff;
+            background-color: $bluecolor;
+            transition: .6s;
+            padding-right: 15px;
+        }
+    }
+
+
+.inner-layout{
+    padding: 20px 0;
+    text-align: center;
+.section-title{
+    position: relative;
+    margin-bottom: 20px;
+    &::after{
+        position: absolute;
+        content: "";
+        width: 180px;
+        height: 10px;
+        left: 44%;
+        bottom: 0px;
+        background-color: #A68E6C33;
+    }
+    h3{
+        color: $bluecolor;
+        font-size: 25px;
+        font-weight: 600;
+        
+    }
+
+}
+p{font-size: 16px;}
+h6{ font-size: 18px; color: $bluecolor; font-weight: 600; margin-top: 40px; margin-bottom: 30px;}
+.p-activity{ color: $bluecolor; font-size: 18px;}
+.card{ margin-top: 20px; border-radius: 8px;
+    .card-img-top{ height: 250px; border-radius: 8px 8px 0 0;}
+
+    .card-title{
+        font-size: 20px;
+        color: $goldcolor;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .btn{ margin: 10px 0; border-radius: 8px;}
+}
+.activity-card{
+    background-color: #E5E5E5;
+    padding: 25px 30px; 
+    .card-img-top{ height: 90px}
+
+    .card-title{ color: $bluecolor; font-size: 18px;}
+}
+
+.calndar-card{
+    background-image: url(../../../assets/img/back-act.svg);
+    background-size: cover; background-repeat: no-repeat;
+    background-position: center;
+    height: 180px; 
+    border: none;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    .caln{ 
+         background-image: url(../../../assets/img/cal-back.svg);
+        background-size: contain; background-repeat: no-repeat;
+        background-position: center; 
+        height: 60px;
+        width: 60px;
+        position: absolute;
+        left: 10px;
+        top: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h5{ color: #fff; margin-top: 3px; font-size: 16px;}
+    }
+    .card-title{
+        font-size: 16px;
+        color: #444;
+        font-weight: 500;
+    }
+
+    .cal-data{  margin-top: 15px;
+        p{font-size: 15px; font-weight: 500; color: $goldcolor;
+        i{
+            color: $bluecolor;
+            font-size: 20px;
+        }
+        }
+    }
+}
+
+.overview-card{
+    background-image: url(../../../assets/img/overview-back.svg);
+    background-size: contain; background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    border: none;
+    height: 345px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 45px;
+    .card-title{
+        font-size: 16px;
+        color: $bluecolor;
+        font-weight: 600;
+        margin-top: 50px;
+        text-align: justify;
+        line-height: 1.5;
+    }
+    h6{ position: absolute;
+        right: 61px;
+        top: 2px;
+        color: $bluecolor;
+        font-size: 24px;
+        font-weight: 600;
+    }
+}
+
+.inst-card{
+    background-color: #E5E5E5;
+    padding: 20px;  
+    border: none;
+    img{
+        width: 60px;
+    margin: 0 10px;
+    }
+    .card-title{ color: $bluecolor; font-size: 18px;
+         font-weight: 500; line-height: 1.5;
+         text-align: justify;
+        }
+
+}
+.btn-download{
+    background: linear-gradient(92.65deg, #0F2056 6.38%, #A68E6C 98.31%);
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    color: #fff;
+    i{ margin: 0 5px;}
+}
+
+
+
+
+
+.pagination-lg .page-link {
+    padding: 0.78rem 1.6rem;
+    font-size: 16px;
+}
+}
+
+
+}

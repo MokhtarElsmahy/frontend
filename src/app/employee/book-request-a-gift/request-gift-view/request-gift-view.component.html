@@ -1,0 +1,140 @@
+<div class="home-dash">
+
+    <div class="row">
+      <div class="d-flex justify-content-between page-head">
+        <div class="page-title">
+          <h4 translate>{{'myorders' | translate}} ( <span translate style="font-size: 18px; color: #B19556;">
+            REQGIFT_SERVICE_NAME
+            </span>)
+          </h4>
+        </div>
+      
+        <div class="">
+          <a [routerLink]="['/auth/giftSpecialLibraries/request-gift-archived']" class="btn btn-primary">
+            <span class="svg-icon svg-icon-primary ">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                height="26px" viewBox="0 0 24 24" version="1.1">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path x="0" y="0" width="24" height="24"/>
+                  <path fill="#fff" opacity="0.7" d="M4,7 L20,7 L20,19.5 C20,20.3284271 19.3284271,21 18.5,21 L5.5,21 C4.67157288,21 4,20.3284271 4,19.5 L4,7 Z M10,10 C9.44771525,10 9,10.4477153 9,11 C9,11.5522847 9.44771525,12 10,12 L14,12 C14.5522847,12 15,11.5522847 15,11 C15,10.4477153 14.5522847,10 14,10 L10,10 Z"/>
+                  <rect fill="#fff" opacity="0.3" x="2" y="3" width="20" height="4" rx="1"/>
+              </g>
+              </svg>
+            </span>   
+            <span translate>ARCHIVED</span>
+          </a>  
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-3">
+        <div class="mb-3">
+          <label class="form-label" translate>from</label>
+          <div class="input-group">
+            <button class="input-group-text" (click)="d.toggle()" id="basic-addon1">
+              <i class="fa fa-calendar"></i>
+            </button>
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" (click)="d.toggle()"
+            (dateSelect)="setStartDate($event)"
+               [(ngModel)]="startDatePicker"
+              ngbDatepicker #d="ngbDatepicker">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="mb-3">
+          <label class="form-label" translate>to</label>
+          <div class="input-group">
+            <button class="input-group-text" (click)="d2.toggle()" id="basic-addon1">
+              <i class="fa fa-calendar"></i>
+            </button>
+            <input class="form-control"  (dateSelect)="setEndDate($event)" placeholder="yyyy-mm-dd" name="dp" (click)="d2.toggle()"
+               [(ngModel)]="endDatePicker" [minDate]="minDatePicker" ngbDatepicker 
+              #d2="ngbDatepicker">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mt-4">
+        <div class="mb-3">
+          <a  class="btn btn-public" style="margin-top: 8px;" (click)="exportExcel()">
+            <i class="fas fa-file-excel" style="margin: 0 10px; font-size: 25px;"></i>
+            <span translate>export-xlsx</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+    <div class="table-responsive">
+      <table id="bookgift" class="table table-striped ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <!-- <th scope="col" translate="">req-name</th> -->
+            <th scope="col" translate="">REQUEST_RESPONSIBLE_NAME</th>
+            <th scope="col" translate="">req-date</th>
+            <th scope="col" translate="">req-status</th>
+            <th scope="col" translate="">req-actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let req of listToView; let i = index;" >
+            <th scope="row">{{i+1}}</th>
+            <!-- <td></td> -->
+            <td>{{req.beneficiaryName}}</td>
+            <td>{{req.createdDate | date}}</td>
+            <td>{{getRequestStatusById(req.requestStatusId)}}</td>
+            <td>
+              <div class="row-btns">
+                <button  ngbTooltip="{{'browse' | translate}}" tooltipClass="" type="button" class="btn btn-primary">
+                  <a [routerLink]="['/auth/giftSpecialLibraries/request-gift-form/', req.id]">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                </button>
+         
+                <button  ngbTooltip="{{'ARCHIVED' | translate}}" tooltipClass="danger" type="button" class="btn btn-danger"
+                (click)="archiveConfirmation(req)" [disabled]="req.requestStatusId == RequestStatusEnum.Approved">
+                  <i class="fas fa-archive "></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <!-- <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" translate="">req-name</th>
+            <th scope="col" translate="">REQUEST_RESPONSIBLE_NAME</th>
+            <th scope="col" translate="">req-date</th>
+            <th scope="col" translate="">req-status</th>
+            <th scope="col" translate="">req-actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <div class="row-btns">
+                <button  ngbTooltip="{{'browse' | translate}}" tooltipClass="" type="button" class="btn btn-primary">
+                  <a [routerLink]="['/auth/libraryServices/request-gift-form']">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                </button>
+                
+                <button  ngbTooltip="{{'ARCHIVED' | translate}}" tooltipClass="danger" type="button" class="btn btn-danger">
+                  <i class="fas fa-archive "></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody> -->
+      </table>
+    </div>
+  
+  </div>

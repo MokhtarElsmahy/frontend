@@ -1,0 +1,168 @@
+<div class="home-dash">
+
+  <div class="page-title">
+    <h4 translate>{{'myorders' | translate}}</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-md">
+      <div class="mb-3">
+        <label class="form-label" translate>REQUEST_TYPE</label>
+        <div class="input-group">
+          <select class="form-control form-select" placeholder="REQUEST_TYPE" name="requestType" [(ngModel)]="requestType" (change)="getAllUserRequests()">
+            <option [value]="0" selected>
+              {{'ALL' | translate}}
+            </option>
+            <option [value]="1">
+              {{'SUGGESTION_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="2">
+              {{'ASKLIBRARIAN_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="3">
+              {{'VISITREQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="4">
+              {{'RESEARCH_AND_SUBJECT_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="5">
+              {{'THESIS_DEPOSITION_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="6">
+              {{'GIFT_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="7">
+              {{'GIFT_BACK_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="8">
+              {{'LIBRARY_EXCHANGE_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="9">
+              {{'MANUSCRIPT_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="10">
+              {{'COPY_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+            <option [value]="11">
+              {{'SELECTIVE_BROADCAST_REQUEST_SERVICE_NAME' | translate}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="mb-3">
+        <label class="form-label" translate>REQUEST_STATUS</label>
+        <div class="input-group">
+          <select class="form-control form-select" placeholder="REQUEST_STATUS" name="requestStatus" [(ngModel)]="requestStatus" (change)="getAllUserRequests()">
+            <option value="All" selected>
+              {{'ALL' | translate}}
+            </option>
+            <option value="Submitted">
+              {{'REQUEST_STATUS_SENT' | translate}}
+            </option>
+            <option value="Responded">
+              {{'REQUEST_STATUS_REPLIED' | translate}}
+            </option>
+            <option value="Pending">
+              {{'REQUEST_STATUS_PENDING' | translate}}
+            </option>
+            <option value="Approved">
+              {{'REQUEST_STATUS_APPROVED' | translate}}
+            </option>
+            <option value="Rejected">
+              {{'REQUEST_STATUS_REJECTED' | translate}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="mb-3">
+        <label class="form-label" translate>from</label>
+        <div class="input-group">
+          <button class="input-group-text" (click)="d.toggle()" id="basic-addon1">
+            <i class="fa fa-calendar"></i>
+          </button>
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" (click)="d.toggle()"
+            (dateSelect)="setStartDate($event)" [(ngModel)]="startDatePicker" ngbDatepicker
+            #d="ngbDatepicker">
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="mb-3">
+        <label class="form-label" translate>to</label>
+        <div class="input-group">
+          <button class="input-group-text" (click)="d2.toggle()" id="basic-addon1">
+            <i class="fa fa-calendar"></i>
+          </button>
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" (click)="d2.toggle()"
+            (dateSelect)="setEndDate($event)" [(ngModel)]="endDatePicker" [minDate]="minDatePicker" ngbDatepicker
+            #d2="ngbDatepicker">
+        </div>
+      </div>
+    </div>
+    <div class="col-md mt-4" *ngIf="requestType != 0 || requestStatus != 'All' || startDatePicker || endDatePicker">
+      <div class="mb-3">
+        <div class="input-group">
+          <button class="btn btn-clear" style="margin-top: 8px ;width: 100%;" (click)="clearFilters()" id="btnClearFilters">
+            <i class="fas fa-eraser" style="margin: 0 8px; font-size: 20px;"></i>
+            <span translate>CLEAR_FILTERS</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md mt-4">
+      <div class="mb-3">
+        <a (click)="exportExcel()" class="btn btn-public" style="margin-top: 8px ;width: 100%;">
+          <i class="fas fa-file-excel" style="margin: 0 8px; font-size: 23px;"></i>
+          <span translate>export-xlsx</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table id="myOrdersDT" class="table table-striped ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" translate="">req-name</th>
+          <th scope="col" translate="">req-date</th>
+          <th scope="col" translate="">req-status</th>
+          <th scope="col" translate="">SELECT</th>
+          <th scope="col" translate="">req-actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of listToView; let i = index;">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{translate.currentLang == 'en' ? request.requestNameEn : request.requestNameAr}}</td>
+          <td>{{request.date | date}}</td>
+          <td>{{translate.currentLang == 'en' ? request.statusEn : request.statusAr}}</td>
+          <td>
+            <input class="form-check-input" type="checkbox" id="gridCheck" (change)="setSelectedRaw(request.code, request.id, $event.target)">
+          </td>
+          <td>
+            <div class="row-btns">
+              <button type="button" ngbTooltip="{{'browse' | translate}}" tooltipClass="secondary" class="btn btn-secondary" *ngIf="(request.type != 'Suggestion' && request.type != 'Inquiry') || (request.type == 'Inquiry' && !request.isEditable)"
+                (click)="followRequest(request)">
+                  <i class="fas fa-eye "></i>
+              </button>
+              <button type="button" ngbTooltip="{{'edit' | translate}}" tooltipClass="secondary" class="btn btn-secondary" *ngIf="!(request.type == 'Inquiry' && !request.isEditable) || (request.type != 'Inquiry' && request.type != 'SelectiveBroadcastRequest')" [disabled]="!request.isEditable"
+                (click)="editRequest(request)">
+                  <i class="fas fa-edit"></i>
+              </button>
+              <button type="button" ngbTooltip="{{'ARCHIVED' | translate}}" tooltipClass="danger" class="btn btn-danger" *ngIf="request.type != 'SelectiveBroadcastRequest'" [disabled]="!request.isEditable"
+                (click)="deleteConfirmation(request)">
+                <i class="fas fa-archive "></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

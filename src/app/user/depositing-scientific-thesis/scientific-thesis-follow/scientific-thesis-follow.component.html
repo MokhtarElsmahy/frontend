@@ -1,0 +1,398 @@
+<div class="home-dash">
+
+    
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>req-follow</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-view ">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label" translate>req-state</label>
+                        <h3>{{getRequestStatusById(thesisDepositionRequest.requestStatusId)}}</h3>
+                    </div>
+                    <div class="col-6" *ngIf="thesisDepositionRequest.instructions">
+                        <label class="form-label" translate>insructions-needed</label>
+                        <h3>{{thesisDepositionRequest.instructions}}</h3>
+                    </div>
+                    <div class="col-6" *ngIf="thesisDepositionRequest.reasonOfRejection">
+                        <label class="form-label" translate>reject-reason</label>
+                        <h3>{{thesisDepositionRequest.reasonOfRejection}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="d-flex justify-content-between page-head">
+            <div class="page-title">
+                <h4 style="font-size: 18px;" translate>req-data</h4>
+            </div>
+            <div>
+                <a [routerLink]="['/auth/user/scientific-thesis-form/edit-thesisDepositionRequest/'+thesisDepositionRequest.id]"
+                    class="btn btn-primary">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect fill="#fff" opacity="0.9" x="4" y="11" width="16" height="2" rx="1" />
+                                <rect fill="#fff" opacity="0.4"
+                                    transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                                    x="4" y="11" width="16" height="2" rx="1" />
+                            </g>
+                        </svg>
+                    </span>
+                    <span translate>more</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.thesisFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.thesisFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.thesisTitleFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file-title</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.thesisTitleFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.subjectsIndexFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file-cont</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.subjectsIndexFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.arabicExtractFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file-absa</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.arabicExtractFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.englishExtractFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file-absa2</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.englishExtractFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.introFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file-indu</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.introFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.collectionFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file-ind</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.collectionFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="thesisDepositionRequest.quarterCollectionFile">
+            <div class=" card-view">
+                <label class="form-label" translate>message-file-25ind</label>
+                <a class="btn btn-download"
+                    href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.quarterCollectionFile}}"
+                    target="_blank">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+                            height="26px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                    fill-rule="nonzero" />
+                                <rect fill="#297162" opacity="0.4"
+                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                    x="11" y="1" width="2" height="14" rx="1" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span translate>download</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="page-title">
+        <h4 style="font-size: 18px;" translate>req-act</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label">{{'REQUEST_SUBMISSION_STATUS' | translate}}</label>
+                <div class="d-flex justify-content-between ">
+                    <h3>{{'REQUEST_WAS_SUBMITTED' | translate}}</h3>
+                    <h5>{{thesisDepositionRequest.createdDate | date}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label">{{'REQUEST_REVIEW_STATUS' | translate}}</label>
+                <div class="d-flex justify-content-between ">
+                    <h3>{{'REQUEST_IS_PENDING_REVIEWAL' | translate}}</h3>
+                    <h5>{{thesisDepositionRequest.createdDate | date}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label">{{'REQUEST_CURRENT_STATUS' | translate}}</label>
+                <div class="d-flex justify-content-between ">
+                    <h3>{{getRequestStatusById(thesisDepositionRequest.requestStatusId)}}</h3>
+                    <h5 *ngIf="thesisDepositionRequest.requestStatusId != RequestStatusEnum.Pending">{{thesisDepositionRequest.updatedDate | date}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+
+    <div class="page-title">
+        <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="comment-cont">
+                <div class="card-comment" *ngFor="let reply of repliesList"
+                    [ngClass]="isMyReply(reply) == true ? 'right-side' :'left-side'">
+                    <label class="form-label">{{reply.userName}}</label>
+                    <h3>{{reply.userMessage}}</h3>
+                    <label class="form-label">{{reply.createdDate | date}} &nbsp; {{reply.createdDate |
+                        date:'shortTime'}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <form #f="ngForm">
+                <div class="mb-3">
+                    <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                    <textarea type="text" class="form-control" id="text" name="comment"
+                        pattern="[\s\S]{1,250}$"
+                        placeholder="{{'ADD_COMMENT' | translate}}" [(ngModel)]="requestComment" #comment="ngModel">
+                            </textarea>
+                    <div *ngIf="comment.errors && (comment.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="comment.errors.pattern">
+                            {{'INVALID_INPUT_LENGTH' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-comment" (click)="updateRequestWithReply(f)" [disabled]="!requestComment || comment.value.split(' ')[0]=='' || comment.value.split('')[0]=='\n'" translate>ADD</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    
+    <div class="row mt-4" *ngIf="thesisDepositionRequest.requestStatusId != RequestStatusEnum.Pending ">
+        <hr>    
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>serv-review</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                <ngb-rating [(rate)]="serviceRating.rate" [max]="5" (rateChange)="createOrUpdateServiceRating()">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+            </div>
+        </div>
+    </div>
+    
+</div>

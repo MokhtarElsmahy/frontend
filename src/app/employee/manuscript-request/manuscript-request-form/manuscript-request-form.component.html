@@ -1,0 +1,211 @@
+<div class="home-dash">
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>manuscript-request</h4>
+        </div>
+        <app-back-button></app-back-button>
+
+    </div>
+    <div class="service-form">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>RESPONSIBLE_NAME</label>
+                    <h3 translate>form.librarian</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.name</label>
+                    <h3>{{ManuscriptVM.beneficiaryName}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.mail</label>
+                    <h3>{{ManuscriptVM.beneficiaryEmail}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.phone</label>
+                    <h3>{{ManuscriptVM.beneficiaryMobile}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.grade</label>
+                    <h3>{{ManuscriptVM.beneficiaryQualification}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.work</label>
+                    <h3>{{ManuscriptVM.beneficiaryInstitution}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.specialty</label>
+                    <h3>{{ManuscriptVM.beneficiaryDepartment}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>manuscript-name</label>
+                    <h3>{{ManuscriptVM.manuscripTitle}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.InternalCall</label>
+                    <h3>{{ManuscriptVM.internalCall}}</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class=" card-view">
+                    <label class="form-label" translate>req-purpose</label>
+                    <h3>{{ManuscriptVM.purpose}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="page-title" *ngIf="">
+            <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="comment-cont">
+                    <div class="card-comment" *ngFor="let comment of ListOfComment"
+                        [ngClass]="isMyReply(comment) == true ? 'right-side' :'left-side'">
+                        <label class="form-label">{{comment.userName}}</label>
+                        <h3>{{comment.comment}}</h3>
+                        <label class="form-label">{{comment.createdDate | date}} &nbsp; {{comment.createdDate |
+                            date:'shortTime'}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form #rf="ngForm">
+                    <div class="mb-3">
+                        <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                        <textarea [(ngModel)]="CommentVm.comment" required type="text" class="form-control" id="text"
+                            name="comment" placeholder="{{'ADD_COMMENT' | translate}}">
+                         </textarea>
+
+                    </div>
+                    <button class="btn btn-comment" (click)="AddComment()" translate>ADD</button>
+
+                </form>
+            </div>
+
+
+        </div>
+
+
+        <hr>
+
+
+
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" [disabled]="isDone==true"
+                            
+                                [checked]="ManuscriptVM.requestStatusId == RequestStatusEnum.Approved"
+                                (click)="setRequestStatus(RequestStatusEnum.Approved); f.form.markAsDirty();"
+                                name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1" translate>
+                                accept-req
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" translate>insructions-needed</label>
+                        <textarea class="textarea form-control"
+                        (change)="ForceDecide()"
+                         [(ngModel)]="ManuscriptVM.instructions"
+                            [readOnly]="isDone==true||ManuscriptVM.requestStatusId== RequestStatusEnum.Rejected||ForceDecide()"
+                            name="instructions" #instructions="ngModel" name="instructions" id="textarea"
+                            rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" [disabled]="isDone==true"
+                           
+                                (click)="setRequestStatus(RequestStatusEnum.Rejected); f.form.markAsDirty();"
+                                [checked]="ManuscriptVM.requestStatusId == RequestStatusEnum.Rejected"
+                                name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1" translate>
+                                reject-req
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" translate>reject-reason</label>
+                        <textarea class="textarea form-control" name="reasonOfRejection"
+                        (change)="ForceDecide()"
+                            [readOnly]="isDone==true ||ManuscriptVM.requestStatusId== RequestStatusEnum.Approved||ForceDecide()"
+                            [(ngModel)]="ManuscriptVM.reasonOfRejection" name="reasonOfRejection"
+                            [required]="ManuscriptVM.requestStatusId == RequestStatusEnum.Rejected"
+                            #reasonOfRejection="ngModel" id="textarea" rows="3"></textarea>
+                        <div *ngIf="reasonOfRejection.errors && reasonOfRejection.touched"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="reasonOfRejection.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" *ngIf="isDone==false&&ManuscriptVM.requestStatusId == RequestStatusEnum.Approved">
+                <div class="col-md-6">
+                    <label class="form-label" translate>manuscript-name</label>
+                    <input class=" form-control" accept="application/pdf" type="file"
+                        (change)="handleFileInput($event)">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    CHANGES_SAVED_SUCCESSFULLY
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center" *ngIf="isDone==false">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit"
+                        [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        (click)="submitForm(f)" translate>send</button>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="row mt-4">
+        <hr>
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>serv-review</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                <ngb-rating [(rate)]="serviceRating.rate" [max]="5" [readonly]="true">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+            </div>
+        </div>
+    </div>
+</div>

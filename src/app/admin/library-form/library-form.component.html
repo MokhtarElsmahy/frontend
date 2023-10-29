@@ -1,0 +1,66 @@
+<div>
+  <div class="modal-header">
+    <h4 class="modal-title" translate>add-library</h4>
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <form #f="ngForm">
+        <div class="col-md-12">
+          <div class="mb-3">
+            <label class="form-label" translate>LIBRARY_ARABIC_NAME</label>
+            <input type="text" class="form-control" id="nameAr" name="nameAr" required
+              pattern="^[\u0621-\u064A0-9 ]|[\u0621-\u064A ]+$"
+              placeholder="{{'LIBRARY_ARABIC_NAME' | translate}}" [(ngModel)]="library.nameAr" #nameAr="ngModel">
+            <div *ngIf="nameAr.errors && (nameAr.touched)" class="alert alert-danger mt-2 mb-2">
+              <div *ngIf="nameAr.errors.required">
+                {{'REQUIRED_FIELD' | translate}}
+              </div>
+              <div *ngIf="nameAr.errors.pattern && nameAr.value.length < 50">
+                  {{'LETTERS_NUMBERS_DASHES_ARABIC_VALIDATION' | translate}}
+              </div>
+              <div *ngIf="nameAr.errors.pattern && nameAr.value.length > 50">
+                  {{'INVALID_INPUT_LENGTH' | translate}}
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" translate>LIBRARY_ENGLISH_NAME</label>
+            <input type="text" class="form-control" id="nameEn" name="nameEn" required
+              pattern="^[a-zA-Z0-9 ]+( [a-zA-Z0-9- ]+)*$"
+              placeholder="{{'LIBRARY_ENGLISH_NAME' | translate}}" [(ngModel)]="library.nameEn" #nameEn="ngModel">
+            <div *ngIf="nameEn.errors && (nameEn.touched)" class="alert alert-danger mt-2 mb-2">
+              <div *ngIf="nameEn.errors.required">
+                {{'REQUIRED_FIELD' | translate}}
+              </div>
+              <div *ngIf="nameEn.errors.pattern && nameEn.value.length < 50">
+                {{'LETTERS_NUMBERS_DASHES_ENGLISH_VALIDATION' | translate}}
+              </div>
+              <div *ngIf="nameEn.errors.pattern && nameEn.value.length > 50">
+                {{'INVALID_INPUT_LENGTH' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6">
+      <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+          {{!isEditMode ? 'EMPLOYEE_SUCCESS_MESSAGE' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+      </ngb-alert>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary btn-submit" *ngIf="!isEditMode" (click)="submitForm(f)"
+      [disabled]="!f.dirty || (f.valid && f.submitted)"
+      translate>add
+    </button>
+    <button class="btn btn-primary btn-submit" *ngIf="isEditMode" (click)="submitForm(f)"
+      [disabled]="!f.dirty || (f.valid && f.submitted)"
+      translate>SAVE_CHANGES
+    </button>
+    <a type="button" class=" btn btn-danger" (click)="activeModal.close('Close click');" translate>cancel</a>
+  </div>
+</div>

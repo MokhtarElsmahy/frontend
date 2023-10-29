@@ -1,0 +1,129 @@
+<div class="home-dash">
+ 
+  <div class=" d-flex justify-content-between align-items-center">
+
+    <div class="page-title">
+      <h4 translate>generate</h4>
+    </div>
+    <app-back-button></app-back-button>
+
+    </div>
+
+  <div class="service-form">
+
+    <div class="row">
+      <!-- <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label" translate>form.reserchtype</label>
+          <select class="form-select form-control" aria-label="Default select example">
+            <option value="1" translate>form.retreat</option>
+            <option value="2" translate>form.scienctific</option>
+            <option value="3" translate>form.scienctific-retreat</option>
+          </select>
+        </div>
+      </div> -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label" translate>form.lib-name</label>
+          <select class="form-select form-control" aria-label="Default select example" name="library" required
+            [(ngModel)]="libraryId" #library="ngModel" (change)="getRoomsList()">
+            <option *ngFor="let library of librariesList" [value]="library.id">{{translate.currentLang == 'en' ? library.nameEn : library.nameAr}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label" translate>form.hall</label>
+          <select class="form-select form-control" aria-label="Default select example" name="room" required
+            [(ngModel)]="roomId" #room="ngModel" [disabled]="!libraryId">
+            <option *ngFor="let room of roomsList" [value]="room.id">{{translate.currentLang == 'en' ? room.nameEn : room.nameAr}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mb-3">
+          <div>
+            <button class="btn btn-primary btn-submit" [disabled]="!libraryId || !roomId" (click)="getRoomResearchAvailableDays()"
+              style="margin-top: 32px; height: 40px; line-height: 1.7; font-size: 14px;" translate>query</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label" translate>from</label>
+            <div class="input-group">
+              <button class="input-group-text" (click)="d.toggle()" id="basic-addon1">
+                <i class="fa fa-calendar"></i>
+              </button>
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" (click)="d.toggle()"
+                (dateSelect)="setStartDate($event)" [(ngModel)]="startDatePicker" [minDate]="minDatePicker"
+                ngbDatepicker #d="ngbDatepicker">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label class="form-label" translate>to</label>
+            <div class="input-group">
+              <button class="input-group-text" (click)="d2.toggle()" id="basic-addon1">
+                <i class="fa fa-calendar"></i>
+              </button>
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" (click)="d2.toggle()"
+                (dateSelect)="setEndDate($event)" [(ngModel)]="endDatePicker" [minDate]="minDatePicker" ngbDatepicker
+                #d2="ngbDatepicker">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mb-3">
+          <button class="btn btn-primary btn-submit"
+            [disabled]="(!libraryId || !roomId || startDate == undefined || endDate == undefined)"
+            (click)="generateAvailableDatesRange()"
+            style="margin-top: 32px; height: 40px; line-height: 1.7; font-size: 14px; margin-left: 5px;"
+            translate>generate</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="table-responsive">
+      <table id="researchDaysTable" class="table table-striped ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" translate>day</th>
+            <th scope="col" translate>date</th>
+            <th scope="col" translate>status</th>
+            <th scope="col" translate>
+              <button type="button" [disabled]="!libraryId || !roomId" (click)="addGeneratedTime()" class="btn btn-add"
+                style="padding-bottom: 5%;" translate><i class="fas fa-plus  m-2"></i>add-appointment </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let researchDay of listToView; let i = index;">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{getDayOfWeek(researchDay.date)}}</td>
+            <td>{{researchDay.date | date}}</td>
+            <td>{{getRequestStatusById(researchDay.researchStatusId)}}</td>
+            <td>
+              <div class="row-btns">
+                <!-- <button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i></button> -->
+                <button type="button" class="btn btn-danger" (click)="deleteConfirmation(researchDay)"><i
+                    class="fas fa-times"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+        {{'EMPLOYEE_SUCCESS_MESSAGE' | translate}}
+      </ngb-alert>
+    </div>
+  </div>
+
+</div>

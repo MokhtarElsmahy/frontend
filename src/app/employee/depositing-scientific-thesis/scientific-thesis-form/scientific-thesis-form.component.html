@@ -1,0 +1,864 @@
+<div class="home-dash">
+
+  
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>scientific-thesis</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+        </div>
+
+
+    <div class="service-form">
+
+        <div id="stepper1" class="bs-stepper">
+            <div class="bs-stepper-header">
+                <div class="step" data-target="#user-data">
+                    <button class="step-trigger">
+                        <span class="bs-stepper-circle">
+                            <i class="svg-icon svg-icon-primary svg-icon-2x">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="30px" height="30px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                            fill-rule="nonzero" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                            fill-rule="nonzero" />
+                                    </g>
+                                </svg>
+                            </i>
+                        </span>
+                        <span class="bs-stepper-label" translate>user-data</span>
+                    </button>
+                </div>
+                <div class="line">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36px"
+                            height="36px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+                <div class="step" data-target="#message-data">
+                    <button class="step-trigger">
+                        <span class="bs-stepper-circle">
+                            <i class="svg-icon svg-icon-primary svg-icon-2x">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="30px" height="30px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                                            fill-rule="nonzero" />
+                                        <path fill="#fff" opacity="0.6"
+                                            d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z"
+                                            fill-rule="nonzero" />
+                                    </g>
+                                </svg>
+                            </i>
+                        </span>
+                        <span class="bs-stepper-label" translate>message-data</span>
+                    </button>
+                </div>
+                <div class="line">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36px"
+                            height="36px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+                <div class="step" data-target="#message-available">
+                    <button class="step-trigger">
+                        <span class="bs-stepper-circle">
+                            <i class="svg-icon svg-icon-primary svg-icon-2x">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="33px" height="33px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M13.6855025,18.7082217 C15.9113859,17.8189707 18.682885,17.2495635 22,17 C22,16.9325178 22,13.1012863 22,5.50630526 L21.9999762,5.50630526 C21.9999762,5.23017604 21.7761292,5.00632908 21.5,5.00632908 C21.4957817,5.00632908 21.4915635,5.00638247 21.4873465,5.00648922 C18.658231,5.07811173 15.8291155,5.74261533 13,7 C13,7.04449645 13,10.79246 13,18.2438906 L12.9999854,18.2438906 C12.9999854,18.520041 13.2238496,18.7439052 13.5,18.7439052 C13.5635398,18.7439052 13.6264972,18.7317946 13.6855025,18.7082217 Z" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M10.3144829,18.7082217 C8.08859955,17.8189707 5.31710038,17.2495635 1.99998542,17 C1.99998542,16.9325178 1.99998542,13.1012863 1.99998542,5.50630526 L2.00000925,5.50630526 C2.00000925,5.23017604 2.22385621,5.00632908 2.49998542,5.00632908 C2.50420375,5.00632908 2.5084219,5.00638247 2.51263888,5.00648922 C5.34175439,5.07811173 8.17086991,5.74261533 10.9999854,7 C10.9999854,7.04449645 10.9999854,10.79246 10.9999854,18.2438906 L11,18.2438906 C11,18.520041 10.7761358,18.7439052 10.4999854,18.7439052 C10.4364457,18.7439052 10.3734882,18.7317946 10.3144829,18.7082217 Z" />
+                                    </g>
+                                </svg>
+                            </i>
+                        </span>
+                        <span class="bs-stepper-label" translate>message-available</span>
+                    </button>
+                </div>
+                <div class="line">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36px"
+                            height="36px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+                <div class="step" data-target="#message-upload">
+                    <button class="step-trigger">
+                        <span class="bs-stepper-circle">
+                            <i class="svg-icon svg-icon-primary svg-icon-2x">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="30px" height="30px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24" />
+                                        <path fill="#fff" opacity="0.6"
+                                            d="M3.5,21 L20.5,21 C21.3284271,21 22,20.3284271 22,19.5 L22,8.5 C22,7.67157288 21.3284271,7 20.5,7 L10,7 L7.43933983,4.43933983 C7.15803526,4.15803526 6.77650439,4 6.37867966,4 L3.5,4 C2.67157288,4 2,4.67157288 2,5.5 L2,19.5 C2,20.3284271 2.67157288,21 3.5,21 Z" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M8.54301601,14.4923287 L10.6661,14.4923287 L10.6661,16.5 C10.6661,16.7761424 10.8899576,17 11.1661,17 L12.33392,17 C12.6100624,17 12.83392,16.7761424 12.83392,16.5 L12.83392,14.4923287 L14.9570039,14.4923287 C15.2331463,14.4923287 15.4570039,14.2684711 15.4570039,13.9923287 C15.4570039,13.8681299 15.41078,13.7483766 15.3273331,13.6563877 L12.1203391,10.1211145 C11.934804,9.91658739 11.6185961,9.90119131 11.414069,10.0867264 C11.4020553,10.0976245 11.390579,10.1091008 11.3796809,10.1211145 L8.1726869,13.6563877 C7.98715181,13.8609148 8.00254789,14.1771227 8.20707501,14.3626578 C8.29906387,14.4461047 8.41881721,14.4923287 8.54301601,14.4923287 Z" />
+                                    </g>
+                                </svg>
+                            </i>
+                        </span>
+                        <span class="bs-stepper-label" translate>message-upload</span>
+                    </button>
+                </div>
+                <div class="line">
+                    <span class="svg-icon svg-icon-primary ">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36px"
+                            height="36px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path fill="#297162" opacity="0.8"
+                                    d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                <path fill="#297162" opacity="0.4"
+                                    d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                    fill-rule="nonzero"
+                                    transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+                <div class="step" data-target="#emp-response">
+                    <button class="step-trigger">
+                        <span class="bs-stepper-circle">
+                            <i class="svg-icon svg-icon-primary svg-icon-2x">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="30px" height="30px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M4.875,20.75 C4.63541667,20.75 4.39583333,20.6541667 4.20416667,20.4625 L2.2875,18.5458333 C1.90416667,18.1625 1.90416667,17.5875 2.2875,17.2041667 C2.67083333,16.8208333 3.29375,16.8208333 3.62916667,17.2041667 L4.875,18.45 L8.0375,15.2875 C8.42083333,14.9041667 8.99583333,14.9041667 9.37916667,15.2875 C9.7625,15.6708333 9.7625,16.2458333 9.37916667,16.6291667 L5.54583333,20.4625 C5.35416667,20.6541667 5.11458333,20.75 4.875,20.75 Z"
+                                            fill-rule="nonzero" />
+                                        <path fill="#fff" opacity="0.7"
+                                            d="M2,11.8650466 L2,6 C2,4.34314575 3.34314575,3 5,3 L19,3 C20.6568542,3 22,4.34314575 22,6 L22,15 C22,15.0032706 21.9999948,15.0065399 21.9999843,15.009808 L22.0249378,15 L22.0249378,19.5857864 C22.0249378,20.1380712 21.5772226,20.5857864 21.0249378,20.5857864 C20.7597213,20.5857864 20.5053674,20.4804296 20.317831,20.2928932 L18.0249378,18 L12.9835977,18 C12.7263047,14.0909841 9.47412135,11 5.5,11 C4.23590829,11 3.04485894,11.3127315 2,11.8650466 Z M6,7 C5.44771525,7 5,7.44771525 5,8 C5,8.55228475 5.44771525,9 6,9 L15,9 C15.5522847,9 16,8.55228475 16,8 C16,7.44771525 15.5522847,7 15,7 L6,7 Z" />
+                                    </g>
+                                </svg>
+                            </i>
+                        </span>
+                        <span class="bs-stepper-label" translate>emp-response</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bs-stepper-content">
+                <div id="user-data" class="content">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.name</label>
+                                <h3>{{thesisDepositionRequest.applicantName}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.uni-name</label>
+                                <h3 *ngIf="thesisDepositionRequest.isOutsideKingdom==false">{{thesisDepositionRequest.universityId}}</h3>
+                                <h3 *ngIf="thesisDepositionRequest.isOutsideKingdom==true">{{thesisDepositionRequest.universityNameOutsideKingdom}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.colledge</label>
+                                <h3>{{thesisDepositionRequest.faculty}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.section</label>
+                                <h3>{{thesisDepositionRequest.department}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.phone</label>
+                                <h3>{{thesisDepositionRequest.mobile}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.mail</label>
+                                <h3>{{thesisDepositionRequest.email}}</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-end btn-step">
+                        <button (click)="next()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+
+                            <span translate>next</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="message-data" class="content">
+
+                    <div class="row">
+
+                        <!-- <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.message-data</label>
+                                <h3>{{thesisDepositionRequest.thesisData}}</h3>
+                            </div>
+                        </div> -->
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.message-title</label>
+                                <h3>{{thesisDepositionRequest.thesisTitle}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.degree</label>
+                                <h3>{{thesisDepositionRequest.scientificDegree}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.year</label>
+                                <h3>{{thesisDepositionRequest.yearOfDiscussion}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.no-page</label>
+                                <h3>{{thesisDepositionRequest.numberOfPages}}</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class=" card-view">
+                                <label class="form-label" translate>form.no-parts</label>
+                                <h3>{{thesisDepositionRequest.numberOfParts}}</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between btn-step">
+                        <button (click)="previous()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                                            fill-rule="nonzero" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+
+                            <span translate>prev</span>
+                        </button>
+                        <button (click)="next()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span translate>next</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="message-available" class="content">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class=" card-view" *ngIf="thesisDepositionRequest.isAvailable">
+                                <label class="form-label" translate>form.message-available</label>
+                                <h3 *ngIf="!thesisDepositionRequest.isAvailableWithChains" translate>
+                                    form.type-available1</h3>
+                                <h3 *ngIf="thesisDepositionRequest.isAvailableWithChains">{{'form.type-available2' |
+                                    translate}} &nbsp; <br>
+                                    <span *ngIf="thesisDepositionRequest.availabilityType==1" translate
+                                        style="color: #B19556; display:block; margin-top: 6px;">form.type-available3</span>
+                                    <span *ngIf="thesisDepositionRequest.availabilityType==2" translate
+                                        style="color:#B19556; display:block; margin-top: 6px;">form.type-available4</span>
+                                    <span *ngIf="thesisDepositionRequest.availabilityType==3" translate
+                                        style="color:#B19556; display:block; margin-top: 6px;">form.type-available5</span>
+                                </h3>
+                            </div>
+                            <div class=" card-view" *ngIf="!thesisDepositionRequest.isAvailable">
+                                <label class="form-label" translate>form.message-available</label>
+                                <h3 *ngIf="!thesisDepositionRequest.isAvailableWithChains" translate>message-rej</h3>
+                                <h3 *ngIf="!thesisDepositionRequest.isAvailable &&!thesisDepositionRequest.availabilityType " translate>message-not-available</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between btn-step">
+                        <button (click)="previous()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                                            fill-rule="nonzero" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+
+                            <span translate>prev</span>
+                        </button>
+                        <button (click)="next()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span translate>next</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="message-upload" class="content">
+                    <div class="row">
+
+                        <div class="col-md-3" *ngIf="thesisDepositionRequest.thesisFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.thesisFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-3" *ngIf="thesisDepositionRequest.thesisTitleFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file-title</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.thesisTitleFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="thesisDepositionRequest.subjectsIndexFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file-cont</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.subjectsIndexFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="thesisDepositionRequest.arabicExtractFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file-absa</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.arabicExtractFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="thesisDepositionRequest.englishExtractFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file-absa2</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.englishExtractFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="thesisDepositionRequest.introFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file-indu</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.introFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="thesisDepositionRequest.collectionFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file-ind</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.collectionFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div> -->
+                        <div class="col-md-3" *ngIf="thesisDepositionRequest.quarterCollectionFile">
+                            <div class=" card-view">
+                                <label class="form-label" translate>message-file-25ind</label>
+                                <a class="btn btn-download" href="{{baseUrl}}/Attachment/download/{{thesisDepositionRequest.quarterCollectionFile}}" target="_blank">
+                                    <span class="svg-icon svg-icon-primary ">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="26px" height="26px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path fill="#297162" opacity="0.4"
+                                                    d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                                                    fill-rule="nonzero" />
+                                                <rect fill="#297162" opacity="0.4"
+                                                    transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                                                    x="11" y="1" width="2" height="14" rx="1" />
+                                                <path fill="#297162" opacity="0.8"
+                                                    d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                                                    fill-rule="nonzero"
+                                                    transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) " />
+                                            </g>
+                                        </svg>
+                                    </span>
+
+                                    <span translate>download</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between btn-step">
+                        <button (click)="previous()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                                            fill-rule="nonzero" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+
+                            <span translate>prev</span>
+                        </button>
+                        <button (click)="next()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span translate>next</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div id="emp-response" class="content">
+                    <div class="row">
+                        <div class="page-title" *ngIf="repliesList.length > 0">
+                            <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="comment-cont">
+                                    <div class="card-comment" *ngFor="let reply of repliesList"
+                                        [ngClass]="isMyReply(reply) == true ? 'right-side' :'left-side'">
+                                        <label class="form-label">{{reply.userName}}</label>
+                                        <h3>{{reply.userMessage}}</h3>
+                                        <label class="form-label">{{reply.createdDate | date}} &nbsp;
+                                            {{reply.createdDate |
+                                            date:'shortTime'}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <form #rf="ngForm">
+                                    <div class="mb-3">
+                                        <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                                        <textarea type="text" class="form-control" id="text" name="comment"
+                                        pattern="[\s\S]{1,250}$"
+                                        placeholder="{{'ADD_COMMENT' | translate}}" [(ngModel)]="requestComment"
+                                        #comment="ngModel">
+                                    </textarea>
+                                    <div *ngIf="comment.errors && (comment.touched)"
+                                    class="alert alert-danger mt-2 mb-2">
+                                    <div *ngIf="comment.errors.pattern">
+                                        {{'INVALID_INPUT_LENGTH' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-comment" (click)="updateRequestWithReply(rf)" [disabled]="!requestComment || comment.value.split(' ')[0]=='' || comment.value.split('')[0]=='\n'"
+                            translate>ADD</button>
+                            
+                        </form>
+                    </div>
+                    <div class="row mt-4" *ngIf="thesisDepositionRequest.requestStatusId != RequestStatusEnum.Pending && serviceRating.rate != 0">
+                        <div class="page-title">
+                            <h4 style="font-size: 18px;" translate>serv-review</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                                <ngb-rating [(rate)]="serviceRating.rate" [max]="5" [readonly]="true">
+                                    <ng-template let-fill="fill" let-index="index">
+                                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                                    </ng-template>
+                                </ngb-rating>
+                                <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <form #responseForm="ngForm" >
+                        <div class="row">
+                            <div class="col-md-3" *ngIf="thesisDepositionRequest.isOutsideKingdom==false">
+                                <div class="mb-3">
+                                    <!-- <label  class="form-label" translate>form.message-available</label> -->
+                                    <div class=" radio-div" role="group" ngbRadioGroup name="radioBasic"
+                                        [(ngModel)]="thesisDepositionRequest.requestStatusId">
+                                        <div style="margin-bottom: 8px;">
+                                            <label ngbButtonLabel class="btn-rad">
+                                                <input ngbButton type="radio" class="btn-check" [value]="5"
+                                                    (click)="responseForm.form.markAsDirty();">
+                                            </label>
+                                            <span translate>accept-req</span>
+                                        </div>
+                                        <div style="margin-bottom: 8px;">
+                                            <label ngbButtonLabel class="btn-rad">
+                                                <input ngbButton type="radio" class="btn-check" [value]="6"
+                                                    (click)="responseForm.form.markAsDirty();">
+                                            </label>
+                                            <span translate>reject-req</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9" *ngIf="thesisDepositionRequest.requestStatusId==RequestStatusEnum.Approved">
+                                <div class="mb-3">
+                                    <label class="form-label" translate>insructions-needed</label>
+                                    <textarea class="textarea form-control" id="textarea" rows="3" name="instructions"
+                                        #instructions="ngModel"
+                                        [(ngModel)]="thesisDepositionRequest.instructions"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9" *ngIf="thesisDepositionRequest.requestStatusId==RequestStatusEnum.Rejected">
+                                <div class="mb-3">
+                                    <label class="form-label" translate>reject-reason</label>
+                                    <textarea class="textarea form-control" id="textarea" rows="3" name="reasonOfRejection"
+                                        [required]="thesisDepositionRequest.requestStatusId == RequestStatusEnum.Rejected" #reasonOfRejection="ngModel"
+                                        [(ngModel)]="thesisDepositionRequest.reasonOfRejection"></textarea>
+                                    <div *ngIf="reasonOfRejection.errors && reasonOfRejection.touched" class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="reasonOfRejection.errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="d-flex justify-content-between btn-step" >
+                        <button (click)="previous()" class="btn btn-primary">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                                            fill-rule="nonzero" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+
+                            <span translate>prev</span>
+                        </button>
+                        <div class="col-md-6">
+                            <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true"
+                                translate>
+                                CHANGES_SAVED_SUCCESSFULLY
+                            </ngb-alert>
+                        </div>
+                        <button *ngIf="thesisDepositionRequest.isOutsideKingdom==false" class="btn btn-primary" (click)="submitForm(responseForm)"
+                            [disabled]="thesisDepositionRequest.requestStatusId == RequestStatusEnum.Pending || !responseForm.dirty || responseForm.submitted">
+                            <span class="svg-icon svg-icon-primary ">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="26px" height="26px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <path fill="#fff" opacity="0.4"
+                                            d="M9.26193932,16.6476484 C8.90425297,17.0684559 8.27315905,17.1196257 7.85235158,16.7619393 C7.43154411,16.404253 7.38037434,15.773159 7.73806068,15.3523516 L16.2380607,5.35235158 C16.6013618,4.92493855 17.2451015,4.87991302 17.6643638,5.25259068 L22.1643638,9.25259068 C22.5771466,9.6195087 22.6143273,10.2515811 22.2474093,10.6643638 C21.8804913,11.0771466 21.2484189,11.1143273 20.8356362,10.7474093 L17.0997854,7.42665306 L9.26193932,16.6476484 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(14.999995, 11.000002) rotate(-180.000000) translate(-14.999995, -11.000002) " />
+                                        <path fill="#fff" opacity="0.8"
+                                            d="M4.26193932,17.6476484 C3.90425297,18.0684559 3.27315905,18.1196257 2.85235158,17.7619393 C2.43154411,17.404253 2.38037434,16.773159 2.73806068,16.3523516 L11.2380607,6.35235158 C11.6013618,5.92493855 12.2451015,5.87991302 12.6643638,6.25259068 L17.1643638,10.2525907 C17.5771466,10.6195087 17.6143273,11.2515811 17.2474093,11.6643638 C16.8804913,12.0771466 16.2484189,12.1143273 15.8356362,11.7474093 L12.0997854,8.42665306 L4.26193932,17.6476484 Z"
+                                            fill-rule="nonzero"
+                                            transform="translate(9.999995, 12.000002) rotate(-180.000000) translate(-9.999995, -12.000002) " />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span translate>send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

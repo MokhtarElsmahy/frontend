@@ -1,0 +1,29 @@
+
+@font-face {
+    font-family: $mainfontRegular;
+    src: url(../../fonts/NeoSansW23.ttf);
+}
+
+@font-face {
+    font-family: $mainfontBold;
+    src: url(../../fonts/NeoSansW23.ttf);
+  }
+
+  * {
+	margin: 0;
+	padding: 0;
+	font-family: $mainfontRegular;
+	//text-transform: uppercase;
+}
+
+
+a {
+	text-decoration: none;
+	color: white;
+}
+ul {
+	list-style-type: none;
+}
+li {
+	list-style-type: none;
+}

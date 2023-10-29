@@ -1,0 +1,168 @@
+<div class="home-dash">
+
+  <div class="row">
+    <div class="d-flex justify-content-between page-head">
+      <div class="page-title">
+        <h4 translate>users </h4>
+      </div>
+      <div>
+        <a  (click)="adduser()" class="btn btn-primary">
+          <span class="svg-icon svg-icon-primary ">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+              height="26px" viewBox="0 0 24 24" version="1.1">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect fill="#fff" opacity="0.9" x="4" y="11" width="16" height="2" rx="1" />
+                <rect fill="#fff" opacity="0.4"
+                  transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                  x="4" y="11" width="16" height="2" rx="1" />
+              </g>
+            </svg>
+          </span>
+          <span translate>add-user</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <div class="col-md-6">
+      <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+        {{'EMPLOYEE_SUCCESS_MESSAGE' | translate}}
+      </ngb-alert>
+    </div>
+    <table id="users" class="table table-striped ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" translate="">username</th>
+          <th scope="col" translate="">EMAIL</th>
+          <th scope="col" translate="">rules</th>
+          <th scope="col" translate="">ACCOUNT_STATUS</th>
+          <th scope="col" translate="">actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of listToView; let i = index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{translate.currentLang == 'en' ? user.nameEnglish : user.nameArabic}}</td>
+          <td style="width: 15%;">{{user.email}}</td>
+          <td style="width: 30%;">
+            <div class=" d-flex" style="flex-wrap: wrap;">
+              <div class="">
+                <ng-toggle [(ngModel)]="user.isVisitor" [width]="config1.width" [height]="config1.height" (change)="setUserRole(user.id, 'Visitor', user.isVisitor)"
+                  [margin]="config1.margin" [labels]="config1.labels" [color]="config1.color" [fontSize]="config1.fontSize">
+                </ng-toggle>
+              </div>
+            <!-- <ng-toggle [(ngModel)]="user.isEmployee" [width]="config2.width" [height]="config2.height" (change)="setUserRole(user.id, 'Employee', user.isEmployee)"
+              [margin]="config2.margin" [labels]="config2.labels" [color]="config2.color" [fontSize]="config2.fontSize">
+            </ng-toggle> -->
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isSuppliesEmployee" [width]="config3.width" [height]="config3.height" (change)="setUserRole(user.id, 'Supplies', user.isSuppliesEmployee)"
+                [margin]="config3.margin" [labels]="config3.labels" [color]="config3.color" [fontSize]="config3.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isLibraryServicesEmployee" [width]="config4.width" [height]="config4.height" (change)="setUserRole(user.id, 'LibraryServices', user.isLibraryServicesEmployee)"
+                [margin]="config4.margin" [labels]="config4.labels" [color]="config4.color" [fontSize]="config4.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isProgramsAndEventsEmployee" [width]="config5.width" [height]="config5.height" (change)="setUserRole(user.id, 'ProgramsAndEvents', user.isProgramsAndEventsEmployee)"
+                [margin]="config5.margin" [labels]="config5.labels" [color]="config5.color" [fontSize]="config5.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isUniversityThesisesEmployee" [width]="config6.width" [height]="config6.height" (change)="setUserRole(user.id, 'UniversityThesises', user.isUniversityThesisesEmployee)"
+                [margin]="config6.margin" [labels]="config6.labels" [color]="config6.color" [fontSize]="config6.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isTechnicalSupportEmployee" [width]="config7.width" [height]="config7.height" (change)="setUserRole(user.id, 'TechnicalSupport', user.isTechnicalSupportEmployee)"
+                [margin]="config7.margin" [labels]="config7.labels" [color]="config7.color" [fontSize]="config7.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isAdmin" [width]="config8.width" [height]="config8.height" (change)="setUserRole(user.id, 'Admin', user.isAdmin)"
+                [margin]="config8.margin" [labels]="config8.labels" [color]="config8.color" [fontSize]="config8.fontSize">
+              </ng-toggle>
+            </div>
+
+            <!-- ********************* -->
+
+            <!-- <div class="">
+              <ng-toggle [(ngModel)]="user.isPublicAdminstrationEmployee" [width]="config10.width" [height]="config10.height" (change)="setUserRole(user.id, 'PublicAdminstration', user.isPublicAdminstrationEmployee)"
+                [margin]="config10.margin" [labels]="config10.labels" [color]="config10.color" [fontSize]="config10.fontSize">
+              </ng-toggle>
+            </div> -->
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isFemalBeneficicareisEmployee" [width]="config11.width" [height]="config11.height" (change)="setUserRole(user.id, 'FemalBeneficicareis', user.isFemalBeneficicareisEmployee)"
+                [margin]="config11.margin" [labels]="config11.labels" [color]="config11.color" [fontSize]="config11.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isMaleHaramMacciLibEmployee" [width]="config12.width" [height]="config12.height" (change)="setUserRole(user.id, 'MaleHaramMacciLib', user.isMaleHaramMacciLibEmployee)"
+                [margin]="config12.margin" [labels]="config12.labels" [color]="config12.color" [fontSize]="config12.fontSize">
+              </ng-toggle>
+            </div>
+
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isFemaleHaramMacciLibEmployee" [width]="config13.width" [height]="config13.height" (change)="setUserRole(user.id, 'FemaleHaramMacciLib', user.isFemaleHaramMacciLibEmployee)"
+                [margin]="config13.margin" [labels]="config13.labels" [color]="config13.color" [fontSize]="config13.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isHaramMosqueLibEmployee" [width]="config14.width" [height]="config14.height" (change)="setUserRole(user.id, 'HaramMosqueLib', user.isHaramMosqueLibEmployee)"
+                [margin]="config14.margin" [labels]="config14.labels" [color]="config14.color" [fontSize]="config14.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isPrintingArchivingEmployee" [width]="config15.width" [height]="config15.height" (change)="setUserRole(user.id, 'PrintingArchiving', user.isPrintingArchivingEmployee)"
+                [margin]="config15.margin" [labels]="config15.labels" [color]="config15.color" [fontSize]="config15.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isGiftSpecialLibrariesEmployee" [width]="config16.width" [height]="config16.height" (change)="setUserRole(user.id, 'GiftSpecialLibraries', user.isGiftSpecialLibrariesEmployee)"
+                [margin]="config16.margin" [labels]="config16.labels" [color]="config16.color" [fontSize]="config16.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isTechnicalDepartmentEmployee" [width]="config17.width" [height]="config17.height" (change)="setUserRole(user.id, 'TechnicalDepartment', user.isTechnicalDepartmentEmployee)"
+                [margin]="config17.margin" [labels]="config17.labels" [color]="config17.color" [fontSize]="config17.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isMaleLibRelationsEmployee" [width]="config18.width" [height]="config18.height" (change)="setUserRole(user.id, 'MaleLibRelations', user.isMaleLibRelationsEmployee)"
+                [margin]="config18.margin" [labels]="config18.labels" [color]="config18.color" [fontSize]="config18.fontSize">
+              </ng-toggle>
+            </div>
+            <div class="">
+              <ng-toggle [(ngModel)]="user.isFemaleLibRelationsEmployee" [width]="config19.width" [height]="config19.height" (change)="setUserRole(user.id, 'FemaleLibRelations', user.isFemaleLibRelationsEmployee)"
+                [margin]="config19.margin" [labels]="config19.labels" [color]="config19.color" [fontSize]="config19.fontSize">
+              </ng-toggle>
+            </div>
+
+           </div>
+          </td>
+          <td>
+            <ng-toggle [(ngModel)]="user.active" [width]="config9.width" [height]="config9.height" (change)="updateUserActiveStatus(user.id, user.active)"
+              [margin]="config9.margin" [labels]="config9.labels" [color]="config9.color" [fontSize]="config9.fontSize">
+            </ng-toggle>
+          </td>
+          <td>
+            <div class="row-btns">
+              <button type="button" class="btn btn-secondary" tooltipClass="secondary" ngbTooltip="{{'edit' | translate}}">
+                <a (click)="adduser(user)">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </button>
+              <button type="button" ngbTooltip="{{'remove' | translate}}" tooltipClass="danger" class="btn btn-danger" (click)="deleteConfirmation(user)">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

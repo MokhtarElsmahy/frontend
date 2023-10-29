@@ -1,0 +1,88 @@
+<div class="home-dash">
+  <div class="row">
+    <div class="d-flex justify-content-between page-head">
+      <div class="page-title">
+        <h4 translate>subscribe-list</h4>
+      </div>
+      <div>
+        <a (click)="subscribe()" class="btn btn-primary">
+          <span class="svg-icon svg-icon-primary ">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+              height="26px" viewBox="0 0 24 24" version="1.1">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect fill="#fff" opacity="0.9" x="4" y="11" width="16" height="2" rx="1" />
+                <rect fill="#fff" opacity="0.4"
+                  transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                  x="4" y="11" width="16" height="2" rx="1" />
+              </g>
+            </svg>
+          </span>
+          <span translate>add-subscribe</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="service-form">
+    <div class="table-responsive">
+      <table id="room" class="table table-striped ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" translate="">main-cate</th>
+            <th scope="col" translate="">sub-cate</th>
+            <th scope="col" translate="">actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="SubscribeService?.SelectiveBroadcastVm?.selectivebroadcastItems.length<=0 ||
+                     !SubscribeService?.SelectiveBroadcastVm?.selectivebroadcastItems||
+                     !SubscribeService?.SelectiveBroadcastVm">
+
+                     <td colspan="4">{{'EMPTY_LIST' | translate}}</td>
+          </tr>
+          <tr *ngFor="let item of SubscribeService?.SelectiveBroadcastVm?.selectivebroadcastItems; let i= index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.mainClassification.name}}</td>
+            <td>{{item.subClassification.name}}</td>
+            <td>
+              <div class="row-btns">
+
+                <button  type="button" ngbTooltip="{{'remove-subscribe' | translate}}" tooltipClass="danger"
+                (click)="archiveConfirmation(i)"
+                  class="btn btn-danger">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+ 
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+            {{SubscribeService?.SelectiveBroadcastVm?.id <=0 ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+            <!-- {{SubscribeService?.SelectiveBroadcastVm?.id <=0 ? 'success-message-subscribe' : 'CHANGES_SAVED_SUCCESSFULLY_subscribe' | translate}} -->
+        </ngb-alert>
+    </div>
+      <div class="col-md-4">
+
+        <!-- <button class="btn btn-primary btn-submit" *ngIf="isEditMode==false" [disabled]="!f.valid"  (click)="confirmSubmission(f)" translate>serv-req</button> -->
+
+
+        <button class="btn btn-primary btn-submit"  (click)="confirmSubmission()" 
+
+        [disabled]="this.SubscribeService?.SelectiveBroadcastVm?.selectivebroadcastItems?.length<=0 &&this.SubscribeService?.SelectiveBroadcastVm?.id==0"
+         translate>SAVE_CHANGES
+         <!-- translate>SAVE_CHANGES_Subscribe -->
+        </button>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

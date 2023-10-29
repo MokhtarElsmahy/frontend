@@ -1,0 +1,33 @@
+<div class="app-sidebar colored">
+    <div class="sidebar-header">
+        <button type="button" class="nav-toggle nav-tg" data-toggle="expanded">
+            <i data-toggle="expanded" class="fas fa-angle-left toggle-icon"></i></button>
+
+        <button id="sidebarClose" class="nav-close"><i class="fas fa-times"></i></button>
+
+    </div>
+
+    <div class="sidebar-content">
+
+        <app-admin-menu *ngIf="accType == 'admin'"></app-admin-menu>
+        <!-- <app-employee-menu  *ngIf="accType == 'employee'"></app-employee-menu> -->
+        <app-employee-menu  *ngIf="accType == 'supplies'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'libraryServices'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'programsAndEvents'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'universityThesises'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'technicalSupport'"></app-employee-menu>
+
+        <app-employee-menu  *ngIf="accType == 'giftSpecialLibraries'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'femalBeneficicareis'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'technicalDepartment'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'printingArchiving'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'publicAdminstration'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'maleLibRelations'"></app-employee-menu>
+        <app-employee-menu  *ngIf="accType == 'femaleLibRelations'"></app-employee-menu>
+        <app-visitor-menu *ngIf="accType == 'user'"></app-visitor-menu>
+
+
+       
+
+    </div>
+</div>

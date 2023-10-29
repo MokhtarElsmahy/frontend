@@ -1,0 +1,160 @@
+<div class="home-dash">
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>req-follow</h4>
+        </div>
+        <app-back-button></app-back-button>
+
+    </div>
+    <div class="service-form">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-view ">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <label class="form-label" translate>req-state</label>
+                            <h3>{{getRequestStatusById(CopyRequestVM.requestStatusId)}}</h3>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end"
+                            *ngIf="CopyRequestVM.requestStatusId==RequestStatusEnum.Approved">
+                            <a (click)="downloadFile()" class="btn btn-public" translate="">
+                                <i class="fas fa-download" style="margin: 0 10px; font-size: 20px;"></i>
+                                download-book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>RESPONSIBLE_NAME</label>
+                    <h3 translate>form.librarian</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.name</label>
+                    <h3>{{CopyRequestVM.beneficiaryName}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.mail</label>
+                    <h3>{{CopyRequestVM.beneficiaryEmail}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.phone</label>
+                    <h3>{{CopyRequestVM.beneficiaryMobile}}</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.grade</label>
+                    <h3>{{CopyRequestVM.beneficiaryQualification}}</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.bookaddress</label>
+                    <h3>{{CopyRequestVM.bookTitle}}</h3>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class=" card-view">
+                    <label class="form-label" translate>paper-number</label>
+                    <h3>{{CopyRequestVM.startPage}}</h3>
+                    <!-- &nbsp; -- &nbsp; 50 -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class=" card-view">
+                    <label class="form-label" translate>copy-purpose</label>
+                    <h3>{{CopyRequestVM.purpose}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="page-title" *ngIf="">
+            <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="comment-cont">
+                    <div class="card-comment" *ngFor="let comment of ListOfComment"
+                        [ngClass]="isMyReply(comment) == true ? 'right-side' :'left-side'">
+                        <label class="form-label">{{comment.userName}}</label>
+                        <h3>{{comment.comment}}</h3>
+                        <label class="form-label">{{comment.createdDate | date}} &nbsp; {{comment.createdDate |
+                            date:'shortTime'}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form #rf="ngForm">
+                    <div class="mb-3">
+                        <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                        <textarea [(ngModel)]="CommentVm.comment" required type="text" class="form-control" id="text"
+                            name="comment" placeholder="{{'ADD_COMMENT' | translate}}">
+                         </textarea>
+
+                    </div>
+                    <button class="btn btn-comment" (click)="AddComment()" translate>ADD</button>
+
+                </form>
+            </div>
+
+
+        </div>
+        <hr>
+
+        <div *ngIf="CopyRequestVM.requestStatusId!=RequestStatusEnum.Pending">
+            <div class="row">
+                <div class="col-md-6" *ngIf="CopyRequestVM.requestStatusId==RequestStatusEnum.Approved">
+                    <div class="mb-3">
+                        <label class="form-label" translate>insructions-needed</label>
+                        <textarea class="textarea form-control" [(ngModel)]="CopyRequestVM.instructions"
+                            [readOnly]="true" name="instructions" #instructions="ngModel" name="instructions"
+                            id="textarea" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6" *ngIf="CopyRequestVM.requestStatusId==RequestStatusEnum.Rejected">
+                    <div class="mb-3">
+                        <label class="form-label" translate>reject-reason</label>
+                        <textarea class="textarea form-control" name="reasonOfRejection" [readOnly]="true"
+                            [(ngModel)]="CopyRequestVM.reasonOfRejection" name="reasonOfRejection" id="textarea"
+                            rows="3"></textarea>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="row mt-4" *ngIf="CopyRequestVM.requestStatusId != RequestStatusEnum.Pending">
+            <hr>
+            <div class="page-title">
+                <h4 style="font-size: 18px;" translate>serv-review</h4>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                    <ngb-rating [(rate)]="serviceRating.rate" [max]="5" (rateChange)="createOrUpdateServiceRating()">
+                        <ng-template let-fill="fill" let-index="index">
+                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                        </ng-template>
+                    </ngb-rating>
+                    <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+                </div>
+            </div>
+        </div>
+    </div>

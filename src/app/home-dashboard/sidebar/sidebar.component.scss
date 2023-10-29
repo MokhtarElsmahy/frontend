@@ -1,0 +1,80 @@
+
+.dropdown-toggle {
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.dropdown-toggle:hover {
+    color: #9F814E;
+}
+  
+  .dropdown-toggle::after {
+    margin-left: 0em;
+    border-top: 0em ;
+    border-right: 0em ;
+    border-bottom: 0;
+    border-left: 0 ;
+    margin-left: 0em;
+    /* font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f107";
+    right: 200px;
+    top: 6px;   position: absolute;
+      font-size: 14px; */
+}
+.dropdown-menu {
+    border: 0;
+    box-shadow: 0px 3px 10px #00000014;
+    border-radius: 8px;
+    margin-top: 14px!important;
+    position: relative;
+    min-width: 210px;
+    padding: 0;
+    &::after{
+        position: absolute;
+        margin-left: 0.255em;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0;
+        border-right: 0.5em solid transparent;
+        border-bottom:  0.5em solid;
+        border-left: 0.5em solid transparent;
+        color: #fff;
+        top: -5px;
+        right: 10px;
+    }
+  
+  
+     .dropdown-item{
+         padding: 10px 10px;
+         border-bottom: 1px solid #e9ecef;
+    }
+    .edit-prof{
+        font-size: 13px;
+        color: #6a6c7b;
+        font-weight: 600;
+         i{color: #9F814E;  margin: 0 8px; font-size: 15px;}  
+         img{ margin: 0 5px;}
+    }
+    .help{
+        font-size: 13px;
+        color: #b9b9bb;
+        font-weight: 600;
+         i{color: #b9b9bb;}  
+    }
+    .mess-no{
+         background-color: #005A92;
+        color: #fff!important;
+        width: 20px; height: 20px; border-radius: 100%;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        margin-top: 10px;
+    }
+  
+  
+
+}
+
+  
+  
+  

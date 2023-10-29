@@ -1,0 +1,208 @@
+<div class="home-dash">
+    <div class=" d-flex justify-content-between align-items-center">
+
+    <div class="page-title">
+        <h4 translate>REQGIFT_SERVICE_NAME</h4>
+    </div>
+    <app-back-button></app-back-button>
+
+    </div>
+    <div class="service-form">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>RESPONSIBLE_NAME</label>
+                    <h3  translate>form.librarian</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.name</label>
+                    <h3>{{GiftBackRequestVM.beneficiaryName}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.mail</label>
+                    <h3>{{GiftBackRequestVM.beneficiaryEmail}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.phone</label>
+                    <h3>{{GiftBackRequestVM.beneficiaryMobile}}</h3>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>req-status</label>
+                    <h3>{{getRequestStatusById(GiftBackRequestVM.requestStatusId)}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>books-list</h4>
+        </div>
+
+        <div class="table-responsive">
+            <table id="bookgift" class="table table-striped ">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col" translate="">form.bookaddress</th>
+                  <th scope="col" translate="">form.author</th>
+                  <th scope="col" translate="">publish-date</th>
+                  <th scope="col" translate="">copy-num</th>
+                  <th style="width: 12%; text-align: start;">
+                        <div class="form-check">
+                            <input class="form-check-input" (click) = "checkuncheckall()" type="checkbox" value="" id="selectall">
+                            <label class="form-check-label" for="selectall" translate="">
+                                select-All
+                            </label>
+                          </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ListToView ; let i = index">
+                    <th scope="row">{{i +1}}</th>
+                    <td>{{item.bookTitle}}</td>
+                    <td>{{item.authorName}}</td>
+                    <td>{{item.publicationDate | date}}</td>
+                    <td>{{item.numberOfNeededCopies}}</td>
+                  <td style="text-align: start">
+                    <div class="form-check">
+                        <!-- <input class="form-check-input" [checked]="isCheckedsubmit"  type="checkbox" value="" id="flexCheckDefault"> -->
+
+                        <input class="form-check-input" [checked]="item.bookStatusId!=RequestStatusEnum.Pending" type="checkbox"
+                        [(ngModel)]="item.isChecked" name="isChecked_{{i}}" id="flexCheckDefault" [disabled]="GiftBackRequestVM.requestStatusId != RequestStatusEnum.Pending">
+                        <label class="form-check-label" for="flexCheckDefault" translate="">
+                            approve
+                        </label>
+                      </div>
+                   </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+
+        <hr>
+
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="comment-cont">
+                    <div class="card-comment" *ngFor="let comment of ListOfComment" 
+                        [ngClass]="isMyReply(comment) == true ? 'right-side' :'left-side'">
+                    <label class="form-label">{{comment.userName}}</label>
+                        <h3>{{comment.comment}}</h3>
+                        <label class="form-label">{{comment.createdDate | date}} &nbsp; {{comment.createdDate |
+                            date:'shortTime'}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form #rf="ngForm">
+                    <div class="mb-3">
+                        <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                        <textarea [(ngModel)]="CommentVm.comment" required type="text" class="form-control" id="text" name="comment"
+                            placeholder="{{'ADD_COMMENT' | translate}}">
+                         </textarea>
+                       
+                    </div>
+                    <button class="btn btn-comment" (click)="AddComment()"   translate>ADD</button>
+
+                </form>
+            </div>
+          
+
+        </div>
+
+
+        <hr>
+
+        <form #f="ngForm">
+            <div class="row" *ngIf="GiftBackRequestVM.requestStatusId==RequestStatusEnum.Pending">
+
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600; font-size:16px" translate>decesion</label>
+                        <div class=" radio-div d-flex" role="group" ngbRadioGroup name="radioBasic" [disabled]="GiftBackRequestVM.requestStatusId != RequestStatusEnum.Pending"
+                            [(ngModel)]="decesion">
+                            <div style="margin-bottom: 8px;">
+                                <label ngbButtonLabel class="btn-rad">
+                                    <input ngbButton type="radio" class="btn-check"
+                                         [value]="true">
+                                </label>
+                                <span translate> accept-req</span>
+                            </div>
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+                            <div style="margin-bottom: 8px;">
+                                <label ngbButtonLabel class="btn-rad">
+                                    <input ngbButton type="radio" class="btn-check"
+                                         [value]="false">
+                                </label>
+                                <span translate>reject-req</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3" >
+                    <label *ngIf="decesion==true" class="form-label" translate>insructions-needed</label>
+                    <label *ngIf="decesion==false" class="form-label" translate>reject-reason</label>
+                    <textarea class="textarea form-control" [disabled]="GiftBackRequestVM.requestStatusId != RequestStatusEnum.Pending"
+                    [(ngModel)]="GiftBackRequestVM.reason" name="reason" #reason="ngModel"
+                    id="textarea" rows="3"></textarea>
+                </div>
+            </div>
+            <!-- <div class="" *ngIf="decesion==false">
+                <div class="mb-3">
+                    <label class="form-label" translate>reject-reason</label>
+                    <textarea class="textarea form-control"
+                       id="textarea" rows="3"></textarea>
+                </div>
+            </div> -->
+
+            
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    CHANGES_SAVED_SUCCESSFULLY
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center" *ngIf="GiftBackRequestVM.requestStatusId==RequestStatusEnum.Pending">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" (click)="submitForm()" [disabled]="GiftBackRequestVM.requestStatusId != RequestStatusEnum.Pending || GiftBackRequestVM.isArchived==true"
+                       translate>send</button>
+                   
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row mt-4">
+        <hr>    
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>serv-review</h4>
+        </div>
+        <div class="col-md-6" >
+            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;" >
+                <ngb-rating [(rate)]="serviceRating.rate" [max]="5" [readonly]="true">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="home-dash">
+
+
+  <div class="row">
+    <div class="d-flex justify-content-between page-head">
+      <div class="page-title">
+        <h4 translate>libraries </h4>
+      </div>
+      <div>
+        <a (click)="addlibrary()" class="btn btn-primary">
+          <span class="svg-icon svg-icon-primary ">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+              height="26px" viewBox="0 0 24 24" version="1.1">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect fill="#fff" opacity="0.9" x="4" y="11" width="16" height="2" rx="1" />
+                <rect fill="#fff" opacity="0.4"
+                  transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                  x="4" y="11" width="16" height="2" rx="1" />
+              </g>
+            </svg>
+          </span>
+          <span translate>add-library</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table id="lib" class="table table-striped ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" translate="">form.lib-name</th>
+          <th scope="col" translate="">actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let library of listToView; let i = index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{translate.currentLang == 'en' ? library.nameEn : library.nameAr}}</td>
+          <td>
+            <div class="row-btns">
+              <button type="button" ngbTooltip="{{'browse' | translate}}" tooltipClass="secondary" [routerLink]="['/auth/admin/halls', library.id]" class="btn btn-secondary">
+                <a>
+                  <i class="fas fa-eye"></i>
+                </a>
+              </button>
+              <button type="button" ngbTooltip="{{'edit' | translate}}" tooltipClass="secondary" (click)="addlibrary(library)" class="btn btn-secondary">
+                <a>
+                  <i class="fas fa-edit"></i>
+                </a>
+              </button>
+              <button type="button" ngbTooltip="{{'remove' | translate}}" tooltipClass="danger" class="btn btn-danger" (click)="deleteConfirmation(library)">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

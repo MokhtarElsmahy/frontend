@@ -1,0 +1,43 @@
+<div class="home-dash">
+
+    <div class="row">
+     <div class="d-flex justify-content-between page-head">
+    <div class="page-title">
+      <h4 translate>{{'myorders' | translate}} ( <span translate style="font-size: 18px; color: #B19556;"> buybooksugg
+        </span>(<span translate style="font-size: 18px; color: #B19556;">ARCHIVED</span>))</h4>
+    </div>
+    <app-back-button></app-back-button>
+
+  </div>
+</div>
+
+   <div class="table-responsive">
+
+     <table id="byBookDT" class=" table table-striped  row-border hover">
+      <thead>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col" translate="">REQUEST_RESPONSIBLE_NAME</th>
+              <th scope="col" translate="">BOOK_TITLE</th>
+              <th scope="col" translate="">req-date</th>
+              <th scope="col" translate="">req-actions</th>
+            </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let suggestion of listToView; let i = index;">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{suggestion.visitorName}}</td>
+              <td>{{suggestion.suggestedBookTitle}}</td>
+              <td>{{suggestion.createdDate | date}}</td>
+              <td>
+                  <div class="row-btns">
+                      <button type="button" ngbTooltip="{{'archive-restore' | translate}}" tooltipClass="secondary" class="btn btn-secondary" (click)="unArchiveConfirmation(suggestion)">
+                        <i class="fas fa-archive "></i>
+                      </button>
+                  </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+    </div>
+</div>

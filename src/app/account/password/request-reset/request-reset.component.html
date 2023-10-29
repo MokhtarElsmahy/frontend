@@ -1,0 +1,62 @@
+<div class="login-container">
+    <div class="login-order">
+        <!-- <div class="icon">
+            <a href="#">
+            <img src="assets/img/logo-lib.svg" class="img-fluid" alt="" style=" width:135px;">
+            </a>
+        </div> -->
+        <div class="icon" style="margin: auto; width:230px">
+            <a href="#" style="color: #297162; font-weight: 600; font-size: 18px;">
+                <div class="logo-text">
+                    <h5 class="gold"> الهيئـة العامـة للعنايـة بشـؤون</h5>
+                    <h5 class="green"> المسجد الحرام والمسجد النبوي  </h5>
+                  </div>
+            </a>
+        </div>
+        <div class="details">
+            <div class="row ">
+                <div class="alert alert-danger" [hidden]="!error">
+                    <strong>{{error}}</strong>
+                </div>
+                <div class="alert alert-success" [hidden]="!massage">
+                    <strong>{{massage}}</strong>
+                </div>
+
+                <form #ResetRequestForm=ngForm (ngSubmit)="onSubmit(ResetRequestForm)">
+                    <div class="col-md-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text input-icon" id="email-label">
+                             <i class="far fa-envelope"></i>
+                           </span>
+                            <input id="email" type="email" name="email" class="form-control" placeholder="{{'form.mail' | translate}}"
+                             [(ngModel)]="email" #myEmail="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [disabled]="ResetRequestForm.submitted">
+                        </div>
+                        <div *ngIf="myEmail.errors && (myEmail.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="myEmail.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="myEmail.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+
+                        <re-captcha (resolved)="SendRecapcha($event)" id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+                        <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
+                          <div *ngIf="recaptcha.errors?.required">This field is required.</div>
+                        </div>
+                        
+                        <div *ngIf="email && ResetRequestForm.submitted && isEmailExisted==false" class="alert alert-danger mt-2 mb-2">
+                            <div>
+                                {{'EMAIL_IS_NOT_EXISETED' | translate}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit"  class="btn btn-primary" translate>
+                    <i class="fas fa-sign-in-alt" style="font-size: 15px; margin: 0 3px;"></i> send</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+.login-container{
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-image: url(../../../assets/img/login-bk.png);
+    background-size: cover; background-repeat: no-repeat;
+    background-attachment: fixed;
+   /*  .overlay{
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        background-image: url(../../../assets/img/background_shape.svg);
+    background-size: cover; background-repeat: no-repeat;
+    width: 100%; height: 100%;
+    opacity: .2;
+
+    } */
+    .login-order{
+        text-align: center;
+        background-image: url(../../../assets/img/background_shape.svg);
+        background-size: cover; background-repeat: no-repeat;
+       // background-color: rgba(243  ,243 , 243 ,.5);
+        border-radius: 10px;
+        padding: 20px;
+        width: 500px;
+        margin: 20px;
+        .icon {
+            margin-top: -20px; margin-bottom: 10px;
+            i{color: $goldcolor; font-size: 70px; margin-bottom: 10px;}
+        }
+    }
+    .btn-primary{height: 45px; line-height: 2; font-size: 16px; font-weight: 600;
+        border-radius: 6px; background-color: $maincolor; border: none;
+        //background: linear-gradient(90deg, #6f603e 20%, #297162 75%);
+    };
+    .form-control{
+        height: 50px;
+        font-size: 15px;
+        color: $maincolor;
+        border: 0;
+        box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+        }
+      
+        
+    .input-group{margin-top: 15px;}
+    .input-group-text{ width: 45px; font-size: 20px; 
+        color: $goldcolor;
+        border: 0;
+        box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+        justify-content: center;
+    }
+    .form-check-input:checked {
+        background-color: $goldcolor;
+        border-color: $goldcolor;
+    }
+    .form-check{font-size: 15px; font-weight: 600;}
+    .forget a{font-size: 15px; color:$maincolor ; font-weight: 600;}
+  }
+
+  .link-reg{
+    color: $goldcolor;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    .span{
+        color: $maincolor;
+    }
+    &:hover{
+        color: $goldcolor;
+    }
+}

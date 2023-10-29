@@ -1,0 +1,188 @@
+<div class="home-dash">
+
+  
+
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>req-follow</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-view ">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label" translate>req-state</label>
+                        <h3>{{getRequestStatusById(researchRequest?.requestStatusId)}}</h3>
+                    </div>
+                    <div class="col-6" *ngIf="researchRequest.instructions">
+                        <label class="form-label" translate>insructions-needed</label>
+                        <h3>{{researchRequest.instructions}}</h3>
+                    </div>
+                    <div class="col-6" *ngIf="researchRequest.reasonOfRejection">
+                        <label class="form-label" translate>reject-reason</label>
+                        <h3>{{researchRequest.reasonOfRejection}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="page-title">
+        <h4 style="font-size: 18px;" translate>req-data</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>form.reserchtype</label>
+                <h3>{{requestType?.valueArabic}}</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>form.lib-name</label>
+                <h3>{{translate.currentLang == 'en' ? library?.nameEn : library?.nameAr}}</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>form.hall</label>
+                <h3>{{room ? (translate.currentLang == 'en' ? room?.nameEn : room?.nameAr) : ' - '}}</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-view">
+                <label class="form-label" translate>form.name</label>
+                <h3>{{researchRequest.responsibleName}}</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>form.phone</label>
+                <h3>{{researchRequest.responsibleMobile}}</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>form.grade</label>
+                <h3>{{grade?.valueArabic}}</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>form.date-res</label>
+                <h3>{{researchRequest.createdDate | date}}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>REQUESTED_DATE_FROM</label>
+                <h3>{{researchRequest.dateFrom | date}}</h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label" translate>REQUESTED_DATE_TO</label>
+                <h3>{{researchRequest.dateTo | date}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="page-title">
+        <h4 style="font-size: 18px;" translate>req-act</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label">{{'REQUEST_SUBMISSION_STATUS' | translate}}</label>
+                <div class="d-flex justify-content-between ">
+                    <h3>{{'REQUEST_WAS_SUBMITTED' | translate}}</h3>
+                    <h5>{{researchRequest.createdDate | date}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label">{{'REQUEST_REVIEW_STATUS' | translate}}</label>
+                <div class="d-flex justify-content-between ">
+                    <h3>{{'REQUEST_IS_PENDING_REVIEWAL' | translate}}</h3>
+                    <h5>{{researchRequest.createdDate | date}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" card-view">
+                <label class="form-label">{{'REQUEST_CURRENT_STATUS' | translate}}</label>
+                <div class="d-flex justify-content-between ">
+                    <h3>{{getRequestStatusById(researchRequest?.requestStatusId)}}</h3>
+                    <h5 *ngIf="researchRequest.requestStatusId != RequestStatusEnum.Pending">{{researchRequest.updatedDate | date}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="page-title">
+        <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="comment-cont">
+                <div class="card-comment" *ngFor="let reply of repliesList"
+                    [ngClass]="isMyReply(reply) == true ? 'right-side' :'left-side'">
+                    <label class="form-label">{{reply.userName}}</label>
+                    <h3>{{reply.userMessage}}</h3>
+                    <label class="form-label">{{reply.createdDate | date}} &nbsp; {{reply.createdDate |
+                        date:'shortTime'}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <form #f="ngForm">
+                <div class="mb-3">
+                    <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                    <textarea type="text" class="form-control" id="text" name="comment"
+                        pattern="[\s\S]{1,250}$"
+                        placeholder="{{'ADD_COMMENT' | translate}}" [(ngModel)]="requestComment" #comment="ngModel">
+                        </textarea>
+                    <div *ngIf="comment.errors && (comment.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="comment.errors.pattern">
+                            {{'INVALID_INPUT_LENGTH' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-comment" (click)="updateRequestWithReply(f)" [disabled]="!requestComment || comment.value.split(' ')[0]=='' || comment.value.split('')[0]=='\n'" translate>ADD</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="row mt-4" *ngIf="researchRequest.requestStatusId != RequestStatusEnum.Pending">
+        <hr>    
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>serv-review</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                <ngb-rating [(rate)]="serviceRating.rate" [max]="5" (rateChange)="createOrUpdateServiceRating()">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+            </div>
+        </div>
+    </div>
+</div>

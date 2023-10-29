@@ -1,0 +1,191 @@
+<div class="home-dash">
+
+
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>exchange-book</h4>
+        </div>
+        <app-back-button></app-back-button>
+
+    </div>
+
+    <div class="service-form">
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="name" name="beneficiaryName" required
+                            [(ngModel)]="LibRequestVM.beneficiaryName" #beneficiaryName="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}">
+                        <div *ngIf="beneficiaryName.errors && (beneficiaryName.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryName.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryName.errors.pattern && beneficiaryName.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryName.errors.pattern && beneficiaryName.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="email" name="beneficiaryEmail" required
+                            [(ngModel)]="LibRequestVM.beneficiaryEmail" #beneficiaryEmail="ngModel"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                            placeholder="{{'form.mail' | translate}}">
+
+                        <div *ngIf="beneficiaryEmail.errors && (beneficiaryEmail.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryEmail.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryEmail.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="phone" name="beneficiaryMobile" required
+                            [(ngModel)]="LibRequestVM.beneficiaryMobile" #beneficiaryMobile="ngModel"
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" placeholder="{{'form.phone' | translate}}">
+
+                        <div *ngIf="beneficiaryMobile.errors && (beneficiaryMobile.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryMobile.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryMobile.errors.pattern">
+                                {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr>
+
+
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>source-book</label>
+                        <select class="form-select form-control" aria-label="Default select example"
+                            (change)="SetSource(SourceId)" name="SourceId" [(ngModel)]="SourceId">
+
+                            <option *ngFor="let item of ListOfSources" [value]="item.id">
+                                {{item.source}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2" *ngIf="sourceName=='اخرى'"> <!-- اخرى -->
+                    <div class="mb-3">
+                        <label class="form-label" translate>.</label>
+                        <input type="text" class="form-control" id="name"
+                        [(ngModel)]="CurrentSourceName" name="CurrentSourceName">
+
+                        <!-- [(ngModel)]="LibRequestVM.OtherSource" #OtherSource="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'source-book' | translate}}" -->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a (click)="addExchange()" class="btn btn-primary btn-add-book" style="margin-top: 30px">
+                        <span class="fas fa-plus" style="margin: 0 5px;">
+
+                        </span>
+                        <span translate>add-exchange</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="table-responsive">
+                <table id="bookExchange" class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 2%;">#</th>
+                            <th scope="col" translate="" style="width:30%">ex-book</th>
+                            <th scope="col" style="width: 8%;" translate="">copy-num</th>
+                            <th scope="col" style="width:6%" translate=""></th>
+                            <th scope="col" translate="" style="width:30%">ex-book-to</th>
+                            <th scope="col" style="width: 8%;" translate="">copy-num</th>
+                            <th scope="col" translate="" style="width: 10%;">req-actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ListToView;let i = index">
+                            <th scope="row"></th>
+                            <td>
+                                <div class="book-ex-card">
+                                    <h4> {{item.replicaBookTitle}}</h4>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- {{item.replicaNumberOfCopies}} -->
+                                <input type="number" [(ngModel)]="item.replicaNumberOfCopies"
+                                    name="replicaNumberOfCopies_{{i}}" class="form-control"
+                                    style="width:100px ; margin: auto;" placeholder="{{ 'copy-num' | translate }}" />
+                            </td>
+                            <td>
+                                <div class="icon-ex">
+                                    <img src="assets/img/exchange.png" class="" style="width: 30px;" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="book-ex-card">
+                                    <h4> {{item.bookTitle}}</h4>
+                                </div>
+                            </td>
+
+                            <td>
+                                <input type="number" [(ngModel)]="item.numberOfNeededCopies"
+                                    name="numberOfNeededCopies_{{i}}" (keyup)="checkAvailable(item)"
+                                    (change)="checkAvailable(item)" class="form-control"
+                                    style="width:100px ; margin: auto;" placeholder="{{ 'copy-num' | translate }}" />
+                            </td>
+                            <td>
+                                <button (click)="archiveConfirmation(item,i)" ngbTooltip="{{'remove' | translate}}"
+                                    tooltipClass="danger" type="button" class="btn btn-danger">
+                                    <i class="fas fa-trash "></i>
+                                </button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode==false"
+                        [disabled]="!f.valid || ListToView.length <= 0 || !ListToView" (click)="confirmSubmission(f)"
+                        translate>serv-req</button>
+
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode==true"
+                        [disabled]="!f.valid || ListToView.length <= 0 || !ListToView" (click)="confirmSubmission(f)"
+                        translate>SAVE_CHANGES</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

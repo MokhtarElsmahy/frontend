@@ -1,0 +1,45 @@
+<div class="home-dash">
+  
+    <div class="row">
+      <div class="d-flex justify-content-between page-head">
+        <div class="page-title">
+          <h4 translate>{{'myorders' | translate}} ( <span translate style="font-size: 18px; color: #B19556;">Subscribe-Selective-Broadcasting
+            </span>)</h4>
+        </div>
+     
+      </div>
+    </div>
+   
+   
+  
+    <div class="table-responsive">
+      <table id="askLibrarianDT" class="table table-striped ">
+        <thead>
+          <tr >
+            <th scope="col">#</th>
+            <th scope="col" translate="">username</th>
+            <th scope="col" translate="">subscribe-count</th>
+            <th scope="col" translate="">req-actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let req of listToView ; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{req.beneficiaryName}}</td>
+            <td>{{req.count}}</td>
+            <td>
+                <div class="row-btns">
+                    <button type="button" ngbTooltip="{{'browse' | translate}}" tooltipClass="secondary" class="btn btn-primary">
+                      <a [routerLink]="['/auth/technicalDepartment/subscribe-form',req.id]">
+                        <i class="fas fa-eye"></i>
+                      </a>
+                    </button>
+                  
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>

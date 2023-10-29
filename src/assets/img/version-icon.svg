@@ -1,0 +1,19 @@
+<svg id="Group_3759" data-name="Group 3759" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60.083" height="60.084" viewBox="0 0 60.083 60.084">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.604" y1="0.604" x2="0.134" y2="0.134" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#178ba4"/>
+      <stop offset="1" stop-color="#3ec7e3"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_3391" data-name="Group 3391">
+    <g id="Group_3390" data-name="Group 3390">
+      <path id="Path_13174" data-name="Path 13174" d="M28.6-137.87l-38.2,38.2a30.694,30.694,0,0,1-21.886-29.4A30.681,30.681,0,0,1-.8-159.756,30.691,30.691,0,0,1,28.6-137.87Z" transform="translate(31.483 159.756)" fill="url(#linear-gradient)"/>
+      <ellipse id="Ellipse_1961" data-name="Ellipse 1961" cx="28.613" cy="28.613" rx="28.613" ry="28.613" transform="translate(2.069 2.07)" fill="#fff"/>
+    </g>
+  </g>
+  <g id="calendar" transform="translate(14.895 13.873)">
+    <path id="Path_13360" data-name="Path 13360" d="M194.908,282.543a.913.913,0,0,0,1.291,0l3.259-3.259a.913.913,0,1,0-1.291-1.291l-2.613,2.613-1.192-1.191a.913.913,0,0,0-1.291,1.291Zm0,0" transform="translate(-181.163 -260.957)" fill="#0f2056" stroke="#fff" stroke-width="0.3"/>
+    <path id="Path_13361" data-name="Path 13361" d="M137.352,214.309a7.246,7.246,0,1,0-7.246-7.246A7.254,7.254,0,0,0,137.352,214.309Zm0-12.667a5.421,5.421,0,1,1-5.421,5.421A5.427,5.427,0,0,1,137.352,201.642Zm0,0" transform="translate(-122.25 -187.752)" fill="#0f2056" stroke="#fff" stroke-width="0.3"/>
+    <path id="Path_13362" data-name="Path 13362" d="M27.251,1.944H25.586V.913a.913.913,0,1,0-1.825,0V1.944H21.967V.913a.913.913,0,0,0-1.826,0V1.944H10.062V.913a.913.913,0,0,0-1.826,0V1.944H6.443V.913a.913.913,0,0,0-1.826,0V1.944H2.952A2.955,2.955,0,0,0,0,4.9V27.962a2.955,2.955,0,0,0,2.952,2.952h24.3A2.955,2.955,0,0,0,30.2,27.962V4.9A2.955,2.955,0,0,0,27.251,1.944Zm1.126,26.018a1.128,1.128,0,0,1-1.126,1.126H2.952a1.128,1.128,0,0,1-1.126-1.126V9.534H28.377ZM1.825,4.9A1.128,1.128,0,0,1,2.952,3.769H4.617V4.8a.913.913,0,0,0,1.826,0V3.769H8.236V4.8a.913.913,0,0,0,1.826,0V3.769H20.141V4.8a.913.913,0,0,0,1.826,0V3.769h1.794V4.8a.913.913,0,0,0,1.826,0V3.769h1.665A1.128,1.128,0,0,1,28.378,4.9V7.708H1.825Zm0,0" transform="translate(0 0)" fill="#0f2056" stroke="#fff" stroke-width="0.3"/>
+  </g>
+</svg>

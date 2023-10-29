@@ -1,0 +1,397 @@
+<div class="home-dash">
+
+    
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>BOOKGIFT_SERVICE_NAME</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+    </div>
+
+
+    <div class="service-form">
+
+        <form #f="ngForm" >
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="giftRequest.supplierName" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}" #name="ngModel">
+                            <div *ngIf="name.errors && (name.touched)" class="alert alert-danger mt-2 mb-2">
+                                <div *ngIf="name.errors.required">
+                                    {{'REQUIRED_FIELD' | translate}}
+                                </div>
+                                <div *ngIf="name.errors.pattern && name.value.length < 50">
+                                    {{'PERSON_NAME_VALIDATION' | translate}}
+                                </div>
+                                <div *ngIf="name.errors.pattern && name.value.length > 50">
+                                    {{'INVALID_INPUT_LENGTH' | translate}}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="giftRequest.supplierEmail" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="{{'form.mail' | translate}}" #email="ngModel">
+                            <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                                <div *ngIf="email.errors.required">
+                                    {{'REQUIRED_FIELD' | translate}}
+                                </div>
+                                <div *ngIf="email.errors.pattern">
+                                    {{'INVALID_INPUT' | translate}}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="giftRequest.supplierMobile" required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" 
+                            placeholder="{{'form.phone' | translate}}" #phone="ngModel">
+                            <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                                <div *ngIf="phone.errors.required">
+                                    {{'REQUIRED_FIELD' | translate}}
+                                </div>
+                                <div *ngIf="phone.errors.pattern">
+                                    {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 d-flex justify-content-between">
+                    <div class="mb-3" *ngIf="!isEditMode">
+                        <label class="form-label" translate>giftType</label>
+                        <div class=" radio-div d-flex" role="group" ngbRadioGroup name="radioBasic"
+                            [(ngModel)]="giftRequest.giftTypeId">
+                            <div style="margin-bottom: 8px;">
+                                <label ngbButtonLabel class="btn-rad">
+                                    <input ngbButton type="radio" class="btn-check"
+                                         [value]="GiftTypesEnum.IndividualBooks">
+                                </label>
+                                <span translate>singls-books</span>
+                            </div>
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+                            <div style="margin-bottom: 8px;">
+                                <label ngbButtonLabel class="btn-rad">
+                                    <input ngbButton type="radio" class="btn-check"
+                                         [value]="GiftTypesEnum.PrivateLibrary">
+                                </label>
+                                <span translate>privat-libr</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3" *ngIf="isEditMode">
+                        <a  class="btn btn-public" (click)="BrowseBooks()" style="margin-top: 30px; " >
+                        <i class="fas fa-book" style="margin: 0 10px; font-size: 25px;"></i>
+                        <span translate="">browse-book</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="giftRequest.giftTypeId==GiftTypesEnum.PrivateLibrary && !isEditMode">
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="form-label" translate>libr-person-name</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="librarianName" name="librarianName" [(ngModel)]="giftRequest.librarianName" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'libr-person-name' | translate}}" #librarianName="ngModel">
+                            <div *ngIf="librarianName.errors && (librarianName.touched)" class="alert alert-danger mt-2 mb-2">
+                                <div *ngIf="librarianName.errors.required">
+                                    {{'REQUIRED_FIELD' | translate}}
+                                </div>
+                                <div *ngIf="librarianName.errors.pattern && librarianName.value.length < 50">
+                                    {{'PERSON_NAME_VALIDATION' | translate}}
+                                </div>
+                                <div *ngIf="librarianName.errors.pattern && librarianName.value.length > 50">
+                                    {{'INVALID_INPUT_LENGTH' | translate}}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" translate>title-num</label> <span style="color:red">*</span>
+                        <input type="number" min="1" class="form-control" id="numOfTitles" name="numOfTitles" [(ngModel)]="giftRequest.numberOfTitles" required
+                            pattern="^[\u0660-\u0669\u06F0-\u06F90-9]{1,50}$"
+                            (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'title-num' | translate}}" #numOfTitles="ngModel">
+                            <div *ngIf="numOfTitles.errors && (numOfTitles.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="numOfTitles.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="numOfTitles.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" translate>folder-num</label> <span style="color:red">*</span>
+                        <input type="number" min="1" class="form-control" id="numOfFolders" name="numOfFolders" [(ngModel)]="giftRequest.numberOfFolders" required
+                            pattern="^[\u0660-\u0669\u06F0-\u06F90-9]{1,50}$"
+                            (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'folder-num' | translate}}" #numOfFolders="ngModel">
+                            <div *ngIf="numOfFolders.errors && (numOfFolders.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                                <div *ngIf="numOfFolders.errors.required">
+                                    {{'REQUIRED_FIELD' | translate}}
+                                </div>
+                                <div *ngIf="numOfFolders.errors.pattern">
+                                    {{'INVALID_INPUT' | translate}}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="form-label" translate>upload-sample</label> <span style="color:red">*</span>
+                        <input type="file" class="form-control" id="booksDataFile" name="booksDataFile"
+                            [(ngModel)]="giftRequest.booksDataFile" required
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            (change)="handleFileInput($any($event).target.files,'booksDataFile', f)"
+                            placeholder="{{'form.name' | translate}}" #booksDataFile="ngModel">
+                        <div *ngIf="booksDataFile.errors && booksDataFile.touched" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="booksDataFile.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <a href="{{baseUrl}}/Attachment/DownloadWWWRootFile/{{excelTemplateFileName}}" class="btn btn-public" style="margin-top: 30px; "  ngbTooltip="{{'download-sample' | translate}}">
+                        <i class="fas fa-download" style="margin: 0 10px; font-size: 25px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="" *ngIf="giftRequest.giftTypeId==GiftTypesEnum.IndividualBooks || isEditMode">
+                <div class="mb-2 d-flex align-items-center">
+                    <div class="">
+                        <h4  class="add-book" translate>add-book</h4>
+                    </div>
+                    <button type="button" class="btn add-sub-button" (click)="addGiftedBooks()">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <form [formGroup]="giftedBooksForm">
+                    <div class="book-block" *ngFor="let group of giftedBooksArray.controls; let i = index;" formArrayName="giftedBooks">
+                        <div class="row" [formGroupName]='i' >
+                            <div class="mb-3">
+                                <label class="form-label" translate>BOOK_TITLE_INPUT_OPTION</label>
+                                <div class=" radio-div d-flex" role="group" ngbRadioGroup name="radioBasic2" [(ngModel)]="bookTitleBySearch[i]"  [ngModelOptions]="{standalone: true}">
+                                    <div style="margin-bottom: 8px;">
+                                        <label ngbButtonLabel class="btn-rad btn-rad2">
+                                            <input ngbButton type="radio" class="btn-check" [value]="false">
+                                        </label>
+                                        <span translate>INPUT_TEXT_OPTION</span>
+                                    </div>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <div style="margin-bottom: 8px;">
+                                        <label ngbButtonLabel class="btn-rad btn-rad2">
+                                            <input ngbButton type="radio" class="btn-check" [value]="true">
+                                        </label>
+                                        <span translate>SEARCH_OPTION</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" *ngIf="!bookTitleBySearch[i]">
+                                <div class="mb-2">
+                                <label class="form-label" translate="">{{ "form.bookaddress" | translate }}</label> <span style="color:red">*</span>
+                                <input type="text" required  class="form-control" name="bookTitle" formControlName="bookTitle"
+                                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$" placeholder="{{ 'form.bookaddress' | translate }}"/>
+                                    <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').errors && (giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').touched)" class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').value.length < 50">
+                                            {{'LETTERS_NUMBERS_DASHES_VALIDATION' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').value.length > 50">
+                                            {{'INVALID_INPUT_LENGTH' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" *ngIf="bookTitleBySearch[i]">
+                                <div class="mb-2">
+                                <label class="form-label" translate="">{{ "form.bookaddress" | translate }}</label> <span style="color:red">*</span>
+                                    <ng-multiselect-dropdown
+                                        placeholder="{{ 'form.bookaddress' | translate }}" required class="form-control"  name="bookTitle"
+                                        [settings]="dropdownSettings"
+                                        [data]="allGiftedBooksList"
+                                        (onSelect)="onTitleSelect($event, i)">
+                                    </ng-multiselect-dropdown>
+                                    <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').errors && (giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').touched)" class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('bookTitle').errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-2">
+                                <label class="form-label" translate="">{{ "form.number" | translate }}</label> <span style="color:red">*</span>
+                                <input
+                                    type="text" required  class="form-control" formControlName="standardBookNumber"
+                                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z0-9- ]{2,50}$" placeholder="{{ 'form.number' | translate }}"/>
+                                    <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('standardBookNumber').errors && (giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('standardBookNumber').touched)" class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('standardBookNumber').errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('standardBookNumber').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('standardBookNumber').value.length < 50">
+                                            {{'LETTERS_NUMBERS_DASHES_VALIDATION' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('standardBookNumber').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('standardBookNumber').value.length > 50">
+                                            {{'INVALID_INPUT_LENGTH' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-2">
+                                <label class="form-label" translate="">{{ "form.author" | translate }}</label> <span style="color:red">*</span>
+                                <input
+                                    type="text" required  class="form-control" formControlName="authorName"
+                                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$" placeholder="{{ 'form.author' | translate }}"/>
+                                    <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('authorName').errors && (giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('authorName').touched)" class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('authorName').errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('authorName').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('authorName').value.length < 50">
+                                            {{'PERSON_NAME_VALIDATION' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('authorName').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('authorName').value.length > 50">
+                                            {{'INVALID_INPUT_LENGTH' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-2">
+                                <label class="form-label" translate="">{{ "form.publisher" | translate }}</label> <span style="color:red">*</span>
+                                <input
+                                    type="text" required  class="form-control" formControlName="publisherName"
+                                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$" placeholder="{{ 'form.publisher' | translate }}"/>
+                                    <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publisherName').errors && (giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publisherName').touched)" class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publisherName').errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publisherName').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publisherName').value.length < 50">
+                                            {{'PERSON_NAME_VALIDATION' | translate}}
+                                        </div>
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publisherName').errors.pattern && giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publisherName').value.length > 50">
+                                            {{'INVALID_INPUT_LENGTH' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-2">
+                                    <label class="form-label" translate="">{{ "publish-date" | translate }}</label> <span style="color:red">*</span>
+                                    <div class="input-group">
+                                        <button class="input-group-text" (click)="d.toggle()" id="basic-addon1">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                        <input class="form-control" required placeholder="yyyy-mm-dd" name="dp" formControlName="publicationDate"
+                                            ngbDatepicker #d="ngbDatepicker">
+                                    </div>
+                                    <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publicationDate').errors && (giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publicationDate').touched)"
+                                        class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('publicationDate').errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-2">
+                                <label class="form-label" translate="">{{ "copy-num" | translate }}</label> <span style="color:red">*</span>
+                                <input
+                                    type="number" min="1" required  class="form-control" formControlName="numberOfCopies"
+                                    pattern="^[\u0660-\u0669\u06F0-\u06F90-9]{1,50}$" (keypress)="keyPressNumbers($event)" placeholder="{{ 'copy-num' | translate }}"/>
+                                    <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('numberOfCopies').errors && (giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('numberOfCopies').touched)" class="alert alert-danger mt-2 mb-2">
+                                        <div *ngIf="giftedBooksForm.controls['giftedBooks'].get(i.toString())?.get('numberOfCopies').errors.required">
+                                            {{'REQUIRED_FIELD' | translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button *ngIf="i>0" class="btn remove-sub-button " (click)="removegiftedBooks(i)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" translate>gift-purpose</label> <span style="color:red">*</span>
+                        <textarea rows="3" class="form-control" id="giftPurpose" name="giftPurpose" [(ngModel)]="giftRequest.giftPurpose" required
+                            placeholder="{{'gift-purpose' | translate}}" #giftPurpose="ngModel">
+                            </textarea><div *ngIf="giftPurpose.errors && (giftPurpose.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                                <div *ngIf="giftPurpose.errors.required">
+                                    {{'REQUIRED_FIELD' | translate}}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+              
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" translate>add-type</label>
+                        <div class=" radio-div" role="group" ngbRadioGroup name="radioBasic3" [(ngModel)]="giftRequest.additionTypeId">
+                            <div style="margin-bottom: 8px;">
+                                <label ngbButtonLabel class="btn-rad">
+                                    <input ngbButton type="radio" class="btn-check"
+                                         [value]="BooksAdditionTypesEnum.AddToBooksGroup">
+                                </label>
+                                <span translate>add-to-books-group</span>
+                            </div>
+                            <div style="margin-bottom: 8px;">
+                                <label ngbButtonLabel class="btn-rad">
+                                    <input ngbButton type="radio" class="btn-check"
+                                         [value]="BooksAdditionTypesEnum.AddToInternalAndExternalGiftingDepartments">
+                                </label>
+                                <span translate>add-to-gift-group</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+           
+           
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" *ngIf="!isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty && (giftRequest.giftTypeId == GiftTypesEnum.IndividualBooks && !giftedBooksForm.controls['giftedBooks'].dirty) || ((f.valid && f.submitted) && confirmationModalService.response==true)"
+                        translate>serv-req</button>
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty && !giftedBooksForm.controls['giftedBooks'].dirty || ((f.valid && f.submitted) && confirmationModalService.response==true)"
+                        translate>SAVE_CHANGES</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,281 @@
+<div class="home-dash">
+
+  <div class="page-title">
+    <h4 translate>home</h4>
+  </div>
+
+
+  <div class="service-list">
+    <div class="row">
+      <div class="col-md-3" *ngIf="employeeType=='supplies'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>buybooksugg</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/supplies/buy-book-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="employeeType=='libraryServices' || employeeType=='programsAndEvents' || employeeType=='technicalSupport' ">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>asklibrarian</h5>
+            <a href="#" class="btn btn-primary" *ngIf="employeeType=='libraryServices'" [routerLink]="['/auth/libraryServices/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+            <a href="#" class="btn btn-primary" *ngIf="employeeType=='programsAndEvents'" [routerLink]="['/auth/programsAndEvents/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+            <a href="#" class="btn btn-primary" *ngIf="employeeType=='technicalSupport'" [routerLink]="['/auth/technicalSupport/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="employeeType=='PublicAdminstration' && isMainAdmin ==true">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>visitlibrary</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/publicAdminstration/visit-library-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+   
+
+      <div class="col-md-3" *ngIf="employeeType=='PublicAdminstration' && isMainAdmin ==true">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>asklibrarian</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/publicAdminstration/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-md-3" *ngIf="isAdmin ==true">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>asklibrarian</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/publicAdminstration/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="col-md-3" *ngIf="isAdmin ==true">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>visitlibrary</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/femaleLibRelations/visit-library-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="isAdmin ==true">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>researchretreat</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/publicAdminstration/research-retreat-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+     
+     
+      <div class="col-md-3" *ngIf="isAdmin ==true">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>copy-book</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/publicAdminstration/copy-book-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-3" *ngIf="employeeType=='MaleLibRelations'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>visitlibrary</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/maleLibRelations/visit-library-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+   
+
+      <div class="col-md-3" *ngIf="employeeType=='MaleLibRelations'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>asklibrarian</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/maleLibRelations/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="col-md-3" *ngIf="employeeType=='FemaleLibRelations'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>visitlibrary</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/femaleLibRelations/visit-library-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+   
+
+      <div class="col-md-3" *ngIf="employeeType=='FemaleLibRelations'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>asklibrarian</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/femaleLibRelations/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+        
+      </div>
+      <!-- ****************************** -->
+      <div class="col-md-3" *ngIf="employeeType=='PublicAdminstration' && isAdmin ==false">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>researchretreat</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/publicAdminstration/research-retreat-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+     
+     
+      <div class="col-md-3" *ngIf="employeeType=='PublicAdminstration' && isAdmin == false">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>copy-book</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/publicAdminstration/copy-book-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+   
+
+    
+
+      <!-- xxxxxxxxxxxxxxxxxxxxx -->
+
+      <div class="col-md-3" *ngIf="employeeType=='GiftSpecialLibraries'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>exchange-book</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/giftSpecialLibraries/libraries-exchange-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="employeeType=='GiftSpecialLibraries'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>REQGIFT_SERVICE_NAME</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/giftSpecialLibraries/request-gift-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="employeeType=='TechnicalDepartment'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>Subscribe-Selective-Broadcasting</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/technicalDepartment/subscribe-list']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="employeeType=='PrintingArchiving'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>manuscript-request</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/printingArchiving/manuscript-request-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="employeeType=='supplies'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>BOOKGIFT_SERVICE_NAME</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/libraryServices/book-gift-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-3" *ngIf="employeeType=='FemalBeneficicareis'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>asklibrarian</h5>
+              <a href="#" class="btn btn-primary" [routerLink]="['/auth/femalBeneficicareis/ask-librarian-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="employeeType=='supplies'">
+        <div class="card service-card">
+          <div class="icon-s">
+            <img src="assets/img/come-new.svg" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" translate>scientific-thesis</h5>
+            <a href="#" class="btn btn-primary" [routerLink]="['/auth/universityThesises/scientific-thesis-view']" translate>VIEW_REQUESTS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

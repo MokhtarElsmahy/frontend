@@ -1,0 +1,53 @@
+.mt-30{
+    margin-top: 30px;
+}
+.mt-20{
+    margin-top: 20px;
+}
+.mt-15{
+    margin-top:15px;
+}
+.mt-40{
+    margin-top: 40px;
+}
+.mt-50{
+    margin-top: 50px;
+}
+.mt-60{
+    margin-top: 60px;
+}
+.mt-80{
+    margin-top: 80px;
+}
+.mb-10{
+    margin-bottom: 10px;
+}
+.ml-10{
+    margin-left: 10px;
+}
+/* .container-fluid{
+    padding-right: 190px;
+    padding-left: 70px;
+} */
+.align-self-end{
+align-self: self-end;
+}
+
+.no-pl{
+    padding-left: 0px !important;
+}
+.no-pr{
+    padding-right: 0px !important;
+}
+.line-after:after {
+    content: "";
+    background-color: $goldcolor;
+    position: absolute;
+    width: 1px;
+    height: 200px;
+    top: 10px;
+ 
+    display: block;
+    margin: auto;
+    bottom: 0;
+  }

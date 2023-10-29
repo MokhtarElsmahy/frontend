@@ -1,0 +1,203 @@
+<div class="home-dash">
+
+
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>copy-book</h4>
+        </div>
+        <app-back-button></app-back-button>
+
+    </div>
+
+    <div class="service-form">
+
+        <form #f="ngForm">
+            <div class="row">
+
+
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="name" name="beneficiaryName" required
+                            [(ngModel)]="CopyRequestVM.beneficiaryName" #beneficiaryName="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}">
+
+                        <div *ngIf="beneficiaryName.errors && (beneficiaryName.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryName.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryName.errors.pattern && beneficiaryName.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryName.errors.pattern && beneficiaryName.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="email" name="beneficiaryEmail" required
+                            [(ngModel)]="CopyRequestVM.beneficiaryEmail" #beneficiaryEmail="ngModel"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                            placeholder="{{'form.mail' | translate}}">
+
+                        <div *ngIf="beneficiaryEmail.errors && (beneficiaryEmail.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryEmail.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryEmail.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="phone" name="beneficiaryMobile" required
+                            [(ngModel)]="CopyRequestVM.beneficiaryMobile" #beneficiaryMobile="ngModel"
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" placeholder="{{'form.phone' | translate}}">
+
+                        <div *ngIf="beneficiaryMobile.errors && (beneficiaryMobile.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryMobile.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryMobile.errors.pattern">
+                                {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.grade</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="grade" name="beneficiaryQualification" required
+                            [(ngModel)]="CopyRequestVM.beneficiaryQualification" #beneficiaryQualification="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,200}$"
+                            placeholder="{{'form.grade' | translate}}">
+
+                        <div *ngIf="beneficiaryQualification.errors && (beneficiaryQualification.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryQualification.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryQualification.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+
+                <div class="col-md-7">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.bookaddress</label>
+                        <input type="text" class="form-control" disabled id="specialty" name="bookTitle"
+                            [(ngModel)]="CopyRequestVM.bookTitle" #bookTitle="ngModel"
+                            placeholder="{{'form.bookaddress' | translate}}">
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.lib-name</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="library"
+                            required [(ngModel)]="MedadlibraryId" #library="ngModel"
+                            (change)="setLibraryId(MedadlibraryId)">
+                            <option *ngFor="let library of MedadLibVM?.locations" [value]="library.id">{{translate.currentLang
+                                == 'en' ? library.name : library.discoveryDisplayName}}
+                            </option>
+                        </select>
+                        <div *ngIf="library.errors && (library.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="library.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                        <!-- <div *ngIf="inquiryType.errors && (inquiryType.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="inquiryType.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-2">
+                    <a (click)="addBook()" class="btn btn-primary btn-add-book" style="margin-top: 30px">
+                        <span class="fas fa-book" style="margin: 0 5px;">
+
+                        </span>
+                        <span translate>add-book</span>
+                    </a>
+                </div>
+                <label class="form-label" style="color: #b19556;" translate>( {{'copy-hint' | translate}} )</label>
+                <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" translate>paper-number</label> <span style="color:red">*</span>
+                        <input type="number" class="form-control" id="" name="startPage"
+                            [(ngModel)]="CopyRequestVM.startPage" #startPage="ngModel" required
+                            placeholder="{{'paper-number' | translate}}">
+
+                        <div *ngIf="startPage.errors && (startPage.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="startPage.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="startPage.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" translate>to</label>
+                        <input type="number" class="form-control" id="" name="" disabled  required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" 
+                            placeholder="{{'to' | translate}}">
+                    </div>
+                </div> -->
+
+                <div class="col-md-5">
+                    <div class="mb-3">
+                        <label class="form-label" translate>copy-purpose</label>
+                        <textarea rows="3" class="form-control" name="purpose" [(ngModel)]="CopyRequestVM.purpose"
+                            #purpose="ngModel" placeholder="{{'copy-purpose' | translate}}"> </textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                        {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                    </ngb-alert>
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode==false" [disabled]="!f.valid"
+                        (click)="confirmSubmission(f)" translate>serv-req</button>
+
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode==true" [disabled]="!f.valid"
+                        (click)="confirmSubmission(f)" translate>SAVE_CHANGES</button>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

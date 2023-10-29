@@ -1,0 +1,153 @@
+<div class="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="profile-data">
+                    <div class="">
+                        <div class="icon">
+                            <div class="profile-pic">
+                                <img src="assets/img/user-1.png" id="photo-pic" *ngIf="!user.pictureUrl">
+                                <img src="{{user.pictureUrl}}" id="photo-pic" alt="Profile picture" *ngIf="user?.pictureUrl">
+                                <input type="file" id="file" fileInput (change)="handleFileInput($any($event).target.files,'profilePic'); f.form.markAsDirty();" accept="image/*">
+                                <label for="file" id="uploadBtn" translate>Edit-Image</label>
+                            </div>
+                        </div>
+                        <div class="data" style="text-align: center;">
+                            <p class="user-name">{{user.firstName +' '+ user.lastName}}</p>
+                            <p class="user-mail">{{user.email}}</p>
+                            <p class="user-rule">{{user.defaultRole}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="">
+                        <p class="account ba" translate>account-data</p>
+                        <p class="user-mail" translate>
+                            <i class="far fa-calendar-alt"></i>
+                            &nbsp; date-of-join &nbsp; <span style="font-size: 15px; font-weight: 600;">{{user.joinDate
+                                | date}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <h3 class="account" translate style="font-size: 20px;">personal-data</h3>
+                <p class="user-mail" translate>update-data</p>
+                <form #f="ngForm" class="" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" translate>FIRST_NAME</label>
+                                <input type="text" class="form-control" id="text" name="firstName" required
+                                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                                    placeholder="{{'FIRST_NAME' | translate}}" [(ngModel)]="user.firstName"
+                                    #firstName="ngModel">
+                                <div *ngIf="firstName.errors && (firstName.touched)"
+                                    class="alert alert-danger mt-2 mb-2">
+                                    <div *ngIf="firstName.errors.required">
+                                        {{'REQUIRED_FIELD' | translate}}
+                                    </div>
+                                    <div *ngIf="firstName.errors.pattern && firstName.value.length < 50">
+                                        {{'PERSON_NAME_VALIDATION' | translate}}
+                                    </div>
+                                    <div *ngIf="firstName.errors.pattern && firstName.value.length > 50">
+                                        {{'INVALID_INPUT_LENGTH' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" translate>LAST_NAME</label>
+                                <input type="text" class="form-control" id="text" name="lastName" required
+                                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                                    placeholder="{{'LAST_NAME' | translate}}" [(ngModel)]="user.lastName"
+                                    #lastName="ngModel">
+                                <div *ngIf="lastName.errors && (lastName.touched)" class="alert alert-danger mt-2 mb-2">
+                                    <div *ngIf="lastName.errors.required">
+                                        {{'REQUIRED_FIELD' | translate}}
+                                    </div>
+                                    <div *ngIf="lastName.errors.pattern && lastName.value.length < 50">
+                                        {{'PERSON_NAME_VALIDATION' | translate}}
+                                    </div>
+                                    <div *ngIf="lastName.errors.pattern && lastName.value.length > 50">
+                                        {{'INVALID_INPUT_LENGTH' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" translate>ARABIC_NAME</label>
+                                <input type="text" class="form-control" id="text" name="nameArabic" required
+                                    pattern="^[\u0621-\u064A ][\u0621-\u064A ]+$"
+                                    placeholder="{{'ARABIC_NAME' | translate}}" [(ngModel)]="user.nameArabic"
+                                    #nameArabic="ngModel">
+                                <div *ngIf="nameArabic.errors && (nameArabic.touched)"
+                                    class="alert alert-danger mt-2 mb-2">
+                                    <div *ngIf="nameArabic.errors.required">
+                                        {{'REQUIRED_FIELD' | translate}}
+                                    </div>
+                                    <div *ngIf="nameArabic.errors.pattern && nameArabic.value.length < 50">
+                                        {{'PERSON_NAME_ARABIC_VALIDATION' | translate}}
+                                    </div>
+                                    <div *ngIf="nameArabic.errors.pattern && nameArabic.value.length > 50">
+                                        {{'INVALID_INPUT_LENGTH' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" translate>form.mail</label>
+                                <input type="text" class="form-control" id="email" name="email" required
+                                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                    placeholder="{{'form.mail' | translate}}" [(ngModel)]="user.email" #email="ngModel">
+                                <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                                    <div *ngIf="email.errors.required">
+                                        {{'REQUIRED_FIELD' | translate}}
+                                    </div>
+                                    <div *ngIf="email.errors.pattern">
+                                        {{'INVALID_INPUT' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" translate>form.phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" required
+                                    pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" (keypress)="keyPressNumbers($event)"
+                                    placeholder="{{'form.phone' | translate}}" [(ngModel)]="user.phoneNumber"
+                                    #phone="ngModel">
+                                <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                                    <div *ngIf="phone.errors.required">
+                                        {{'REQUIRED_FIELD' | translate}}
+                                    </div>
+                                    <div *ngIf="phone.errors.pattern">
+                                        {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" translate> date-of-birth</label>
+                                <input type="date" class="form-control" [ngModel] ="user.birthDate | date:'yyyy-MM-dd'" (ngModelChange)="user.birthDate = $event" name="birthDate">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                                CHANGES_SAVED_SUCCESSFULLY
+                            </ngb-alert>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" (click)="updateUserProfile(f)" [disabled]="!f.dirty" translate>save-data</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

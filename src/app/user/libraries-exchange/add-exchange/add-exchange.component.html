@@ -1,0 +1,254 @@
+<div class=" modal-dialog-scrollable">
+
+  <div class="modal-header">
+    <h4 class="modal-title" translate>add-book</h4>
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="height: 420px;">
+    <div class="service-form">
+      <form #f="ngForm">
+        <div class="c">
+          <div class="page-title">
+            <h4 style="font-size: 16px;" translate>ex-book</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label class="form-label" translate="">{{ "form.bookaddress" | translate }}</label> <span style="color:red">*</span>
+                <label class="form-label" style="color: red;">*</label>
+                <input name="replicaBookTitle" required [(ngModel)]="LibraryExchangeBook.replicaBookTitle"
+                  #replicaBookTitle="ngModel" type="text" required class="form-control"
+                  placeholder="{{ 'form.bookaddress' | translate }}" />
+
+                <div *ngIf="replicaBookTitle.errors && (replicaBookTitle.touched)" class="alert alert-danger mt-2 mb-2">
+                  <div *ngIf="replicaBookTitle.errors.required">
+                    {{'REQUIRED_FIELD' | translate}}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label class="form-label" translate="">{{ "form.author" | translate }}</label> <span style="color:red">*</span>
+                <label class="form-label" style="color: red;">*</label>
+                <input name="replicaAuthorName" type="text" required [(ngModel)]="LibraryExchangeBook.replicaAuthorName"
+                  #replicaAuthorName="ngModel" type="text" class="form-control"
+                  placeholder="{{ 'form.author' | translate }}" />
+
+                <div *ngIf="replicaAuthorName.errors && (replicaAuthorName.touched)"
+                  class="alert alert-danger mt-2 mb-2">
+                  <div *ngIf="replicaAuthorName.errors.required">
+                    {{'REQUIRED_FIELD' | translate}}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label class="form-label" translate="">{{ "form.publisher" | translate }}</label> <span style="color:red">*</span>
+                <label class="form-label" style="color: red;">*</label>
+                <input name="replicaPublisher" type="text" required class="form-control"
+                  [(ngModel)]="LibraryExchangeBook.replicaPublisher" #replicaPublisher="ngModel" type="text"
+                  placeholder="{{ 'form.publisher' | translate }}" />
+
+                <div *ngIf="replicaPublisher.errors && (replicaPublisher.touched)" class="alert alert-danger mt-2 mb-2">
+                  <div *ngIf="replicaPublisher.errors.required">
+                    {{'REQUIRED_FIELD' | translate}}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+
+              <div class="mb-2">
+                <label class="form-label" translate>{{ "publish-date" | translate }}</label>
+                <div class="input-group">
+                  <button class="input-group-text" (click)="dd.toggle()" id="basic-addon1">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                  <input [(ngModel)]="ReplicaPublicationDatePicker" name="dp" [minDate]="{year: 1600, month: 1, day: 1}"
+                    (dateSelect)="seReplicaPublicationDate($event)" class="form-control" placeholder="yyyy-mm-dd"
+                    (click)="dd.toggle()" ngbDatepicker #dd="ngbDatepicker">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+
+              <div class="mb-2">
+                <label class="form-label" translate="">{{ "copy-num" | translate }}</label> <span style="color:red">*</span>
+                <label class="form-label" style="color: red;">*</label>
+                <input name="replicaNumberOfCopies" type="number" required [(ngModel)]="LibraryExchangeBook.replicaNumberOfCopies"
+                  #replicaNumberOfCopies="ngModel"  class="form-control"
+                  placeholder="{{ 'form.author' | translate }}" />
+
+                <div *ngIf="replicaNumberOfCopies.errors && (replicaNumberOfCopies.touched)"
+                  class="alert alert-danger mt-2 mb-2">
+                  <div *ngIf="replicaNumberOfCopies.errors.required">
+                    {{'REQUIRED_FIELD' | translate}}
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- <div class="mb-2">
+
+                <label class="form-label" translate="">{{ "copy-num" | translate }}</label>
+                <label class="form-label" style="color: red;">*</label>
+
+                <input type="number" [(ngModel)]="LibraryExchangeBook.replicaNumberOfCopies"
+                  name="replicaNumberOfCopies" #replicaNumberOfCopies="ngModel" class="form-control"
+                   placeholder="{{ 'copy-num' | translate }}" />
+                <div *ngIf="replicaNumberOfCopies.errors&&(replicaNumberOfCopies.touched)" class="alert alert-danger mt-2 mb-2">
+                  <div *ngIf="replicaNumberOfCopies.errors.required">
+                    {{'REQUIRED_FIELD' | translate}}
+                  </div>
+
+                </div>
+
+              </div> -->
+
+            </div>
+
+            <div class="col-md-4">
+              <div class="mb-2">
+
+                <label class="form-label" translate="">{{ "form.isbn" | translate }}</label>
+                <input 
+                 [(ngModel)]="LibraryExchangeBook.replicaStandardBookNumber"
+                        name="replicaStandardBookNumber" #replicaStandardBookNumber="ngModel" class="form-control"
+                 type="text" class="form-control" 
+                  placeholder="{{ 'form.isbn' | translate }}" />
+
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <hr>
+
+        <div class="c">
+          <div class="page-title">
+            <h4 style="font-size: 16px;" translate>ex-book-to</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label class="form-label" translate="">{{ "form.bookaddress" | translate }}</label>
+                <input [(ngModel)]="GiftBackBookSearch.bookTitle" name="bookTitle" type="text"  
+                  class="form-control" placeholder="{{ 'form.bookaddress' | translate }}" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label class="form-label" translate="">{{ "form.author" | translate }}</label>
+                <input [(ngModel)]="GiftBackBookSearch.authorName" name="authorName" type="text"  
+                  class="form-control"   placeholder="{{ 'form.author' | translate }}" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mb-2">
+                <label class="form-label" translate="">{{ "form.publisher" | translate }}</label>
+                <input [(ngModel)]="GiftBackBookSearch.publisher" name="publisher" type="text"  
+                  class="form-control"  
+                  placeholder="{{ 'form.publisher' | translate }}" />
+              </div>
+            </div>
+            <div class="col-md-4">
+
+              <div class="mb-2">
+                <label class="form-label" translate>{{ "publish-date" | translate }}</label>
+                <div class="input-group">
+                  <button class="input-group-text" (click)="d.toggle()" id="basic-addon1">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                  <input [(ngModel)]="PublicationDatePicker" name="dp" [minDate]="{year: 1600, month: 1, day: 1}"
+                    (dateSelect)="sePublicationDate($event)" class="form-control" placeholder="yyyy-mm-dd"
+                    (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex">
+              <div class="mb-3">
+                <a class="btn btn-public" (click)="Search()" style="margin-top: 32px; width: 150px; ">
+                  <i class="fas fa-search" style="margin: 0 10px; font-size: 16px;"></i>
+                  <span translate="">search</span>
+                </a>
+              </div>
+              &nbsp; &nbsp;
+              <div class="mb-3">
+                <a (click)="ClearForm()" class="btn btn-danger"
+                  style="margin-top: 32px; height: 40px; font-weight: 600px; width: 150px; ">
+                  <i class="fas fa-times" style="margin: 0 10px; font-size: 16px;"></i>
+                  <span translate="">clear-search</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table id="bookgiftSearch" class="table table-striped ">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col" translate="">form.bookaddress</th>
+                  <th scope="col" translate="">form.author</th>
+                  <th scope="col" translate="">publish-date</th>
+
+                  <th scope="col" style="width: 10%;" translate="">copy-num</th>
+                  <th style="width: 12%; text-align: start;" translate="">req-actions </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ListToView ; let i = index">
+                  <th scope="row">{{i +1}}</th>
+                  <td>{{item.bookTitle}}</td>
+                  <td>{{item.authorName}}</td>
+                  <td>{{item.publicationDate | date}}</td>
+                  <td>
+                    <input type="number" [(ngModel)]="item.numberOfNeededCopies" name="numberOfNeededCopies_{{i}}"
+                      (keyup)="checkAvailable(item)" (change)="checkAvailable(item)" class="form-control"
+                      style="width:100px ; margin: auto;"  
+                      placeholder="{{ 'copy-num' | translate }}" />
+                  </td>
+                  <td style="text-align: start">
+                    <div class="form-check">
+                      <input class="form-check-input" [checked]="isChecked" [(ngModel)]="item.isChecked"
+                        (click)="CheckOnlyOne()" name="isChecked_{{i}}" type="checkbox" id="flexCheckDefault">
+                      <!-- <label class="form-check-label" for="flexCheckDefault" translate="">
+                        req-gift
+                      </label> -->
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button class="btn btn-primary btn-submit" (click)="AddUpdate(f)"
+            [disabled]="ListToView.length === 0 ||CheckSelectedBooks() || !f.valid"
+            style="margin-top: 0; width: 30% ; margin: auto;" translate>add</button>
+
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

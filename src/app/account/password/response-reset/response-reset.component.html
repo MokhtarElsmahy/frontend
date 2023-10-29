@@ -1,0 +1,84 @@
+<div class="login-container">
+    <div class="login-order">
+        <!-- <div class="icon">
+            <a href="#">
+            <img src="assets/img/logo-lib.svg" class="img-fluid" alt="" style=" width:135px;">
+            </a>
+        </div> -->
+        <div class="icon" style="margin: auto; width:230px">
+            <a href="#" style="color: #297162; font-weight: 600; font-size: 18px;">
+                <div class="logo-text">
+                    <h5 class="gold"> الهيئـة العامـة للعنايـة بشـؤون</h5>
+                    <h5 class="green"> المسجد الحرام والمسجد النبوي  </h5>
+                  </div>
+            </a>
+        </div>
+        <div class="details">
+            <div class="row ">
+
+                <form #ResetPasswordResponseForm=ngForm (ngSubmit)="onSubmit(ResetPasswordResponseForm)">
+                    <div class="col-md-12">
+                        <!-- <div class="input-group mb-3">
+                            <span class="input-group-text input-icon" id="email-label">
+                            <i class="far fa-envelope"></i>
+                            </span>
+                            <input id="email" type="email" name="email" class="form-control" placeholder="{{'form.mail' | translate}}" [disabled]="true"
+                             [(ngModel)]="form.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                        </div>
+                        <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="email.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="email.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" [hidden]="!error.email">
+                            {{error.email}}
+                        </div> -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text input-icon" id="password-label">
+                            <i class="fas fa-key"></i>
+                           </span>
+                            <input id="password" type="password" name="password" class="form-control" placeholder="{{'NEW_PASSWORD' | translate}}"
+                             [(ngModel)]="form.password" #password="ngModel" required pattern="^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$">
+                        </div>
+                        <div *ngIf="password.errors && (password.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="password.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="password.errors.pattern">
+                                {{'PASSWORD_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" [hidden]="!error.password">
+                            {{error.password}}
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text input-icon" id="password_confirmation-label">
+                           <i class="fas fa-key"></i>
+                             </span>
+                            <input id="passwordconfirm" type="password" name="password_confirmation" class="form-control" placeholder="{{'form.passwordconfirm' | translate}}"
+                             [(ngModel)]="form.password_confirmation" #passwordconfirm="ngModel" required>
+                        </div>
+                        <div *ngIf="passwordconfirm.errors && (passwordconfirm.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="passwordconfirm.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="!isPasswordMatched">
+                                {{'PASSWORD_MATCHING_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" [hidden]="!error.password_confirmation">
+                            {{error.password_confirmation}}
+                        </div>
+                    </div>
+
+                    <button type="submit"  class="btn btn-primary" translate>
+                     <i class="fas fa-sign-in-alt" style="font-size: 15px; margin: 0 3px;"></i>{{'CHANGE_PASSWORD' | translate}}</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,192 @@
+<div class="home-dash">
+  
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>visitlibrary</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+        </div>
+
+
+    <div class="service-form">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label" translate>form.lib-name</label>
+                    <select class="form-select form-control" aria-label="Default select example" name="library" required
+                        [(ngModel)]="libraryId" #library="ngModel" (change)="displayLibraryAvailableDaysAndPeriods()">
+                        <option *ngFor="let library of librariesList" [value]="library.id">{{translate.currentLang == 'en' ? library.nameEn : library.nameAr}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col">
+                <div class="week-per">
+                    <div class="btn-group" role="group">
+                        <label class="btn btn-week" ngbButtonLabel>
+                            <input type="checkbox" class="btn-check" ngbButton [disabled]="!libraryId"
+                             [(ngModel)]="weekModel.sat" (click)="setSelectedDay('Saturday', !weekModel.sat)"> {{'saturday' | translate}}
+                        </label>
+                    </div>
+                    <div class="set-time" *ngIf="weekModel.sat==true">
+                        <div *ngFor="let period of SaturdayPeriodsList">
+                            <label class="btn btn-per" ngbButtonLabel
+                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                <input type="checkbox" class="btn-check" ngbButton
+                                    (click)="setSelectedPeriod('Saturday', period.id)">
+                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="week-per">
+                    <div class="btn-group" role="group">
+                        <label class="btn btn-week" ngbButtonLabel>
+                            <input type="checkbox" class="btn-check" ngbButton [disabled]="!libraryId"
+                             [(ngModel)]="weekModel.sun" (click)="setSelectedDay('Sunday', !weekModel.sun)"> {{'sunday' | translate}}
+                        </label>
+                    </div>
+                    <div class="set-time" *ngIf="weekModel.sun==true">
+                        <div *ngFor="let period of SundayPeriodsList">
+                            <label class="btn btn-per" ngbButtonLabel
+                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                <input type="checkbox" class="btn-check" ngbButton
+                                    (click)="setSelectedPeriod('Sunday', period.id)">
+                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="week-per">
+                    <div class="btn-group" role="group">
+                        <label class="btn btn-week" ngbButtonLabel>
+                            <input type="checkbox" class="btn-check" ngbButton [disabled]="!libraryId"
+                             [(ngModel)]="weekModel.mon" (click)="setSelectedDay('Monday', !weekModel.mon)"> {{'monday' | translate}}
+                        </label>
+                    </div>
+                    <div class="set-time" *ngIf="weekModel.mon==true">
+                        <div *ngFor="let period of MondayPeriodsList">
+                            <label class="btn btn-per" ngbButtonLabel
+                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                <input type="checkbox" class="btn-check" ngbButton
+                                    (click)="setSelectedPeriod('Monday', period.id)">
+                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="week-per">
+                    <div class="btn-group" role="group">
+                        <label class="btn btn-week" ngbButtonLabel>
+                            <input type="checkbox" class="btn-check" ngbButton [disabled]="!libraryId"
+                             [(ngModel)]="weekModel.tue" (click)="setSelectedDay('Tuesday', !weekModel.tue)"> {{'tuesday' | translate}}
+                        </label>
+                    </div>
+                    <div class="set-time" *ngIf="weekModel.tue==true">
+                        <div *ngFor="let period of TuesdayPeriodsList">
+                            <label class="btn btn-per" ngbButtonLabel
+                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                <input type="checkbox" class="btn-check" ngbButton
+                                    (click)="setSelectedPeriod('Tuesday', period.id)">
+                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="week-per">
+                    <div class="btn-group" role="group">
+                        <label class="btn btn-week" ngbButtonLabel>
+                            <input type="checkbox" class="btn-check" ngbButton [disabled]="!libraryId"
+                             [(ngModel)]="weekModel.wed" (click)="setSelectedDay('Wednesday', !weekModel.wed)"> {{'wednesday' | translate}}
+                        </label>
+                    </div>
+                    <div class="set-time" *ngIf="weekModel.wed==true">
+                        <div *ngFor="let period of WednesdayPeriodsList">
+                            <label class="btn btn-per" ngbButtonLabel
+                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                <input type="checkbox" class="btn-check" ngbButton
+                                    (click)="setSelectedPeriod('Wednesday', period.id)">
+                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="week-per">
+                    <div class="btn-group" role="group">
+                        <label class="btn btn-week" ngbButtonLabel>
+                            <input type="checkbox" class="btn-check" ngbButton [disabled]="!libraryId"
+                             [(ngModel)]="weekModel.tha" (click)="setSelectedDay('Thursday', !weekModel.tha)"> {{'thursday' | translate}}
+                        </label>
+                    </div>
+                    <div class="set-time" *ngIf="weekModel.tha==true">
+                        <div *ngFor="let period of ThursdayPeriodsList">
+                            <label class="btn btn-per" ngbButtonLabel
+                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                <input type="checkbox" class="btn-check" ngbButton
+                                    (click)="setSelectedPeriod('Thursday', period.id)">
+                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="week-per">
+                    <div class="btn-group" role="group">
+                        <label class="btn btn-week" ngbButtonLabel>
+                            <input type="checkbox" class="btn-check" ngbButton [disabled]="!libraryId"
+                             [(ngModel)]="weekModel.fri" (click)="setSelectedDay('Friday', !weekModel.fri)"> {{'friday' | translate}}
+                        </label>
+                    </div>
+                    <div class="set-time" *ngIf="weekModel.fri==true">
+                        <div *ngFor="let period of FridayPeriodsList">
+                            <label class="btn btn-per" ngbButtonLabel
+                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                <input type="checkbox" class="btn-check" ngbButton
+                                    (click)="setSelectedPeriod('Friday', period.id)">
+                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                {{'EMPLOYEE_SUCCESS_MESSAGE' | translate}}
+            </ngb-alert>
+        </div>
+
+        <div class="row justify-content-center align-items-end" style="height: 100px;">
+            <div class="col-md-4">
+                <button class="btn btn-primary btn-submit" (click)="updateLibraryAvailableDays()"
+                    translate>save</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

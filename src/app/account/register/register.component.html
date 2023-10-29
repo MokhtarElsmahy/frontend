@@ -1,0 +1,178 @@
+<div class="login-container" style="height: 100%;">
+    <div class="login-order">
+      <!--   <div class="icon">
+            <a href="#">
+                <img src="assets/img/logo-lib.svg" class="img-fluid" alt="" style=" width:135px;">
+            </a>
+        </div> -->
+        <div class="icon" style="margin: auto; width:230px">
+            <a href="#" style="color: #297162; font-weight: 600; font-size: 18px;">
+                <div class="logo-text">
+                    <h5 class="gold"> الهيئـة العامـة للعنايـة بشـؤون</h5>
+                    <h5 class="green"> المسجد الحرام والمسجد النبوي  </h5>
+                  </div>
+                </a>
+        </div>
+        <div class="details">
+            <div class="row ">
+                <form #f="ngForm" autocomplete="off">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="firstName-label">
+                            <i class="far fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control" id="text" name="firstName" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'FIRST_NAME' | translate}}" [(ngModel)]="userToRegister.firstName"
+                            #firstName="ngModel">
+                    </div>
+                    <div *ngIf="firstName.errors && (firstName.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="firstName.errors.required">
+                            {{'REQUIRED_FIELD' | translate}}
+                        </div>
+                        <div *ngIf="firstName.errors.pattern">
+                            {{'INVALID_INPUT' | translate}}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="lastName-label">
+                            <i class="far fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control" id="text" name="lastName" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'LAST_NAME' | translate}}" [(ngModel)]="userToRegister.lastName"
+                            #lastName="ngModel">
+                    </div>
+                    <div *ngIf="lastName.errors && (lastName.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="lastName.errors.required">
+                            {{'REQUIRED_FIELD' | translate}}
+                        </div>
+                        <div *ngIf="lastName.errors.pattern">
+                            {{'INVALID_INPUT' | translate}}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="nameArabic-label">
+                            <i class="far fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control" id="text" name="nameArabic" required
+                            pattern="^[\u0621-\u064A ][\u0621-\u064A ]+$"
+                            placeholder="{{'ARABIC_NAME' | translate}}" [(ngModel)]="userToRegister.nameArabic"
+                            #nameArabic="ngModel">
+                    </div>
+                    <div *ngIf="nameArabic.errors && (nameArabic.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="nameArabic.errors.required">
+                            {{'REQUIRED_FIELD' | translate}}
+                        </div>
+                        <div *ngIf="nameArabic.errors.pattern && nameArabic.value.length < 50">
+                            {{'PERSON_NAME_ARABIC_VALIDATION' | translate}}
+                        </div>
+                        <div *ngIf="nameArabic.errors.pattern && nameArabic.value.length > 50">
+                            {{'INVALID_INPUT_LENGTH' | translate}}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="email-label">
+                            <i class="far fa-envelope"></i>
+                        </span>
+                        <input type="text" class="form-control" id="email" name="email" required
+                            autocomplete='new-email' pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                            placeholder="{{'form.mail' | translate}}" [(ngModel)]="userToRegister.email"
+                            #email="ngModel">
+                    </div>
+                    <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="email.errors.required">
+                            {{'REQUIRED_FIELD' | translate}}
+                        </div>
+                        <div *ngIf="email.errors.pattern">
+                            {{'INVALID_INPUT' | translate}}
+                        </div>
+                    </div>
+                    <div *ngIf="isEmailExisted" class="alert alert-danger mt-2 mb-2">
+                        <div>
+                            {{'EMAIL_IS_EXISETED' | translate}}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="password-label">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <input type="text" class="form-control" id="phone" name="phone" required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'form.phone' | translate}}" [(ngModel)]="userToRegister.phoneNumber"
+                            #phone="ngModel">
+                    </div>
+                    <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="phone.errors.required">
+                            {{'REQUIRED_FIELD' | translate}}
+                        </div>
+                        <div *ngIf="phone.errors.pattern">
+                            {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="password-label">
+                            <i class="fas fa-key"></i>
+                        </span>
+                        <input type="password" id="password" name="password" class="form-control" required
+                            autocomplete='new-password' pattern="^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$"
+                            placeholder="{{'form.password' | translate}}" [(ngModel)]="userToRegister.password"
+                            #password="ngModel">
+                    </div>
+                    <div *ngIf="password.errors && (password.touched)" class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="password.errors.required">
+                            {{'REQUIRED_FIELD' | translate}}
+                        </div>
+                        <div *ngIf="password.errors.pattern">
+                            {{'PASSWORD_VALIDATION' | translate}}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="password-label">
+                            <i class="fas fa-key"></i>
+                        </span>
+                        <input id="passwordconfirm" type="password" name="passwordconfirm" class="form-control" required
+                            pattern="^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$"
+                            placeholder="{{'form.passwordconfirm' | translate}}"
+                            [(ngModel)]="userToRegister.passwordconfirm" #passwordconfirm="ngModel">
+                    </div>
+                    <div *ngIf="passwordconfirm.errors && (passwordconfirm.touched)"
+                        class="alert alert-danger mt-2 mb-2">
+                        <div *ngIf="passwordconfirm.errors.required">
+                            {{'REQUIRED_FIELD' | translate}}
+                        </div>
+                        <div *ngIf="!isPasswordMatched">
+                            {{'PASSWORD_MATCHING_VALIDATION' | translate}}
+                        </div>
+                    </div>
+
+
+
+                     <re-captcha (resolved)="SendRecapcha($event)" id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+                                  <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
+                                    <div *ngIf="recaptcha.errors?.required">This field is required.</div>
+                                  </div>
+
+                    <div class="col-md-10">
+                        <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true"  translate>
+                            {{'ACCOUNT_ACTIVAITION_MESSAGE' | translate}}
+                        </ngb-alert>
+                    </div>
+                <!--    <button type="submit" class="btn btn-primary" (click)="submitForm(f)" [disabled]="!f.dirty || (f.valid && f.submitted && !isEmailExisted)" translate >
+                        <i class="fas fa-sign-in-alt" style="font-size: 15px; margin: 0 3px;"></i> sign-up
+                    </button>  -->
+                    
+                    <button type="submit" class="btn btn-primary" (click)="submitForm(f)" [disabled]="clickRegisterUser" translate >
+                        <i class="fas fa-sign-in-alt" style="font-size: 15px; margin: 0 3px;"></i> sign-up
+                    </button> 
+
+
+                    <a [routerLink]="['/login']" class="link-reg" translate>
+                        <sapn translate class="span"> have-account</sapn> &nbsp;&nbsp;
+                        sign-in
+                    </a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

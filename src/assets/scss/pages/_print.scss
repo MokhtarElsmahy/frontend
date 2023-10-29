@@ -1,0 +1,63 @@
+
+.print-req{
+    padding: 20px;
+    margin: 15px 5px;
+    display: none;
+    border: 2px solid $goldcolor;
+    height: 97vh;
+
+    .print-head{
+       border-bottom: 1px solid $goldcolor;
+       padding-bottom: 20px;
+       margin-bottom: 20px;
+       h4{
+           color: $maincolor;
+           font-weight: 600;
+           font-size: 23px;
+           border-bottom: 2px solid $goldcolor;
+           padding-bottom: 7px;
+       }
+       .logo-text {
+          margin-top: 0;  
+          margin: 0;    
+         }
+       .logo-text h5 {
+        font-size: 22px;
+      
+    }
+    }
+}
+
+@media print {
+    .header-top,
+  .app-sidebar,
+  .footer,
+  .btn-add,
+  .print-no
+   {
+      display: none!important;
+    }
+    .wrapper .page-wrap .main-content {
+        padding-right: 0px;
+        background: none;
+        margin-top: 0;
+    }
+    .wrapper.nav-collapsed .page-wrap .main-content{
+        padding: 0!important;
+    }
+    .home-dash{
+        display: none;
+    }
+    .card-view{
+        position: relative;
+        margin-bottom: 25px;
+        background: none;
+        box-shadow: none;
+        padding: 5px 10px;
+      
+    }
+    .print-req{
+        display: block;
+    }
+
+}

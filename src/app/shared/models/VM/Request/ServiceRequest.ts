@@ -1,0 +1,23 @@
+export class ServiceRequest{
+    id:number;
+    originalText:string;
+    email:string;
+    clientNote:string;
+    statues:string;
+    numberOfWords:number;
+    initialExpectedTime:Date;
+    editorExpectedTime:string;
+    cost:number;
+    clientUserId:string;
+    editorUserId:string;
+    rate:number;
+    rateNote:string;
+    type:string;
+    attachment:string;
+    clientUser:any;
+    editorUser:any;
+    creator:string;
+    created:Date;
+    changer:string;
+    changed:Date;
+}

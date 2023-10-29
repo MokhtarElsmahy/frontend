@@ -1,0 +1,41 @@
+<div>
+    <div class="modal-header">
+      <h4 class="modal-title" translate>browse-book</h4>
+      <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="table-responsive">
+            <table id="bookgift" class="table table-striped ">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col" translate="">form.bookaddress</th>
+                  <th scope="col" translate="">form.author</th>
+                  <th scope="col" translate="">publish-date</th>
+                  <th scope="col" translate="">copy-num</th>
+                  <th scope="col" translate="">req-actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let book of listToView; let i = index;">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{book.bookTitle}}</td>
+                  <td>{{book.authorName}}</td>
+                  <td>{{book.publicationDate | date}}</td>
+                  <td>{{book.numberOfCopies}}</td>
+                  <td>
+                    <button ngbTooltip="{{'remove' | translate}}" tooltipClass="danger" type="button" class="btn btn-danger"
+                      (click)="deleteConfirmation(book)">
+                      <i class="fas fa-archive "></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>

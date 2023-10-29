@@ -1,0 +1,193 @@
+<div class="home-dash">
+
+  
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>researchretreat</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+        </div>
+
+    <div class="service-form">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class=" card-view d-flex justify-content-between align-items-center">
+                    <div>
+                        <label class="form-label" translate>form.reserchtype</label>
+                        <h3>{{requestType?.valueArabic}}</h3>
+                    </div>
+                    <!-- <i class="fas fa-book-open"></i> -->
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.lib-name</label>
+                    <h3>{{translate.currentLang == 'en' ? library?.nameEn : library?.nameAr}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.hall</label>
+                    <h3>{{room ? (translate.currentLang == 'en' ? room?.nameEn : room?.nameAr) : ' - '}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.name</label>
+                    <h3> {{researchRequest.responsibleName}} </h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-view">
+                    <label class="form-label" translate>form.phone</label>
+                    <h3> {{researchRequest.responsibleMobile}} </h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-view">
+                    <label class="form-label" translate>form.grade</label>
+                    <h3>{{grade?.valueArabic}}</h3>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>from</label>
+                    <h3>{{researchRequest.dateFrom | date}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>to</label>
+                    <h3>{{researchRequest.dateTo | date}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3" *ngIf="researchRequest.requestTypeId == ResearchRequestTypesEnum.Subject || researchRequest.requestTypeId == ResearchRequestTypesEnum.ResearchWithSubject">
+                <div class=" card-view">
+                    <label class="form-label" translate>CALL_NUM</label>
+                    <h3>{{researchRequest.callNum}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="page-title" *ngIf="repliesList?.length > 0">
+            <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="comment-cont">
+                    <div class="card-comment" *ngFor="let reply of repliesList"
+                        [ngClass]="isMyReply(reply) == true ? 'right-side' :'left-side'">
+                        <label class="form-label">{{reply.userName}}</label>
+                        <h3>{{reply.userMessage}}</h3>
+                        <label class="form-label">{{reply.createdDate | date}} &nbsp; {{reply.createdDate |
+                            date:'shortTime'}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form #rf="ngForm">
+                    <div class="mb-3">
+                        <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                        <textarea type="text" class="form-control" id="text" name="comment"
+                            pattern="[\s\S]{1,250}$"
+                            placeholder="{{'ADD_COMMENT' | translate}}" [(ngModel)]="requestComment" #comment="ngModel">
+                            </textarea>
+                        <div *ngIf="comment.errors && (comment.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="comment.errors.pattern">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-comment" (click)="updateRequestWithReply(rf)" [disabled]="!requestComment || comment.value.split(' ')[0]=='' || comment.value.split('')[0]=='\n'" translate>ADD</button>
+
+                </form>
+            </div>
+            <div class="row mt-4" *ngIf="researchRequest.requestStatusId != RequestStatusEnum.Pending && serviceRating && serviceRating.rate != 0">
+                <hr>
+                <div class="page-title">
+                    <h4 style="font-size: 18px;" translate>serv-review</h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                        <ngb-rating [(rate)]="serviceRating.rate" [max]="5" [readonly]="true">
+                            <ng-template let-fill="fill" let-index="index">
+                                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                            </ng-template>
+                        </ngb-rating>
+                        <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio"
+                                [checked]="researchRequest.requestStatusId == RequestStatusEnum.Approved" name="flexRadioDefault"
+                                id="flexRadioDefault1" (click)="setRequestStatus(RequestStatusEnum.Approved); f.form.markAsDirty();">
+                            <label class="form-check-label" for="flexRadioDefault1" translate>
+                                accept-req
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" translate>insructions-needed</label>
+                        <textarea class="textarea form-control" [readOnly]="researchRequest.requestStatusId == RequestStatusEnum.Rejected"
+                            [(ngModel)]="researchRequest.instructions" name="instructions" #instructions="ngModel"
+                            id="textarea" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio"
+                                [checked]="researchRequest.requestStatusId == RequestStatusEnum.Rejected" name="flexRadioDefault"
+                                id="flexRadioDefault1" (click)="setRequestStatus(RequestStatusEnum.Rejected); f.form.markAsDirty();">
+                            <label class="form-check-label" for="flexRadioDefault1" translate>
+                                reject-req
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" translate>reject-reason</label>
+                        <textarea class="textarea form-control" [readOnly]="researchRequest.requestStatusId == RequestStatusEnum.Approved"
+                            [(ngModel)]="researchRequest.reasonOfRejection" name="reasonOfRejection"
+                            [required]="researchRequest.requestStatusId == RequestStatusEnum.Rejected" #reasonOfRejection="ngModel" id="textarea" rows="3"></textarea>
+                        <div *ngIf="reasonOfRejection.errors && reasonOfRejection.touched" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="reasonOfRejection.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    CHANGES_SAVED_SUCCESSFULLY
+                </ngb-alert>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" (click)="submitForm(f)"
+                        [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response) || researchRequest.requestStatusId == RequestStatusEnum.Pending" translate>send</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

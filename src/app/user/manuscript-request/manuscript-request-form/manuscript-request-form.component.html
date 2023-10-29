@@ -1,0 +1,191 @@
+<div class="home-dash">
+
+
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>manuscript-request</h4>
+        </div>
+        <app-back-button></app-back-button>
+
+    </div>
+
+    <div class="service-form">
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label> <label class="form-label" style="color:red">*</label>
+                        <input type="text" class="form-control" id="name" name="beneficiaryName" required
+                            [(ngModel)]="ManuscriptVM.beneficiaryName" #beneficiaryName="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}">
+
+                        <div *ngIf="beneficiaryName.errors && (beneficiaryName.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryName.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryName.errors.pattern && beneficiaryName.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryName.errors.pattern && beneficiaryName.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label><label class="form-label" style="color:red">*</label>
+                        <input type="text" class="form-control" id="email" name="beneficiaryEmail" required
+                            [(ngModel)]="ManuscriptVM.beneficiaryEmail" #beneficiaryEmail="ngModel"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                            placeholder="{{'form.mail' | translate}}">
+
+                        <div *ngIf="beneficiaryEmail.errors && (beneficiaryEmail.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryEmail.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryEmail.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label><label class="form-label" style="color:red">*</label>
+                        <input type="text" class="form-control" id="phone" name="beneficiaryMobile" required
+                            [(ngModel)]="ManuscriptVM.beneficiaryMobile" #beneficiaryMobile="ngModel"
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" placeholder="{{'form.phone' | translate}}">
+
+                        <div *ngIf="beneficiaryMobile.errors && (beneficiaryMobile.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryMobile.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryMobile.errors.pattern">
+                                {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.grade</label><label class="form-label" style="color:red">*</label>
+                        <input type="text" class="form-control" id="grade" name="beneficiaryQualification" required
+                            [(ngModel)]="ManuscriptVM.beneficiaryQualification" #beneficiaryQualification="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,200}$"
+                            placeholder="{{'form.grade' | translate}}">
+
+                        <div *ngIf="beneficiaryQualification.errors && (beneficiaryQualification.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryQualification.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryQualification.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.work</label><label class="form-label" style="color:red">*</label>
+                        <input type="text" class="form-control" id="work" name="beneficiaryInstitution" required
+                            [(ngModel)]="ManuscriptVM.beneficiaryInstitution" #beneficiaryInstitution="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,200}$"
+                            placeholder="{{'form.work' | translate}}">
+
+                        <div *ngIf="beneficiaryInstitution.errors && (beneficiaryInstitution.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryInstitution.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="beneficiaryInstitution.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.specialty</label>
+                        <input type="text" class="form-control" id="work" name="beneficiaryDepartment" 
+                            [(ngModel)]="ManuscriptVM.beneficiaryDepartment" #beneficiaryDepartment="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,200}$" placeholder="{{'form.specialty' | translate}}">
+
+                        <div *ngIf="beneficiaryDepartment.errors && (beneficiaryDepartment.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="beneficiaryDepartment.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>manuscript-name</label><label class="form-label" style="color:red">*</label>
+                        <input type="text" class="form-control" id="specialty" name="manuscripTitle" required
+                        [(ngModel)]="ManuscriptVM.manuscripTitle" #manuscripTitle="ngModel"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,200}$"
+                            placeholder="{{'manuscript-name' | translate}}">
+
+                            <div *ngIf="manuscripTitle.errors && (manuscripTitle.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="manuscripTitle.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="manuscripTitle.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.InternalCall</label>
+                        <input type="text" class="form-control" id="InternalCall" name="InternalCall" 
+                            [(ngModel)]="ManuscriptVM.internalCall"  #InternalCall="ngModel"
+                            placeholder="{{'form.InternalCall' | translate}}">
+
+                       
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>req-purpose</label>
+                        <textarea rows="3"  [(ngModel)]="ManuscriptVM.purpose" name="purpose" class="form-control" placeholder="{{'req-purpose' | translate}}"> </textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>conditions</label><label class="form-label" style="color:red">*</label>
+                        <div class="form-check d-flex">
+                            <input class="form-check-input" [(ngModel)]="ManuscriptVM.isTermsApprove" [disabled]="isEditMode==true" name="isTermsApprove" type="checkbox" id="gridCheck" style="width:2em">
+                            <label class="form-check-label" style="font-size: 14px;" for="gridCheck"> {{'conditions-text' | translate}} </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode==false" [disabled]="!f.valid||ManuscriptVM.isTermsApprove==false"  (click)="confirmSubmission(f)" translate>serv-req</button>
+
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode==true" [disabled]="!f.valid||ManuscriptVM.isTermsApprove==false" (click)="confirmSubmission(f)" translate>SAVE_CHANGES</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

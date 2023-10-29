@@ -1,0 +1,164 @@
+<!--For delete confirmation-->
+<div *ngIf="confirmationModalService.modalType == 'delete'">
+  <div class="modal-header">
+    <h4 *ngIf="!confirmationModalService.message" class="modal-title" translate>remove-confirm</h4>
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="remove-p">
+        <img src="assets/img/close3.png" alt="">
+        <h4 *ngIf="!confirmationModalService.message" class="" translate>remove-confirm2</h4>
+        <h4 *ngIf="confirmationModalService.message">{{confirmationModalService.message}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class=" btn-cancel btn-danger" style="background-color: red;" *ngIf="!confirmationModalService.message"
+      (click)="setConfirmed(true); activeModal.close('Close click');"
+      translate>remove</button>
+    <button type="button" class=" btn-cancel btn-danger" style="background-color: red;" *ngIf="confirmationModalService.message"
+     (click)="setConfirmed(true); activeModal.close('Close click');"
+     translate>YES</button>
+  </div>
+</div>
+
+<div *ngIf="confirmationModalService.modalType == 'delete2'">
+  <div class="modal-header">
+    <h4 *ngIf="!confirmationModalService.message" class="modal-title" translate>remove-confirm</h4>
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="remove-p">
+        <img src="assets/img/close3.png" alt="">
+        <h4 *ngIf="!confirmationModalService.message" class="" translate>remove-confirm2</h4>
+        <h4 *ngIf="confirmationModalService.message">{{confirmationModalService.message}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class=" btn-cancel btn-danger" style="background-color: red;" *ngIf="!confirmationModalService.message"
+    (click)="confirmationModalService.caller.submitForm2(); confirmationModalService.response = true; activeModal.close('Close click');"
+      translate>remove</button>
+    <button type="button" class=" btn-cancel btn-danger" style="background-color: red;" *ngIf="confirmationModalService.message"
+    (click)="confirmationModalService.caller.submitForm2(); confirmationModalService.response = true; activeModal.close('Close click');"
+     translate>YES</button>
+  </div>
+</div>
+
+
+<!--For submit confirmation-->
+<div *ngIf="confirmationModalService.modalType == 'confirmation'">
+  <div class="modal-header">
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="remove-p">
+        <h4>{{confirmationModalService.message}}</h4>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" 
+      (click)="activeModal.close('Close click');" 
+      translate>NO</button>
+    <button type="button" class="btn btn-success"
+      (click)="confirmationModalService.caller.submitForm(); confirmationModalService.response = true; activeModal.close('Close click');"
+      translate>YES</button>
+  </div>
+</div>
+
+<div *ngIf="confirmationModalService.modalType == 'confirmation2'">
+  <div class="modal-header">
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="remove-p">
+        <h4>{{confirmationModalService.message}}</h4>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" 
+      (click)="activeModal.close('Close click');" 
+      translate>NO</button>
+    <button type="button" class="btn btn-success"
+      (click)="confirmationModalService.caller.submitForm2(); confirmationModalService.response = true; activeModal.close('Close click');"
+      translate>YES</button>
+  </div>
+</div>
+
+<!--For alerts with message-->
+<div *ngIf="confirmationModalService.modalType == 'message'">
+  <div class="modal-header">
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="remove-p">
+        <h4>{{confirmationModalService.message}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning" (click)="activeModal.close('Close click');" translate>OK</button>
+  </div>
+</div>
+
+<div *ngIf="confirmationModalService.modalType == 'message2'">
+  <div class="modal-header">
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="remove-p" [innerHTML]="confirmationModalService.message">
+        <!-- <h4>{{confirmationModalService.message}}</h4> -->
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning" (click)="activeModal.close('Close click');" translate>OK</button>
+  </div>
+</div>
+
+<!--For Deactivate-->
+<div *ngIf="confirmationModalService.modalType == 'Deactivate'">
+  <div class="modal-header">
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="remove-p">
+        <h4>{{confirmationModalService.message}}</h4>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" 
+      (click)="activeModal.close('Close click');" 
+      translate>NO</button>
+    <button type="button" class="btn btn-success"
+      (click)="confirmationModalService.caller.Deactivate(); confirmationModalService.response = true; activeModal.close('Close click');"
+      translate>YES</button>
+  </div>
+</div>

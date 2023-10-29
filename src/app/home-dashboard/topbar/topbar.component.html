@@ -1,0 +1,152 @@
+<header class="header-top  d-flex align-items-center">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between">
+
+      <div class="top-menu d-flex align-items-center">
+        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+
+       <!--  <a class="header-brand" href="https://library.gph.gov.sa/" target="_blank">
+          <div class="logo-img d-flex align-items-center">
+            <img src="assets/img/logo-1.png" class="header-brand-img" alt="" style=" width:62px;">
+            <div class="logo-text">
+              <h5 class="gold"> مــكــتــبــة الــحــرم </h5>
+              <h5 class="green"> الـمـكـي الـشـريـف </h5>
+            </div>
+          </div>
+        </a> -->
+        <a class="header-brand" href="https://library.gph.gov.sa/" target="_blank">
+          <div class="logo-img d-flex align-items-center">
+            <div class="logo-text">
+              <h5 class="gold"> الهيئـة العامـة للعنايـة بشـؤون</h5>
+              <h5 class="green"> المسجد الحرام والمسجد النبوي  </h5>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class=" d-flex align-items-center">
+
+        <div class="dropdown d-none d-sm-block " *ngIf="currentUser?.roleCode.length > 1">
+          <a class="dropdown-toggle  prof-btn" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="user-name" style="font-size: 13px; font-weight: 600; margin: 0 10px;">{{translate.currentLang == 'en' ? currentRole.nameEn : currentRole.nameAr}}</span>
+            <i class="fas fa-chevron-down " style="font-size: 12px;"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-rule" aria-labelledby="dropdownMenuButton1">
+            <li *ngFor="let role of userRoles">
+
+              <div *ngIf="(role?.nameEn != 'HaramMosqueLib' && role?.nameEn != 'MaleHaramMacciLib' && role?.nameEn != 'FemaleHaramMacciLib')">
+                <button class="dropdown-item edit-prof" (click)="changeCurrentRole(role)" *ngIf="role.nameEn != currentRole.nameEn">
+                  {{translate.currentLang == 'en' ? role?.nameEn : role?.nameAr}}
+                </button>
+              </div>
+             
+              <div *ngIf="(role?.nameEn == 'HaramMosqueLib' || role?.nameEn == 'MaleHaramMacciLib' || role?.nameEn == 'FemaleHaramMacciLib') && isAdmin ==false ">
+                <button class="dropdown-item edit-prof"  *ngIf="role.nameEn != currentRole.nameEn">
+                  {{translate.currentLang == 'en' ? role?.nameEn : role?.nameAr}}
+                </button>
+              </div>
+
+            </li>
+          </ul>
+        </div>
+
+        <div class="top-menu data-back d-none d-sm-none d-lg-block" *ngIf="currentUser?.roleCode.length == 1">
+          <span>
+            {{translate.currentLang == 'en' ? userRoles[0].nameEn : userRoles[0].nameAr}}
+          </span>
+        </div>
+
+
+        <div class="dropdown">
+          <a class="dropdown-toggle  prof-btn" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="svg-icon svg-icon-primary svg-icon-2x">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                height="24px" viewBox="0 0 24 24" version="1.1">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <polygon points="0 0 24 0 24 24 0 24" />
+                  <path fill="#B19556" opacity="0.5"
+                    d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                    fill-rule="nonzero" />
+                  <path fill="#B19556"
+                    d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                    fill-rule="nonzero" />
+                </g>
+              </svg>
+            </i>
+            <span class="user-name" style="font-size: 13px; font-weight: 600; margin: 0 10px;">
+              {{translate.currentLang == 'en' ? currentUser.fullName : currentUser.nameArabic}}</span>
+            <i class="fas fa-chevron-down " style="font-size: 12px;"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+            <li>
+              <a class="dropdown-item edit-prof" [routerLink]="['/auth/'+userMainRole+'/profile']">
+                <i class="far fa-user"></i>{{'MY_PROFILE' | translate}}</a>
+            </li>
+            <li>
+              <a href="#" (click)="logout($event)" class="dropdown-item edit-prof" style="border-bottom: 0;">
+                <img src="assets/img/logout.png" width="20" alt="">{{'LOG_OUT' | translate}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <a class="dropdown-toggle notify" style="padding: 5px 7px;" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false" (click)="UpdateNotificationsToReaded()">
+            <span class="svg-icon svg-icon-primary svg-icon-2x">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                height="24px" viewBox="0 0 24 24" version="1.1">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path fill="#B19556"
+                    d="M17,12 L18.5,12 C19.3284271,12 20,12.6715729 20,13.5 C20,14.3284271 19.3284271,15 18.5,15 L5.5,15 C4.67157288,15 4,14.3284271 4,13.5 C4,12.6715729 4.67157288,12 5.5,12 L7,12 L7.5582739,6.97553494 C7.80974924,4.71225688 9.72279394,3 12,3 C14.2772061,3 16.1902508,4.71225688 16.4417261,6.97553494 L17,12 Z" />
+                  <rect fill="#B19556" opacity="0.5" x="10" y="16" width="4" height="4" rx="2" />
+                </g>
+              </svg>
+            </span>
+            <span class="noti-no" *ngIf="getNotReadCount() != 0">{{ getNotReadCount() }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-notify" aria-labelledby="dropdownMenuButton1">
+
+
+            <li *ngFor="let item of global.Notifications">
+              <a class="dropdown-item edit-prof" href='{{notificationActionLink(item.action)}}' translate>
+                <p style="max-height: 39px; overflow: hidden; margin: 0;">{{item.message}} </p> 
+                <label class="noti-label">{{item.created | date}} &nbsp; {{item.created |
+                  date:'shortTime'}}</label>
+              </a>
+            </li>
+            <ng-container *ngIf="global.Notifications.length == 0">
+              <li>
+                <a class="dropdown-item edit-prof">
+                  {{'NO_NOTIFICATIONS' | translate}}
+                </a>
+              </li>
+            </ng-container>
+
+          </ul>
+        </div>
+
+
+        <div class="top-menu data-back d-none d-sm-none d-lg-block" style="margin: 0 8px;">
+          <span>
+            {{ getDate() }}
+            <span>م</span>
+          </span>
+          <span> &nbsp; - &nbsp; </span>
+          <span id="date"> </span>
+
+        </div>
+       
+        <div>
+           <a class="lang-btn" *ngIf="global.getLang() == 'ar'" (click)="changeLang('en')" >
+            <img src="assets/img/en.png" class="header-brand-img" alt="" style=" width:30px;">
+
+           </a>
+            <a class="lang-btn" *ngIf="global.getLang() == 'en'" (click)="changeLang('ar')" >
+              <img src="assets/img/ar.png" class="header-brand-img" alt="" style=" width:30px;">
+            </a>
+         </div>
+      </div>
+
+    </div>
+  </div>
+</header>

@@ -1,0 +1,59 @@
+<div class="login-container">
+    <div class="login-order">
+        <!-- <div class="icon">
+            <a href="#">
+            <img src="assets/img/logo-lib.svg" class="img-fluid" alt="" style=" width:135px;">
+            </a>
+        </div> -->
+        <div class="icon" style="margin: auto; width:230px">
+            <a href="#" style="color: #297162; font-weight: 600; font-size: 18px;">
+                <div class="logo-text">
+                    <h5 class="gold"> الهيئـة العامـة للعنايـة بشـؤون</h5>
+                    <h5 class="green"> المسجد الحرام والمسجد النبوي  </h5>
+                  </div>
+            </a>
+        </div>
+        <div class="details">
+            <div class="row ">
+                <form #loginForm=ngForm (ngSubmit)="login()">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger" [hidden]="!error">
+                            {{error}}
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text input-icon" id="email-label">
+                              <i class="far fa-envelope"></i>
+                            </span>
+                            <input id="userName" type="userName" name="userName" class="form-control" placeholder="{{'form.mail' | translate}}" [(ngModel)]="userName" required>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text input-icon" id="password-label">
+                          <i class="fas fa-key"></i>
+                        </span>
+                        <input id="password" type="password" name="password" class="form-control" placeholder="{{'form.password' | translate}}" [(ngModel)]="password" required>
+                    </div>
+
+                    <div class="d-flex justify-content-between" style="margin: 10px 0;">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck"> {{'REMEMBER_ME' | translate}} </label>
+                        </div>
+                        <p class="forget">
+                            <a [routerLink]="['/request-password-reset']">{{'FORGOT_PASSWORD' | translate}}</a>
+                        </p>
+
+                    </div>
+                    <button type="submit"  class="btn btn-primary" translate>
+                    <i class="fas fa-sign-in-alt" style="font-size: 15px; margin: 0 3px;"></i>sign-in</button>
+
+                    <a [routerLink]="['/register']" class="link-reg" translate>
+                        <sapn translate class="span"> no-account</sapn> &nbsp;&nbsp;
+                        sign-up</a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

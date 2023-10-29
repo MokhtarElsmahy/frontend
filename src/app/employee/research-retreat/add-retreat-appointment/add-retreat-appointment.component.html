@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title" translate>add-appointment</h4>
+  <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="d-flex justify-content-center">
+    <div class="">
+      <!-- <label  class="form-label" translate>date</label> -->
+
+      <ngb-datepicker #dp [minDate]="minDatePicker" (dateSelect)="setSelectedDate($event)"></ngb-datepicker>
+
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class=" btn btn-primary btn-submit "
+    (click)="confirmSelection(); activeModal.close('Close click');" translate>save</button>
+</div>

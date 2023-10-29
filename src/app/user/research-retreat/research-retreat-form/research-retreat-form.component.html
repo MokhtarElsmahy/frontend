@@ -1,0 +1,321 @@
+<div class="home-dash">
+
+
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>researchretreat</h4>
+        </div>
+        <app-back-button></app-back-button>
+
+    </div>
+
+
+    <div class="service-form">
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.reserchtype</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="requestType"
+                            required [(ngModel)]="researchRequest.requestTypeId" #requestType="ngModel"
+                            (change)="resetRoomChoice()">
+                            <option *ngFor="let type of requestTypesList" [value]="type.id">{{type.valueArabic}}
+                            </option>
+                        </select>
+                        <div *ngIf="requestType.errors && (requestType.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="requestType.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.lib-name</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="library"
+                            required [(ngModel)]="researchRequest.libraryId" #library="ngModel"
+                            (change)="getRoomsList()">
+                            <option *ngFor="let library of librariesList" [value]="library.id">{{translate.currentLang
+                                == 'en' ? library.nameEn : library.nameAr}}
+                            </option>
+                        </select>
+                        <div *ngIf="library.errors && (library.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="library.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.hall</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="room"
+                            required [(ngModel)]="researchRequest.roomId" #room="ngModel"
+                            [disabled]="!researchRequest.libraryId || !researchRequest.requestTypeId || researchRequest.requestTypeId == ResearchRequestTypesEnum.Subject"
+                            (change)="changeRoomId()">
+                            <option *ngFor="let room of roomsList" [value]="room.id">{{translate.currentLang == 'en' ?
+                                room.nameEn : room.nameAr}}</option>
+                        </select>
+                        <div *ngIf="room.errors && (room.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="room.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="text" name="manager" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}" [(ngModel)]="researchRequest.responsibleName"
+                            #manager="ngModel">
+                        <div *ngIf="manager.errors && (manager.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="manager.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="manager.errors.pattern && manager.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="manager.errors.pattern && manager.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="phone" name="phone" required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'form.phone' | translate}}" [(ngModel)]="researchRequest.responsibleMobile"
+                            #phone="ngModel">
+                        <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="phone.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="phone.errors.pattern">
+                                {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.grade</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="grade"
+                            required [(ngModel)]="researchRequest.responsibleGradeId" #grade="ngModel">
+                            <option *ngFor="let grade of gradesList" [value]="grade.id">{{grade.valueArabic}}
+                            </option>
+                        </select>
+                        <div *ngIf="grade.errors && (grade.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="grade.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" *ngIf="isEditMode && researchRequest.dateFrom">
+                    <div class="col-md-5">
+                        <div class=" card-view">
+                            <label class="form-label" translate>REQUESTED_DATE_FROM</label>
+                            <h3>{{researchRequest.dateFrom | date}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" *ngIf="isEditMode && researchRequest.dateTo">
+                    <div class="col-md-4">
+                        <div class=" card-view">
+                            <label class="form-label" translate>REQUESTED_DATE_TO</label>
+                            <h3>{{researchRequest.dateTo | date}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-4"
+                    *ngIf="researchRequest.requestTypeId == ResearchRequestTypesEnum.Subject || researchRequest.requestTypeId == ResearchRequestTypesEnum.ResearchWithSubject">
+                    <button type="button" *ngIf="!previousNums||previousNums.length>=0" (click)="addcallNumbers()" class="btn btn-primary btn-callnum">إضافة رقم
+                        نداء</button>
+
+                        <!-- <button type="button" (click)="viewg()" class="btn btn-primary btn-callnum"> رقم
+                            </button> -->
+
+                            <div class="mb-3" *ngIf="previousNums&&previousNums.length>0">
+                                <div class="" *ngFor="let callNumSingle of previousNums; let i=index" >
+    
+                                    <div class="callnum">
+                                        <label class="form-label" translate>CALL_NUM</label> <span
+                                            style="color:red">*</span>
+                                        <input type="text" class="form-control" id="text" name="callNum_{{i}}" [(ngModel)]="callNumSingle.callNum" value="{{callNumSingle.callNum}}">
+                                            
+                                        <button *ngIf="i>=1"  (click)="removePrevcallNumbers(i)" class="btn remove-sub-button">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+    
+    
+                                </div>
+                                <hr>
+    
+                            </div>
+                    <form [formGroup]="callNumbersForm">
+                        <div class="mb-3" *ngIf="!previousNums||previousNums.length>=0">
+                            <div class="" *ngFor="let callNumSingle of callNumbersArray.controls; let i=index"
+                                formArrayName="callNumbers">
+
+                                <div class="callnum" [formGroupName]='i'>
+                                    <label class="form-label" translate>CALL_NUM</label> <span
+                                        style="color:red">*</span>
+                                    <input type="text" class="form-control" id="text" name="callNum"
+                                        formControlName="callNum" required
+                                       
+                                        placeholder="{{'CALL_NUM' | translate}}">
+                                        <div *ngIf="callNumbersForm.controls['callNumbers'].get(i.toString())?.get('callNum').errors && (callNumbersForm.controls['callNumbers'].get(i.toString())?.get('callNum').touched)" class="alert alert-danger mt-2 mb-2">
+                                            <div *ngIf="callNumbersForm.controls['callNumbers'].get(i.toString())?.get('callNum').errors.required">
+                                                {{'REQUIRED_FIELD' | translate}}
+                                            </div>
+                                          
+                                        </div>
+                                    <button *ngIf="i>=0"  (click)="removecallNumbers(i)" class="btn remove-sub-button">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label style="display: block;" class="form-label" translate>date</label>
+                        <ngb-datepicker #dp (dateSelect)="onDateSelection($event, f)" [minDate]="minDatePicker"
+                            [displayMonths]="2" [dayTemplate]="t" [markDisabled]="isDisabled" outsideDays="hidden">
+                        </ngb-datepicker>
+
+                        <ng-template #t let-date let-focused="focused">
+                            <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null">
+                                {{ date.day }}
+                            </span>
+                        </ng-template>
+                    </div>
+                </div>
+
+
+
+
+                <!--   <div class="col-md-12">
+            <div class="mb-3">
+                <label  class="form-label" translate>date</label>
+                <form class="row ">
+                    <div class="col-6">
+                      <div class="dp-hidden position-absolute">
+                        <div class="input-group">
+                          <input name="datepicker"
+                                 class="form-control"
+                                 ngbDatepicker
+                                 #datepicker="ngbDatepicker"
+                                 [autoClose]="'outside'"
+                                 (dateSelect)="onDateSelection($event)"
+                                 [displayMonths]="2"
+                                 [dayTemplate]="t"
+                                 outsideDays="hidden"
+                                 [startDate]="fromDate!"
+                                 tabindex="-1">
+                          <ng-template #t let-date let-focused="focused">
+                            <span class="custom-day"
+                                  [class.focused]="focused"
+                                  [class.range]="isRange(date)"
+                                  [class.faded]="isHovered(date) || isInside(date)"
+                                  (mouseenter)="hoveredDate = date"
+                                  (mouseleave)="hoveredDate = null">
+                              {{ date.day }}
+                            </span>
+                          </ng-template>
+                        </div>
+                      </div>
+                      
+                      <div class="input-group">
+                        <button class="input-group-text" (click)="datepicker.toggle()" id="basic-addon1">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                        <input #dpFromDate (click)="datepicker.toggle()"
+                               class="form-control" placeholder="yyyy-mm-dd"
+                               name="dpFromDate"
+                               [value]="formatter.format(fromDate)"
+                               (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="input-group">
+                        <button class="input-group-text" (click)="datepicker.toggle()" id="basic-addon1">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                        <input #dpToDate (click)="datepicker.toggle()"
+                               class="form-control" placeholder="yyyy-mm-dd"
+                               name="dpToDate"
+                               [value]="formatter.format(toDate)"
+                               (input)="toDate = validateInput(toDate, dpToDate.value)">
+                      </div>
+                    </div>
+                  </form>
+
+            </div>
+        </div>  -->
+
+                <!--   <div class="col-md-6">
+            <div class="mb-3">
+                <label  class="form-label" translate>from</label>
+                <div class="input-group">
+                    <button class="input-group-text" (click)="d.toggle()" id="basic-addon1">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp" (click)="d.toggle()" [(ngModel)]="startDatePicker" ngbDatepicker #d="ngbDatepicker">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label  class="form-label" translate>to</label>
+                <div class="input-group">
+                    <button class="input-group-text" (click)="d2.toggle()" id="basic-addon1">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                
+                 <input class="form-control" placeholder="yyyy-mm-dd"
+                  name="dp" (click)="d2.toggle()" [(ngModel)]="endDatePicker" ngbDatepicker #d2="ngbDatepicker">
+                </div>
+            </div>
+          </div>
+ -->
+
+
+
+            </div>
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" *ngIf="!isEditMode" (click)="confirmSubmission(f)"
+                        [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>serv-req</button>
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode" (click)="confirmSubmission(f)"
+                        [disabled]="((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>SAVE_CHANGES</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

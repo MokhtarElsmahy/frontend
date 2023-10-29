@@ -1,0 +1,205 @@
+<div class="home-dash">
+
+    
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>visitlibrary</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+    </div>
+
+
+    <div class="service-form">
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.depart</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="authority"
+                            required [(ngModel)]="visitRequest.authority" #authority="ngModel">
+                            <option [value]="AuthorityTypesEnum.School" translate>SCHOOL</option>
+                            <option [value]="AuthorityTypesEnum.Corporation" translate>CORPORATION</option>
+                            <option [value]="AuthorityTypesEnum.Directory" translate>DIRECTORY</option>
+                        </select>
+                        <div *ngIf="authority.errors && (authority.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="authority.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.manager</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="text" name="manager" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.manager' | translate}}" [(ngModel)]="visitRequest.responsibleName"
+                            #manager="ngModel">
+                        <div *ngIf="manager.errors && (manager.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="manager.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="manager.errors.pattern && manager.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="manager.errors.pattern && manager.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="email" name="email" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="{{'form.mail' | translate}}"
+                            [(ngModel)]="visitRequest.responsibleEmail" #email="ngModel">
+                        <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="email.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="email.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="phone" name="phone" required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'form.phone' | translate}}" [(ngModel)]="visitRequest.responsibleMobile"
+                            #phone="ngModel">
+                        <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="phone.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="phone.errors.pattern">
+                                {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.no-visitor</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="text" name="numOfVisitiors" required
+                            pattern="^[2-9]|[1-9]\d+$" (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'form.no-visitor' | translate}}"
+                            [(ngModel)]="visitRequest.numberOfVisitors" #numOfVisitiors="ngModel">
+                        <div *ngIf="numOfVisitiors.errors && (numOfVisitiors.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="numOfVisitiors.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="numOfVisitiors.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" translate>form.lib-name</label> <span style="color:red">*</span>
+                                <select class="form-select form-control" aria-label="Default select example"
+                                    name="library" required [(ngModel)]="visitRequest.libraryId"
+                                    (change)="getVisitAvailableDatesByLibraryId()" #library="ngModel">
+                                    <option *ngFor="let library of librariesList" [value]="library.id">
+                                        {{translate.currentLang == 'en' ? library.nameEn : library.nameAr}}</option>
+                                </select>
+                                <div *ngIf="library.errors && (library.touched)" class="alert alert-danger mt-2 mb-2">
+                                    <div *ngIf="library.errors.required">
+                                        {{'REQUIRED_FIELD' | translate}}
+                                    </div>
+                                </div>
+                                <div class="mt-5" *ngIf="isEditMode">
+                                    <div class=" card-view">
+                                        <label class="form-label" translate>REQUESTED_DATE</label>
+                                        <h3>{{visitRequest.visitAvailableDate?.date | date}}</h3>
+                                    </div>
+                                </div>
+                                <div class="" *ngIf="isEditMode">
+                                    <div class=" card-view">
+                                        <label class="form-label" translate>REQUESTED_PERIOD</label>
+                                        <h3>{{ oldSelectedPeriod.periodFrom +' '+ (translate.currentLang == 'en' ? oldSelectedPeriod.periodOfTheDayFrom : oldSelectedPeriod.periodOfTheDayFromAr) }}  -  {{ oldSelectedPeriod.periodTo +' '+ (translate.currentLang == 'en' ? oldSelectedPeriod.periodOfTheDayTo : oldSelectedPeriod.periodOfTheDayToAr) }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" translate>date-time</label>
+    
+                                    <ngb-datepicker #dp id="dp" [minDate]="minDatePicker"
+                                        [markDisabled]="isDisabled" (dateSelect)="setSelectedDate($event)"></ngb-datepicker>
+    
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="week-per" style="margin-top: 30px; width: 200px; min-height: 270px;">
+                                    <div class="btn-group" role="group">
+                                        <label class="btn btn-week" style="width: 200px;">
+                                            <input type="checkbox" class="btn-check"> {{'slots' | translate}}
+                                        </label>
+                                    </div>
+                                    <div class="set-time" *ngIf="selectedDate">
+                                        <div *ngFor="let period of visitAvailableDatesPeriodsList">
+                                            <label class="btn btn-per" ngbButtonLabel
+                                                [ngClass]="period.isSelected == true ? 'selected-before-period' :''">
+                                                <input type="checkbox" class="btn-check" ngbButton
+                                                    (click)="togglePeriodsSelection(visitAvailableDatesPeriodsList, period.id, f)">
+                                                {{ period.from +' '+ period.periodOfTheDayFrom }}  -  {{ period.to +' '+ period.periodOfTheDayTo }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.reason-visit</label> <span style="color:red">*</span>
+                        <textarea class="textarea form-control" id="textarea" rows="3" 
+                        pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z\n* ]{2,}$"
+                        required name="visitReason"
+                            [(ngModel)]="visitRequest.visitReason" #visitReason="ngModel"></textarea>
+                        <div *ngIf="visitReason.errors && (visitReason.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="visitReason.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="visitReason.errors.pattern">
+                                {{'INVALID_INPUT_TEXT_ONLY' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" *ngIf="!isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>serv-req</button>
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>SAVE_CHANGES</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

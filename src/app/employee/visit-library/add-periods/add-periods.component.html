@@ -1,0 +1,101 @@
+<div class="home-dash">
+
+  
+  <div class=" d-flex justify-content-between align-items-center">
+
+    <div class="page-title">
+      <h4 translate>{{'periods' | translate}}</h4>
+    </div>
+    <app-back-button></app-back-button>
+
+    </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="mb-3">
+        <label class="form-label" translate>from</label>
+        <div class="input-group">
+
+          <ngb-timepicker [(ngModel)]="startTime" [ngModelOptions]="{standalone: true}" [meridian]="meridian">
+          </ngb-timepicker>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="mb-3">
+        <label class="form-label" translate>to</label>
+        <div class="input-group">
+          <ngb-timepicker [(ngModel)]="endTime" [ngModelOptions]="{standalone: true}" [meridian]="meridian">
+          </ngb-timepicker>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3" *ngIf="!isEditMode">
+      <div class="mb-3 page-head">
+        <a class="btn btn-primary btn-public" style="margin-top: 70px;" (click)="submitForm()">
+          <span class="svg-icon svg-icon-primary ">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26px"
+              height="26px" viewBox="0 0 24 24" version="1.1">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect fill="#fff" opacity="0.9" x="4" y="11" width="16" height="2" rx="1" />
+                <rect fill="#fff" opacity="0.4"
+                  transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                  x="4" y="11" width="16" height="2" rx="1" />
+              </g>
+            </svg>
+          </span>
+          <span translate>add</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3" *ngIf="isEditMode">
+      <div class="mb-3 page-head">
+        <a class="btn btn-primary" style="margin-top: 70px;" (click)="submitForm()">
+        {{'save' | translate}}
+        </a>
+        &nbsp;
+        <a class="btn btn-danger" style="margin-top: 70px; width: 44%;" (click)="isEditMode=false">
+        {{'cancel' | translate}}
+        </a>
+      </div>
+    </div>
+    
+      <div class="col-md-6">
+        <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+          {{!isEditMode ? 'EMPLOYEE_SUCCESS_MESSAGE' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+        </ngb-alert>
+      </div>
+  </div>
+
+  <div class="table-responsive">
+    <table id="lib" class="table table-striped ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" translate="">from</th>
+          <th scope="col" translate="">to</th>
+          <th scope="col" translate="">actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let period of listToView; let i = index;">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{period.periodFrom}}&nbsp;{{translate.currentLang == 'en' ? period.periodOfTheDayFrom : period.periodOfTheDayFromAr}}</td>
+          <td>{{period.periodTo}}&nbsp;{{translate.currentLang == 'en' ? period.periodOfTheDayTo : period.periodOfTheDayToAr}}</td>
+          <td>
+            <div class="row-btns">
+              <button type="button" class="btn btn-secondary" (click)="getPeriodTimesForEdit(period)">
+                  <i class="fas fa-edit"></i>
+              </button>
+              <button type="button" class="btn btn-danger" (click)="deleteConfirmation(period)">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

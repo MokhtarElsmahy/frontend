@@ -1,0 +1,22 @@
+<div class="wrapper nav-collapsed ">
+
+  <app-topbar ></app-topbar>
+
+  <div class="page-wrap">
+    <app-sidebar [accType]="accType"> </app-sidebar>
+    <div class="main-content">
+      <div class="container-fluid">
+        <ngx-spinner  bdColor="rgba(51,51,51,0.8)"
+        size="medium"
+        color="#B19556"
+        type="ball-circus"></ngx-spinner>
+
+        <router-outlet></router-outlet>
+
+      </div>
+    </div>
+
+    <app-footer ></app-footer>
+
+  </div>
+</div>

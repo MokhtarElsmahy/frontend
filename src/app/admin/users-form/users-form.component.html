@@ -1,0 +1,147 @@
+<div class="modal-header">
+    <h4 class="modal-title" translate *ngIf="!isEditMode">add-user</h4>
+    <h4 class="modal-title" translate *ngIf="isEditMode">EDIT_USER</h4>
+    <button type="button" class="close btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span style="font-size: 40px; color: #333;" aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #f="ngForm" autocomplete="off">
+        <div class="row ">
+            <div class="col-md-6">
+                <label class="form-label" translate>FIRST_NAME</label>
+                <input type="text" class="form-control" id="text" name="firstName" required
+                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                    placeholder="{{'FIRST_NAME' | translate}}" [(ngModel)]="userToRegister.firstName" #firstName="ngModel">
+                <div *ngIf="firstName.errors && (firstName.touched)" class="alert alert-danger mt-2 mb-2">
+                    <div *ngIf="firstName.errors.required">
+                        {{'REQUIRED_FIELD' | translate}}
+                    </div>
+                    <div *ngIf="firstName.errors.pattern">
+                        {{'INVALID_INPUT' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" translate>LAST_NAME</label>
+                <input type="text" class="form-control" id="text" name="lastName" required
+                    pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                    placeholder="{{'LAST_NAME' | translate}}" [(ngModel)]="userToRegister.lastName" #lastName="ngModel">
+                <div *ngIf="lastName.errors && (lastName.touched)" class="alert alert-danger mt-2 mb-2">
+                    <div *ngIf="lastName.errors.required">
+                        {{'REQUIRED_FIELD' | translate}}
+                    </div>
+                    <div *ngIf="lastName.errors.pattern">
+                        {{'INVALID_INPUT' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label" translate>ARABIC_NAME</label>
+                <input type="text" class="form-control" id="text" name="nameArabic" required
+                    pattern="^[\u0621-\u064A ][\u0621-\u064A ]+$"
+                    placeholder="{{'ARABIC_NAME' | translate}}" [(ngModel)]="userToRegister.nameArabic" #nameArabic="ngModel">
+                <div *ngIf="nameArabic.errors && (nameArabic.touched)" class="alert alert-danger mt-2 mb-2">
+                    <div *ngIf="nameArabic.errors.required">
+                        {{'REQUIRED_FIELD' | translate}}
+                    </div>
+                    <div *ngIf="nameArabic.errors.pattern && nameArabic.value.length < 50">
+                        {{'PERSON_NAME_ARABIC_VALIDATION' | translate}}
+                    </div>
+                    <div *ngIf="nameArabic.errors.pattern && nameArabic.value.length > 50">
+                        {{'INVALID_INPUT_LENGTH' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" translate>form.mail</label>
+                <input type="text" class="form-control" id="email" name="email" required autocomplete = 'new-email' [disabled]="isEditMode"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="{{'form.mail' | translate}}"
+                    [(ngModel)]="userToRegister.email" #email="ngModel">
+                <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                    <div *ngIf="email.errors.required">
+                        {{'REQUIRED_FIELD' | translate}}
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                        {{'INVALID_INPUT' | translate}}
+                    </div>
+                </div>
+                <div *ngIf="isEmailExisted" class="alert alert-danger mt-2 mb-2">
+                    <div>
+                        {{'EMAIL_IS_EXISETED' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" translate>form.phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" required
+                    pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" (keypress)="keyPressNumbers($event)"
+                    placeholder="{{'form.phone' | translate}}" [(ngModel)]="userToRegister.phoneNumber" #phone="ngModel">
+                <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                    <div *ngIf="phone.errors.required">
+                        {{'REQUIRED_FIELD' | translate}}
+                    </div>
+                    <div *ngIf="phone.errors.pattern">
+                        {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="!isEditMode">
+                <label class="form-label" translate>form.password</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text input-icon" id="password-label">
+                        <i class="fas fa-key"></i>
+                    </span>
+                    <input type="password" id="password" name="password" class="form-control" required autocomplete='new-password'
+                        pattern="^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$" placeholder="{{'form.password' | translate}}"
+                        [(ngModel)]="userToRegister.password" #password="ngModel">
+                </div>
+                <div *ngIf="password.errors && (password.touched)" class="alert alert-danger mt-2 mb-2">
+                    <div *ngIf="password.errors.required">
+                        {{'REQUIRED_FIELD' | translate}}
+                    </div>
+                    <div *ngIf="password.errors.pattern">
+                        {{'PASSWORD_VALIDATION' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="!isEditMode">
+                <label class="form-label" translate>form.passwordconfirm</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text input-icon" id="password-label">
+                        <i class="fas fa-key"></i>
+                    </span>
+                    <input id="passwordconfirm" type="password" name="passwordconfirm" class="form-control" required
+                        pattern="^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$"
+                        placeholder="{{'form.passwordconfirm' | translate}}" [(ngModel)]="userToRegister.passwordconfirm"
+                        #passwordconfirm="ngModel">
+                </div>
+                <div *ngIf="passwordconfirm.errors && (passwordconfirm.touched)" class="alert alert-danger mt-2 mb-2">
+                    <div *ngIf="passwordconfirm.errors.required">
+                        {{'REQUIRED_FIELD' | translate}}
+                    </div>
+                    <div *ngIf="!isPasswordMatched">
+                        {{'PASSWORD_MATCHING_VALIDATION' | translate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="col-md-6">
+    <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+        {{!isEditMode ? 'EMPLOYEE_SUCCESS_MESSAGE' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+    </ngb-alert>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-submit" *ngIf="!isEditMode" (click)="submitForm(f)"
+    [disabled]="!f.dirty || (f.valid && f.submitted)"
+    translate>add
+  </button>
+  <button class="btn btn-primary btn-submit" *ngIf="isEditMode" (click)="submitForm(f)"
+    [disabled]="!f.dirty || (f.valid && f.submitted)"
+    translate>SAVE_CHANGES
+  </button>
+  <a type="button" class=" btn btn-danger" (click)="activeModal.close('Close click');" translate>cancel</a>
+</div>

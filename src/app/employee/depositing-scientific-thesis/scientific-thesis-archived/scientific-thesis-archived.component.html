@@ -1,0 +1,63 @@
+<div class="home-dash">
+
+  <div class="row">
+    <div class="d-flex justify-content-between page-head">
+      <div class="page-title">
+        <h4 translate>{{'myorders' | translate}} ( <span translate style="font-size: 18px; color: #B19556;">
+            scientific-thesis
+          </span>(<span translate style="font-size: 18px; color: #B19556;">ARCHIVED</span>))</h4>
+      </div>
+      <app-back-button></app-back-button>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <label class="form-label" translate>form.outside-kingdom</label>
+      <div class="mb-3">
+        <select class="form-select form-control" aria-label="Default select example" (change)="getSource()"
+          name="isOutsideKingdom" [(ngModel)]="isOutsideKingdom">
+
+          <option [value]="false" translate>form.is-not-outside-kingdom</option>
+          <option [value]="true" translate>form.is-outside-kingdom</option>
+
+          <!-- <option [value]="false">from-kingdom</option>
+          <option [value]="true">outside-kingdom</option> -->
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+
+    <table id="thesisDepositionRequestDT" class=" table table-striped  row-border hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" translate="">req-name</th>
+          <th scope="col" translate="">REQUEST_RESPONSIBLE_NAME</th>
+          <th scope="col" translate="">req-date</th>
+          <th scope="col" translate="">req-status</th>
+          <th scope="col" translate="">req-actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let thesisDepositionRequest of listToView; let i = index;">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{'THESIS_DEPOSITION_REQUEST_SERVICE_NAME' | translate}}</td>
+          <td>{{thesisDepositionRequest.applicantName}}</td>
+          <td>{{thesisDepositionRequest.createdDate | date}}</td>
+          <td>{{getRequestStatusById(thesisDepositionRequest.requestStatusId)}}</td>
+          <td>
+            <div class="row-btns">
+              <button type="button" ngbTooltip="{{'archive-restore' | translate}}" tooltipClass="secondary"
+                class="btn btn-secondary" (click)="unArchiveConfirmation(thesisDepositionRequest)">
+                <i class="fas fa-archive "></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

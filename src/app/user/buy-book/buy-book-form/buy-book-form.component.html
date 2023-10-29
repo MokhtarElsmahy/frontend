@@ -1,0 +1,275 @@
+<div class="home-dash">
+
+    
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>buybooksugg</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+    </div>
+
+    <div class="service-form">
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="name" name="name" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}" [(ngModel)]="suggestion.visitorName"
+                            #name="ngModel">
+                        <div *ngIf="name.errors && (name.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="name.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="name.errors.pattern && name.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="name.errors.pattern && name.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="email" name="email" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="{{'form.mail' | translate}}"
+                            [(ngModel)]="suggestion.visitorEmail" #email="ngModel">
+                        <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="email.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="email.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="phone" name="phone" required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'form.phone' | translate}}" [(ngModel)]="suggestion.visitorMobile"
+                            #phone="ngModel">
+                        <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="phone.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="phone.errors.pattern">
+                                {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.grade</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="qualifications" name="qualifications" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.grade' | translate}}" [(ngModel)]="suggestion.qualifications"
+                            #qualifications="ngModel">
+                        <div *ngIf="qualifications.errors && (qualifications.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="qualifications.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="qualifications.errors.pattern && qualifications.value.length < 50">
+                                {{'INVALID_INPUT_TEXT_ONLY' | translate}}
+                            </div>
+                            <div *ngIf="qualifications.errors.pattern && qualifications.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.bookaddress</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="suggestedBookTitle" name="suggestedBookTitle"
+                            required pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z0-9- ]{2,50}$"
+                            placeholder="{{'form.bookaddress' | translate}}" [(ngModel)]="suggestion.suggestedBookTitle"
+                            #suggestedBookTitle="ngModel">
+                        <div *ngIf="suggestedBookTitle.errors && (suggestedBookTitle.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="suggestedBookTitle.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="suggestedBookTitle.errors.pattern && suggestedBookTitle.value.length < 50">
+                                {{'LETTERS_NUMBERS_DASHES_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="suggestedBookTitle.errors.pattern && suggestedBookTitle.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.author</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="authorName" name="authorName" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.author' | translate}}" [(ngModel)]="suggestion.authorName"
+                            #authorName="ngModel">
+                        <div *ngIf="authorName.errors && (authorName.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="authorName.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="authorName.errors.pattern && authorName.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="authorName.errors.pattern && authorName.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.publisher</label>
+                        <input type="text" class="form-control" id="publisherName" name="publisherName" 
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.publisher' | translate}}" [(ngModel)]="suggestion.publisherName"
+                            #publisherName="ngModel">
+                        <div *ngIf="publisherName.errors && (publisherName.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <!-- <div *ngIf="publisherName.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div> -->
+                            <div *ngIf="publisherName.errors.pattern && publisherName.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="publisherName.errors.pattern && publisherName.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.placeofpublish</label> 
+                        <input type="text" class="form-control" id="placeOfPublication" name="placeOfPublication"
+                             pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.placeofpublish' | translate}}"
+                            [(ngModel)]="suggestion.placeOfPublication" #placeOfPublication="ngModel">
+                        <div *ngIf="placeOfPublication.errors && (placeOfPublication.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <!-- <div *ngIf="placeOfPublication.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div> -->
+                            <div *ngIf="placeOfPublication.errors.pattern && placeOfPublication.value.length < 50">
+                                {{'INVALID_INPUT_TEXT_ONLY' | translate}}
+                            </div>
+                            <div *ngIf="placeOfPublication.errors.pattern && placeOfPublication.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.yearofpublish</label>
+                        <input type="text" class="form-control" id="yearOfPublication" name="yearOfPublication" 
+                            pattern="^[\u0660-\u0669\u06F0-\u06F90-9]{4}" (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'form.yearofpublish' | translate}}"
+                            [(ngModel)]="suggestion.yearOfPublication" #yearOfPublication="ngModel">
+                        <div *ngIf="yearOfPublication.errors && (yearOfPublication.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <!-- <div *ngIf="yearOfPublication.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div> -->
+                            <div *ngIf="yearOfPublication.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.number</label>
+                        <input type="text" class="form-control" id="standardBookNumber" name="standardBookNumber"
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z0-9- ]{2,50}$" placeholder="{{'form.number' | translate}}"
+                            [(ngModel)]="suggestion.standardBookNumber" #standardBookNumber="ngModel">
+                        <div *ngIf="standardBookNumber.errors && (standardBookNumber.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="standardBookNumber.errors.pattern && standardBookNumber.value.length <= 50">
+                                {{'LETTERS_NUMBERS_DASHES_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="standardBookNumber.errors.pattern && standardBookNumber.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.type</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="bookType"
+                            required [(ngModel)]="suggestion.bookTypeId" #bookType="ngModel">
+                            <option *ngFor="let bookType of BookTypesList" [value]="bookType.id">
+                                {{translate.currentLang == 'en' ? bookType.value : bookType.valueArabic}}
+                            </option>
+                        </select>
+                        <div *ngIf="bookType.errors && (bookType.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="bookType.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.information</label>
+                        <textarea class="textarea form-control" id="textarea" rows="3" name="additionalInformation"
+                            [(ngModel)]="suggestion.additionalInformation"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" *ngIf="!isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>serv-req</button>
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>SAVE_CHANGES</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <hr>
+
+    <div class="page-title">
+        <h4 style="font-size: 18px;" translate>serv-review</h4>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                <ngb-rating [(rate)]="currentRate"  [max]="5">
+                    <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <h5 class="rate-num">( {{currentRate}} )</h5>
+            </div>
+  
+           <textarea class="textarea form-control" placeholder="{{'ADD_COMMENT' | translate}}" id="textarea"></textarea>
+            <button class="btn btn-comment" style="margin-top: 10px;"  translate>add-review</button>
+      </div>
+    </div>
+
+</div>
+
+
+

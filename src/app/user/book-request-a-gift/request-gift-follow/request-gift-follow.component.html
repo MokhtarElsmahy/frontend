@@ -1,0 +1,296 @@
+<!-- <div class="home-dash">
+
+
+    <div class=" d-flex justify-content-between align-items-center page-head">
+
+        <div class="page-title">
+            <h4 translate>REQGIFT_SERVICE_NAME</h4>
+        </div>
+
+        <div class="">
+
+
+            &nbsp;
+
+            <app-back-button></app-back-button>
+
+        </div>
+
+    </div>
+
+
+    <div class="service-form">
+
+        <form #f="ngForm">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label>
+                        <input type="text" class="form-control" id="name"
+                            [(ngModel)]="GiftBackRequestVM.beneficiaryName" name="beneficiaryName" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label>
+
+                        <input type="text" class="form-control" [(ngModel)]="GiftBackRequestVM.beneficiaryEmail"
+                            name="beneficiaryEmail" required id="email"
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                            placeholder="{{'form.mail' | translate}}">
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label>
+                        <input type="text" class="form-control" id="phone"
+                            [(ngModel)]="GiftBackRequestVM.beneficiaryMobile" name="beneficiaryMobile" required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" placeholder="{{'form.phone' | translate}}">
+                    </div>
+                </div>
+
+
+            </div>
+            <hr>
+
+
+            <div class="table-responsive">
+                <table id="" class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" translate="">form.bookaddress</th>
+                            <th scope="col" translate="">form.author</th>
+                            <th scope="col" translate="">publish-date</th>
+                            <th style="width: 12%; text-align: start;">
+                                <div class="form-check">
+                                    <input class="form-check-input" (click)="checkuncheckall()" type="checkbox" value=""
+                                        id="selectall">
+                                    <label class="form-check-label" for="selectall" translate="">
+                                        select-All
+                                    </label>
+                                </div>
+                            </th>
+                            <th scope="col" style="width: 10%;" translate="">copy-num</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ListToView ; let i = index">
+                            <th scope="row">{{i +1}}</th>
+                            <td>{{item.bookTitle}}</td>
+                            <td>{{item.authorName}}</td>
+                            <td>{{item.publicationDate | date}}</td>
+                            <td style="text-align: start">
+                                <div class="form-check">
+                                    <input class="form-check-input" disabled="true" [checked]="isChecked" type="checkbox"
+                                        [(ngModel)]="item.isChecked" name="isChecked_{{i}}" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault" translate="">
+                                        req-gift
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="number" disabled="true"  [(ngModel)]="item.numberOfNeededCopies"
+                                    name="numberOfNeededCopies_{{i}}" 
+                                    class="form-control"
+                                    style="width:100px ; margin: auto;" pattern="^[\u0621-\u064A\040]+$"
+                                    placeholder="{{ 'copy-num' | translate }}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </form>
+    </div>
+
+
+
+</div> -->
+
+
+<div class="home-dash">
+    <div class=" d-flex justify-content-between align-items-center">
+
+    <div class="page-title">
+        <h4 translate>REQGIFT_SERVICE_NAME</h4>
+    </div>
+    <app-back-button></app-back-button>
+
+    </div>
+    <div class="service-form">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>RESPONSIBLE_NAME</label>
+                    <h3  translate>form.librarian</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.name</label>
+                    <h3>{{GiftBackRequestVM.beneficiaryName}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.mail</label>
+                    <h3>{{GiftBackRequestVM.beneficiaryEmail}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>form.phone</label>
+                    <h3>{{GiftBackRequestVM.beneficiaryMobile}}</h3>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class=" card-view">
+                    <label class="form-label" translate>req-status</label>
+                    <h3>{{getRequestStatusById(GiftBackRequestVM.requestStatusId)}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>books-list</h4>
+        </div>
+
+        <div class="table-responsive">
+            <table id="bookgift" class="table table-striped ">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col" translate="">form.bookaddress</th>
+                  <th scope="col" translate="">form.author</th>
+                  <th scope="col" translate="">publish-date</th>
+                  <th scope="col" translate="">copy-num</th>
+                  <th scope="col" translate="">req-actions</th>
+                  <!-- <th style="width: 12%; text-align: start;">
+                        <div class="form-check">
+                            <input class="form-check-input" (click) = "checkuncheckall()" type="checkbox" value="" id="selectall">
+                            <label class="form-check-label" for="selectall" translate="">
+                                select-All
+                            </label>
+                          </div>
+                  </th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ListToView ; let i = index">
+                    <th scope="row">{{i +1}}</th>
+                    <td>{{item.bookTitle}}</td>
+                    <td>{{item.authorName}}</td>
+                    <td>{{item.publicationDate | date}}</td>
+                    <td>{{item.numberOfNeededCopies}}</td>
+                  <td style="text-align: start">
+                    <div class="form-check">
+                        <!-- <input class="form-check-input" [checked]="isCheckedsubmit"  type="checkbox" value="" id="flexCheckDefault"> -->
+
+                        <input class="form-check-input"  type="checkbox"
+                        [(ngModel)]="item.isChecked" name="isChecked_{{i}}" id="flexCheckDefault" [disabled]="true">
+                        <label class="form-check-label" for="flexCheckDefault" translate="">
+                            approve
+                        </label>
+                      </div>
+                   </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+
+        <hr>
+
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>REQUEST_COMMENTS</h4>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="comment-cont">
+                    <div class="card-comment" *ngFor="let comment of ListOfComment" 
+                        [ngClass]="isMyReply(comment) == true ? 'right-side' :'left-side'">
+                    <label class="form-label">{{comment.userName}}</label>
+                        <h3>{{comment.comment}}</h3>
+                        <label class="form-label">{{comment.createdDate | date}} &nbsp; {{comment.createdDate |
+                            date:'shortTime'}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form #rf="ngForm">
+                    <div class="mb-3">
+                        <label class="form-label" translate>{{'ADD_COMMENT' | translate}}</label>
+                        <textarea [(ngModel)]="CommentVm.comment" required type="text" class="form-control" id="text" name="comment"
+                            placeholder="{{'ADD_COMMENT' | translate}}">
+                         </textarea>
+                       
+                    </div>
+                    <button class="btn btn-comment" (click)="AddComment()"   translate>ADD</button>
+
+                </form>
+            </div>
+          
+
+        </div>
+
+
+        <hr>
+
+        
+            <div class="row">
+                <div class="row" >
+                    <div class="mb-3" >
+                      
+                        <label *ngIf="decesion==false" class="form-label" translate>reject-reason</label>
+                        <label *ngIf="decesion==true" class="form-label" translate>insructions-needed</label>
+                        <textarea class="textarea form-control" [disabled]="true"
+                        [value]="GiftBackRequestVM.reason" name="reason" 
+                        id="textarea" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="row" *ngIf="GiftBackRequestVM.requestStatusId==RequestStatusEnum.Rejected">
+                    <div class="mb-3" >
+                      
+                        <label *ngIf="decesion==false" class="form-label" translate>reject-reason</label>
+                        <textarea class="textarea form-control" [disabled]="true"
+                        [value]="GiftBackRequestVM.reason" name="reason" 
+                        id="textarea" rows="3"></textarea>
+                    </div>
+                </div>
+            </div> -->
+           
+      
+           
+         
+        
+    </div>
+    <div class="row mt-4" *ngIf="GiftBackRequestVM.requestStatusId != RequestStatusEnum.Pending">
+        <hr>    
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>serv-review</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                <ngb-rating [(rate)]="serviceRating.rate" [max]="5" (rateChange)="createOrUpdateServiceRating()">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+            </div>
+        </div>
+    </div>
+</div>
+

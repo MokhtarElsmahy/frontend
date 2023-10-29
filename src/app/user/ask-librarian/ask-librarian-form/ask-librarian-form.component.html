@@ -1,0 +1,149 @@
+<div class="home-dash">
+
+    <div class=" d-flex justify-content-between align-items-center">
+
+        <div class="page-title">
+            <h4 translate>asklibrarian</h4>
+        </div>
+        <app-back-button></app-back-button>
+    
+    </div>
+    <div class="service-form">
+
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>RESPONSIBLE_NAME</label> <span style="color:red">*</span>
+                        <select class="form-select form-control" aria-label="Default select example" name="inquiryType"
+                            required [(ngModel)]="inquiry.type" #inquiryType="ngModel" [disabled]="inquiry.response">
+                            <option [value]="InquiryTypesEnum.Librarian" translate>form.librarian</option>
+                            <!-- <option [value]="InquiryTypesEnum.LibraryRelations" translate>form.libraryrelations</option> -->
+                            <option [value]="InquiryTypesEnum.MaleHaramMacciLib" translate>form.MaleHaramMacciLib</option>
+                            <option [value]="InquiryTypesEnum.FemaleHaramMacciLib" translate>form.FemaleHaramMacciLib</option>
+                            <option [value]="InquiryTypesEnum.HaramMosqueLib" translate>form.HaramMosqueLib</option>
+                            <option [value]="InquiryTypesEnum.TechnicalSupport" translate>form.technicalsupport</option>
+                        </select>
+                        <div *ngIf="inquiryType.errors && (inquiryType.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="inquiryType.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.name</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="name" name="name" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z ]{2,50}$"
+                            placeholder="{{'form.name' | translate}}" [(ngModel)]="inquiry.visitorName" #name="ngModel" [disabled]="inquiry.response">
+                        <div *ngIf="name.errors && (name.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="name.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="name.errors.pattern && name.value.length < 50">
+                                {{'PERSON_NAME_VALIDATION' | translate}}
+                            </div>
+                            <div *ngIf="name.errors.pattern && name.value.length > 50">
+                                {{'INVALID_INPUT_LENGTH' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.mail</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="email" name="email" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="{{'form.mail' | translate}}"
+                            [(ngModel)]="inquiry.visitorEmail" #email="ngModel" [disabled]="inquiry.response">
+                        <div *ngIf="email.errors && (email.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="email.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="email.errors.pattern">
+                                {{'INVALID_INPUT' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.phone</label> <span style="color:red">*</span>
+                        <input type="text" class="form-control" id="phone" name="phone" required
+                            pattern="^([0][5](?:\s?\d{2})(?:\s?\d{6}))$" (keypress)="keyPressNumbers($event)"
+                            placeholder="{{'form.phone' | translate}}" [(ngModel)]="inquiry.visitorMobile"
+                            #phone="ngModel" [disabled]="inquiry.response">
+                        <div *ngIf="phone.errors && (phone.touched)" class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="phone.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="phone.errors.pattern">
+                                {{'SA_PHONE_NUMBER_VALIDATION' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <label class="form-label" translate>form.question</label> <span style="color:red">*</span>
+                        <textarea class="textarea form-control" id="visitorMessage" name="visitorMessage"
+                            placeholder="{{'form.question' | translate}}" rows="3" required
+                            pattern="^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z\n* ]{2,}$"
+                            [(ngModel)]="inquiry.visitorMessage" #visitorMessage="ngModel" [disabled]="inquiry.response"></textarea>
+                        <div *ngIf="visitorMessage.errors && (visitorMessage.touched)"
+                            class="alert alert-danger mt-2 mb-2">
+                            <div *ngIf="visitorMessage.errors.required">
+                                {{'REQUIRED_FIELD' | translate}}
+                            </div>
+                            <div *ngIf="visitorMessage.errors.pattern">
+                                {{'INVALID_INPUT_TEXT_ONLY' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8" *ngIf="inquiry.response">
+                    <div class="mb-3">
+                        <label class="form-label" translate>emp-response</label>
+                        <textarea class="textarea form-control" id="response" name="response"
+                            placeholder="{{'form.question' | translate}}" rows="3" [disabled]="true"
+                            [(ngModel)]="inquiry.response" #response="ngModel"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true" translate>
+                    {{!isEditMode ? 'success-message' : 'CHANGES_SAVED_SUCCESSFULLY' | translate}}
+                </ngb-alert>
+            </div>
+            <div class="row justify-content-center" *ngIf="!inquiry.response">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-submit" *ngIf="!isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>serv-req</button>
+                    <button class="btn btn-primary btn-submit" *ngIf="isEditMode" (click)="confirmSubmission(f)" [disabled]="!f.dirty || ((f.valid && f.submitted) && confirmationModalService.response)"
+                        translate>SAVE_CHANGES</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="row" *ngIf="inquiry.response">
+        <hr>    
+        <div class="page-title">
+            <h4 style="font-size: 18px;" translate>serv-review</h4>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-start" style="margin-top: -12px;">
+                <ngb-rating [(rate)]="serviceRating.rate" [max]="5" (rateChange)="createOrUpdateServiceRating()">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <h5 class="rate-num">( {{serviceRating?.rate}} )</h5>
+            </div>
+        </div>
+    </div>
+    
+</div>

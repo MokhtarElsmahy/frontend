@@ -1,0 +1,45 @@
+<div class="home-dash">
+
+    <div class="row">
+     <div class="d-flex justify-content-between page-head">
+    <div class="page-title">
+      <h4 translate>{{'myorders' | translate}} ( <span translate style="font-size: 18px; color: #B19556;"> researchretreat
+        </span>(<span translate style="font-size: 18px; color: #B19556;">ARCHIVED</span>))</h4>
+    </div>
+    <app-back-button></app-back-button>
+
+  </div>
+</div>
+
+   <div class="table-responsive">
+
+     <table id="researchRequestDT" class=" table table-striped  row-border hover">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col" translate="">req-name</th>
+              <th scope="col" translate="">REQUEST_RESPONSIBLE_NAME</th>
+              <th scope="col" translate="">req-date</th>
+              <th scope="col" translate="">req-status</th>
+              <th scope="col" translate="">req-actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let researchRequest of listToView; let i = index;">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{'RESEARCH_REQUEST_SERVICE_NAME' | translate}}</td>
+              <td>{{researchRequest.responsibleName}}</td>
+              <td>{{researchRequest.createdDate | date}}</td>
+              <td>{{getRequestStatusById(researchRequest.requestStatusId)}}</td>
+              <td>
+                <div class="row-btns">
+                  <button type="button" ngbTooltip="{{'archive-restore' | translate}}" tooltipClass="secondary" class="btn btn-secondary" (click)="unArchiveConfirmation(researchRequest)" [disabled]="researchRequest.requestStatusId == RequestStatusEnum.Approved">
+                    <i class="fas fa-archive "></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+    </table>
+    </div>
+</div>

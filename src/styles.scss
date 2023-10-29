@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('~bootstrap/dist/css/bootstrap.css');
+@import "rtl";
+@import "hover.css";
+@import 'assets/scss/helpers/variables';
+@import 'assets/scss/layouts/spacing';
+@import 'assets/scss/layouts/form-input';
+@import 'assets/scss/pages/global-page';
+/* Importing Bootstrap SCSS file. */
+//@import '~bootstrap/scss/bootstrap';
+//@import 'assets/scss/pages/style';
+@import 'assets/scss/pages/admin-layout';
+@import 'assets/scss/pages/print';
+
+//@import 'assets/scss/pages/inner-pages';
+@import 'assets/scss/pages/login-page';
+@import "responsive.scss";
+
+
+
+
